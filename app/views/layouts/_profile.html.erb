@@ -25,7 +25,7 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
           </button>       
-			<%= image_tag('FriendFundrLogo.png',:id => "brand-logo",:class => "pull-left",:alt =>"Logo") %>
+			<%= link_to image_tag('FriendFundrLogo.png',:id => "brand-logo",:class => "pull-left",:alt =>"Logo"),root_url %>
         </div>       
 		<div class="collapse navbar-collapse">
           <ul id="menu-bar" class="nav navbar-nav">
@@ -61,10 +61,10 @@
              </li>
 
             <li class="active">
-              <%= link_to "Home", root_url, id: "home"%>
+              <%= link_to image_tag('home_button.png'), root_url, id: "home"%>
             </li>
             <li>
-              <a href="#about">About</a>
+              <a href="#about"><%= image_tag('info.png') %> </a>
             </li>
             <li>
               <%= link_to "Sign out", signout_path, id: "sign_out"%>

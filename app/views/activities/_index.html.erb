@@ -3,6 +3,7 @@
 
 <% activities.each do |activity| %>
 <% if activity.owner %>
+	<% if Friendship.exists?(current_user,activity.owner) || activity.owner.name == current_user.name %>
 	<div class="feed-container">
                 
                 <div class="feed-text">
@@ -15,5 +16,6 @@
                    <p><a href="">shared link seperate tag</a></p>
                   <img class="feed-image" src="cricket.jpg" title="any feed image" onload="resize_feedimage(this)">
               </div>
+              <% end %>
               <%end%>
 	<%end%>
