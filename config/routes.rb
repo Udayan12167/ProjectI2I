@@ -1,11 +1,14 @@
 Facebooksignin::Application.routes.draw do
   get "activities/index"
+  get "activities/post"
+
   get "facebook_api/friends"
   resources :users
   get "welcome/index"
   resources :wishlists
   resources :friendship 
   resources :activities
+  match ':controller(/:action(/:id))', :via => :get
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]

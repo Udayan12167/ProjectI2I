@@ -102,6 +102,7 @@
             </div>
             <!-- Feed -->
             <div id="wishlist" style="display:none">
+              <%= link_to "share", "/activities/post", id: "sign_out",:class => "btn btn-large btn-success" %>
               <a id="addwish-btn"class="btn btn-default">Add Gifts to List</a>
               <div id="addwish-panel">
                                     <%= render 'wishlists/wishlist_form' %>
