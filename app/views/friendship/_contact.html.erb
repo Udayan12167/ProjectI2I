@@ -1,0 +1,4 @@
+<% user=User.find(3) %>
+<%= link_to "Request friendship with #{user.name}",{ :controller =>"friendship", :action => :create,
+   :id => user.name },
+   :method => :post %>

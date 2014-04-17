@@ -1,0 +1,10 @@
+		<div id="user-widget">
+  			<div class="jumbotron">
+  				<p> HELLO</p>
+    			<p>Welcome <strong><%= current_user.name %></strong>!</p>
+                <p><%= image_tag(current_user.largeimage)%></p>
+                <p>
+    			<%= link_to "Sign out", signout_path, id: "sign_out",:class => "btn btn-large btn-success" %>
+    			<%= link_to "Friends", friendlist_path, id: "friends",:class => "btn btn-large btn-success" %>
+    		</div>
+    	</div>

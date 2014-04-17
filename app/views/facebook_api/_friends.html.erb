@@ -1,0 +1,26 @@
+<% friends_list= friends %>
+<% users=User.all %>
+<% uuid=[] %>
+<% users.each do |t| %>
+<% uuid << t["uid"] %>
+<% end %>
+
+<% friends_list.each do |hash| %>
+    <% if hash["id"].in? uuid %>
+        <% user=User.find_by_uid(hash["id"]) %>
+        <div class="friends-media">
+        <a class="pull-left" href="#">
+            <%= image_tag(fimage(hash["id"]), :class => "friends-media-object")%>
+        </a>
+        <div class="friends-media-body">
+            <h4 class="media-heading">
+              <%= hash["name"]%>
+            </h4>
+            <p><%= friendship_status(current_user,user) %></p>
+            <p><%= link_to "Request friendship with #{user.name}",{ :controller => :friendship, :action => :create,
+   :id => user.name },
+   :method => :post %></p>
+        </div>
+    </div>
+    <%end %>
+<%end%>

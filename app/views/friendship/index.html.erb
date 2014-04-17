@@ -1,0 +1,16 @@
+<h1>Listing posts</h1>
+ 
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @friendship.each do |user| %>
+    <tr>
+      <td><%= user.user_id %></td>
+      <td><%= user.friend_id %></td>
+      <td><%= user.status %></td>
+    </tr>
+  <% end %>
+</table>

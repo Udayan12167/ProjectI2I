@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html title>
+  
+  <head>
+    <title>Off Canvas Nav</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <%= javascript_include_tag 'profile.js' %>
+	  <%= stylesheet_link_tag 'profile.css' %>
+  </head>
+  
+  <body title>
+    <div class="container" id="search-container" >
+     <form style="width:inherit">
+      <input id="searchbar" type="search" name="fname" placeholder="Search for Friends or Gifts"  ><br><!--search bar friends -->
+    </form>
+    </div><!-- Search Bar -->
+    <div class="navbar navbar-fixed-top navbar-default" role="navigation" title>
+      <div class="container" title>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>       
+			<img id="brand-logo" src="FriendFundrLogo.png" class="pull-left" alt="Logo" title>
+        </div>       
+		<div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <%= link_to "Home", root_url, id: "home"%>
+            </li>
+            <li>
+              <a href="#about">About</a>
+            </li>
+            <li>
+              <%= link_to "Sign out", signout_path, id: "sign_out"%>
+            </li>
+          </ul>
+        </div>
+        <!-- /.nav-collapse -->
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.navbar -->
+    <div class="row row-offcanvas row-offcanvas-right" title>
+      <div class="col-sm-3 col-md-12" title>
+        <div class="well sidebar-nav pull-left well-sm" id="profile-sidebar" title>
+          <div class="container">
+            <p class="text-center"><b><%= current_user.name %></b></p>
+          </div>
+          <div class="dp-container">
+            <%= image_tag(current_user.largeimage, :class => "display-pic")%>
+          </div>
+          <div class="btn-group btn-group-justified">
+            <a class="btn btn-default" href="https://www.facebook.com/">Gifts</a><a class="btn btn-default" href="https://www.facebook.com/">Events</a>
+          </div>
+          <ul class="nav"></ul>
+        </div>
+      </div>
+    </div><!-- left-sidebar -->
+    <div class="row row-offcanvas row-offcanvas-right" title>
+      <div class="col-sm-3 col-md-12" title>
+        <div class="well sidebar-nav pull-left well-sm" id="trends-sidebar" title>
+          <ul class="list-group">
+            <p class="text-center">Trends/Categories</p>
+            <li class="list-group-item">First Item</li>
+            <li class="list-group-item">Second Item</li>
+            <li class="list-group-item">Third Item</li>
+            <li class="list-group-item">First Item</li>
+            <li class="list-group-item">Second Item</li>
+            <li class="list-group-item">Third Item</li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- right-sidebar -->
+    <div class="container main">
+            <div class="tabs btn-group btn-group-justified">
+              <a class="btn btn-default" onclick="display(feed)">Feed</a><a class="btn btn-default" onclick="display(wishlist)">Wishlist</a><a class="btn btn-default" onclick="display(friends)">Friends</a><a class="btn btn-default" onclick="display(invite)">Invite</a>
+            </div>
+            <!-- tab btns -->
+            <div class="jumbotron">
+            <div id="feed">
+              <%= render 'layouts/feed' %>
+            </div>
+            <!-- Feed -->
+            <div id="wishlist" style="display:none">
+              <div id="wishtext">
+                <div class="wishlist-container">
+                  <div id="wishform">
+                    <%= render 'wishlists/wishlist_form' %>
+                  </div>
+                  <div class="row">
+                  <%= current_wishlist.count %>
+
+                  <% if current_user.wishlist.any? %>
+                    <%= current_user.wishlist.count %>
+                      
+                    <ul class="thumbnails list-unstyled">
+                      <%= render current_wishlist %>
+                    </ul>
+                    <%= will_paginate current_wishlist %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Wishlist -->
+            <div id="friends" style="display:none"> 
+                  <%= render 'facebook_api/friends' %>
+              
+            </div>
+            
+            <!-- Friends -->
+            <div id="invite" style="display:none"> 
+                  <%= render 'facebook_api/invite' %>
+              
+            </div>
+            
+            </div>
+          </div><!-- centre -->
+      
+       
+    <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+    
+    <script>  
+      $(document).ready(function() {
+        $('[data-toggle=offcanvas]').click(function() {
+          $('.row-offcanvas').toggleClass('active');
+        });
+      });
+    </script>
+  </body>
+
+</html>

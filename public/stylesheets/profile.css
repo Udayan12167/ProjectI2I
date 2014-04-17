@@ -1,0 +1,131 @@
+
+      /*       * Style tweaks       * --------------------------------------------------       */
+      body {
+        padding-top: 70px;
+      }
+      footer {
+        position: fixed;
+        top: 600px;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .container {
+        position: relative;
+      }
+      .container.left {
+        position:;
+      }
+      .container.right {
+        position:absolute;
+      }
+      .jumbotron {
+        position:absolute;
+        left: 21.5%;
+        width: 60%;
+        top: 70px;
+      }
+      .btn-group.tabs {
+        position: fixed;
+        left: 26.5%;
+        width: 50%;
+        top: 100px;
+        z-index: 9999;
+      }
+      .dp-container {
+        width:100%;
+      }
+      .display-pic {
+        width: 100%;
+        height: width;
+      }
+      
+      .friends-media{
+        display:inline-block;
+        width:285px;
+		margin-bottom:5px;
+      }
+      
+      .friends-media-object{
+         width:64px; 
+         height:64px;
+         margin-right: 5px;
+      }
+      
+      .friends-media-body{
+        padding-top:5px;
+        font-size:12px;
+      }
+      
+      .thumbnail
+      {
+        font-size : 15px;
+      }
+      .col-md-6
+      {
+        margin-bottom: 10px;
+      }
+	  
+	  #profile-sidebar{
+		  position:fixed; 
+		  width:19.5%; 
+		  left:2.5%; 
+		  top: 100px; 
+		}
+		
+		#search-container{
+			z-index:9999; 
+			position:absolute; 
+			top:15px; 
+			left:40%; 
+			width:25%;
+		}
+		
+		#searchbar{
+			position:fixed; 
+			width:inherit;
+		}
+		
+		#brand-logo{
+			margin-right:5%;
+			width:48px;
+			height:48px;
+		}
+		
+		#trends-sidebar{
+			position:fixed; 
+			width:18%; 
+			left:80%; 
+			top: 100px;
+		}			
+		
+			/*       * Off Canvas       * --------------------------------------------------       */
+      @media screen and(max-width: 768px) {
+        .row-offcanvas {
+          position: absolute;
+          -webkit-transition: all 0.25s ease-out;
+          -moz-transition: all 0.25s ease-out;
+          transition: all 0.25s ease-out;
+        }
+        .row-offcanvas-right .sidebar-offcanvas {
+          right: -50%;
+          /* 6 columns */
+        }
+        .row-offcanvas-left .sidebar-offcanvas {
+          left: -50%;
+          /* 6 columns */
+        }
+        .row-offcanvas-right.active {
+          right: 50%;
+          /* 6 columns */
+        }
+        .row-offcanvas-left.active {
+          left: 50%;
+          /* 6 columns */
+        }
+        .sidebar-offcanvas {
+          position: absolute;
+          right:200px;
+          top: 0;
+          width: 50%;
+          /* 6 columns */
+        }

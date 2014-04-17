@@ -1,0 +1,17 @@
+<h1>Listing posts</h1>
+ 
+<table>
+  <tr>
+    <th>link</th>
+    <th>user_id</th>
+    <th>id</th>
+  </tr>
+ 
+  <% @wishlist.each do |user| %>
+    <tr>
+      <td><%= user.link %></td>
+      <td><%= user.user_id %></td>
+      <td><%= user.id %></td>
+    </tr>
+  <% end %>
+</table>
