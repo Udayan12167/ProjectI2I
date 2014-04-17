@@ -14,6 +14,7 @@ gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
