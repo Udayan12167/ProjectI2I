@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <%= stylesheet_link_tag 'profile.css' %>
     <%= javascript_include_tag 'profile.js' %>
-	  <%= stylesheet_link_tag 'profile.css' %>
+	  
   </head>
   
   <body title>
@@ -24,10 +25,41 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
           </button>       
-			<img id="brand-logo" src="FriendFundrLogo.png" class="pull-left" alt="Logo" title>
+			<%= image_tag('FriendFundrLogo.png',:id => "brand-logo",:class => "pull-left",:alt =>"Logo") %>
         </div>       
 		<div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
+          <ul id="menu-bar" class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle"><%= image_tag('notification.png',:class => "menu-icon") %><span id="notificaton-count" class="badge">0</span></a>
+              <ul class="dropdown-menu pull-right">
+                    <a href="#" class="notification-link">
+                      <div class="notification-container">
+                        <img class="feed-thumbnail" src="vedant_dp.jpg" title="thumbnail-dp">
+                        User name: New notification
+                      </div>
+                    </a>
+                    <a href="#" class="notification-link">
+                      <div class="notification-container">
+                        <img class="feed-thumbnail" src="vedant_dp.jpg" title="thumbnail-dp">
+                        User name: New notification
+                      </div>
+                    </a>
+                    <a href="#" class="notification-link">
+                      <div class="notification-container">
+                        <img class="feed-thumbnail" src="vedant_dp.jpg" title="thumbnail-dp">
+                        User name: New notification
+                      </div>
+                    </a>
+                    <a href="#" class="notification-link">
+                      <div class="notification-container">
+                        <img class="feed-thumbnail" src="vedant_dp.jpg" title="thumbnail-dp">
+                        User name: New notification
+                      </div>
+                    </a>
+
+                  </ul>
+             </li>
+
             <li class="active">
               <%= link_to "Home", root_url, id: "home"%>
             </li>
@@ -44,6 +76,11 @@
       <!-- /.container -->
     </div>
     <!-- /.navbar -->
+    <div class="timeline-bar">
+      <div class="timeline-line">
+        <%= image_tag('Start_node.png',:id => "startnode") %>
+      </div>
+    </div>
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
         <div class="well sidebar-nav pull-left well-sm" id="profile-sidebar" title>
@@ -77,20 +114,21 @@
     </div><!-- right-sidebar -->
     <div class="container main">
             <div class="tabs btn-group btn-group-justified">
-              <a class="btn btn-default" onclick="display(feed)">Feed</a><a class="btn btn-default" onclick="display(wishlist)">Wishlist</a><a class="btn btn-default" onclick="display(friends)">Friends</a><a class="btn btn-default" onclick="display(invite)">Invite</a>
-            </div>
+              <a id="feed-btn" class="tab btn btn-default" onclick="display(feed)">Feed</a><a id="wishlist-btn" class="tab btn btn-default" onclick="display(wishlist)">Wishlist</a><a id="friends-btn" class="tab btn btn-default" onclick="display(friends)">Friends</a>            </div>
             <!-- tab btns -->
             <div class="jumbotron">
             <div id="feed">
-              <%= render 'layouts/feed' %>
+              <%= render 'activities/index' %>
+
             </div>
             <!-- Feed -->
             <div id="wishlist" style="display:none">
+              <a id="addwish-btn"class="btn btn-default">Add Gifts to List</a>
+              <div id="addwish-panel">
+                                    <%= render 'wishlists/wishlist_form' %>
+              </div>
               <div id="wishtext">
                 <div class="wishlist-container">
-                  <div id="wishform">
-                    <%= render 'wishlists/wishlist_form' %>
-                  </div>
                   <div class="row">
                   <%= current_wishlist.count %>
 
@@ -113,10 +151,10 @@
             </div>
             
             <!-- Friends -->
-            <div id="invite" style="display:none"> 
-                  <%= render 'facebook_api/invite' %>
-              
+            <div id="invite" style="display:none">
+              <%= render 'facebook/invite' %>
             </div>
+            
             
             </div>
           </div><!-- centre -->
@@ -133,6 +171,8 @@
         });
       });
     </script>
+    <%= javascript_include_tag 'profile_jq.js' %>
+    
   </body>
 
 </html>

@@ -8,6 +8,7 @@
 <% friends_list.each do |hash| %>
     <% if hash["id"].in? uuid %>
         <% user=User.find_by_uid(hash["id"]) %>
+        <div class="friends-container">
         <div class="friends-media">
         <a class="pull-left" href="#">
             <%= image_tag(fimage(hash["id"]), :class => "friends-media-object")%>
@@ -22,5 +23,6 @@
    :method => :post %></p>
         </div>
     </div>
+</div>
     <%end %>
 <%end%>
