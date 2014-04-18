@@ -1,0 +1,163 @@
+<% activities = PublicActivity::Activity.order("created_at desc") %>
+<!DOCTYPE html>
+
+<html title>
+  
+  <head>
+    <title>Off Canvas Nav</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <%= stylesheet_link_tag 'profile.css' %>
+    <%= javascript_include_tag 'profile.js' %>
+	  
+  </head>
+  
+  <body title>
+    <div class="container" id="search-container" >
+     <form style="width:inherit">
+      <input id="searchbar" type="search" name="fname" placeholder="Search for Friends or Gifts"  ><br><!--search bar friends -->
+    </form>
+    </div><!-- Search Bar -->
+    <div class="navbar navbar-fixed-top navbar-default" role="navigation" title>
+      <div class="container" title>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>       
+			<%= link_to image_tag('FriendFundrLogo.png',:id => "brand-logo",:class => "pull-left",:alt =>"Logo"),root_url %>
+        </div>       
+		<div class="collapse navbar-collapse">
+          <ul id="menu-bar" class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle"><%= image_tag('notification.png',:class => "menu-icon") %><span id="notificaton-count" class="notification-count badge"><%=activities.size%></span></a>
+              <ul class="dropdown-menu pull-right">
+
+                    <%= render 'activities/notif' %>
+                    
+
+                  </ul>
+             </li>
+
+            <li class="active">
+              <%= link_to image_tag('home_button.png'), root_url, id: "home"%>
+            </li>
+            <li>
+              <a href="#about"><%= image_tag('Info.png') %> </a>
+            </li>
+            <li>
+              <%= link_to image_tag('sign_out.png'), signout_path, id: "sign_out"%>
+            </li>
+          </ul>
+        </div>
+        <!-- /.nav-collapse -->
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.navbar -->
+    <div class="timeline-bar">
+      <div class="timeline-line">
+        <%= image_tag('Start_node.png',:id => "startnode") %>
+      </div>
+    </div>
+    <div class="row row-offcanvas row-offcanvas-right" title>
+      <div class="col-sm-3 col-md-12" title>
+        <div class="well sidebar-nav pull-left well-sm" id="profile-sidebar" title>
+          <div class="container">
+            <p class="text-center"><b><%= current_user.name %></b></p>
+          </div>
+          <div class="dp-container">
+            <%= image_tag(current_user.largeimage, :class => "display-pic")%>
+          </div>
+          <div class="btn-group btn-group-justified">
+            <a class="btn btn-default" href="https://www.facebook.com/">Gifts</a><a class="btn btn-default" href="https://www.facebook.com/">Events</a>
+          </div>
+          <ul class="nav"></ul>
+        </div>
+      </div>
+    </div><!-- left-sidebar -->
+    <div class="row row-offcanvas row-offcanvas-right" title>
+      <div class="col-sm-3 col-md-12" title>
+        <div class="well sidebar-nav pull-left well-sm" id="trends-sidebar" title>
+          <ul class="list-group">
+            <p class="text-center">Trends/Categories</p>
+            <li class="list-group-item">First Item</li>
+            <li class="list-group-item">Second Item</li>
+            <li class="list-group-item">Third Item</li>
+            <li class="list-group-item">First Item</li>
+            <li class="list-group-item">Second Item</li>
+            <li class="list-group-item">Third Item</li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- right-sidebar -->
+    <div class="container main">
+            <div class="tabs btn-group btn-group-justified">
+              <a id="feed-btn" class="tab btn btn-default" onclick="display(feed)">Feed</a><a id="wishlist-btn" class="tab btn btn-default" onclick="display(wishlist)">Wishlist</a><a id="friends-btn" class="tab btn btn-default" onclick="display(friends)">Friends</a>            </div>
+            <!-- tab btns -->
+            <div class="jumbotron">
+            <div id="feed">
+              <%= render 'activities/index' %>
+
+            </div>
+            <!-- Feed -->
+            <div id="wishlist" style="display:none">
+              <%= link_to "share", "/activities/post", id: "sign_out",:class => "btn btn-large btn-success" %>
+              <a id="addwish-btn"class="btn btn-default">Add Gifts to List</a>
+              <div id="addwish-panel">
+                                    <%= render 'wishlists/wishlist_form' %>
+              </div>
+              <div id="wishtext">
+                <div class="wishlist-container">
+                  <div class="row">
+                  <%= current_wishlist.count %>
+
+                  <% if current_user.wishlist.any? %>
+                    <%= current_user.wishlist.count %>
+                      
+                    <ul class="thumbnails list-unstyled">
+                      <%= render current_wishlist %>
+                    </ul>
+                    <%= will_paginate current_wishlist %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Wishlist -->
+            <div id="friends" style="display:none">
+            <a id="invite-btn"class="btn btn-default">Invite Friends</a>
+              <div id="invite-panel">
+                Invite Friends to Join Friend Fundr
+              </div> 
+
+                <%= render 'facebook_api/friends' %>           
+            </div>
+            <!-- Friends -->
+
+            <!-- <div id="invite" style="display:none">
+              <%#<%= render 'facebook/invite' %>
+            </div>
+             -->
+            
+            </div>
+          </div><!-- centre -->
+      
+       
+    <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+    
+    <script>  
+      $(document).ready(function() {
+        $('[data-toggle=offcanvas]').click(function() {
+          $('.row-offcanvas').toggleClass('active');
+        });
+      });
+    </script>
+    <%= javascript_include_tag 'profile_jq.js' %>
+    
+  </body>
+
+</html>

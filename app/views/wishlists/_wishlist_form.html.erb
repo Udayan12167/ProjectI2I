@@ -1,0 +1,10 @@
+<% @wishlist=current_user.wishlist.build %>
+<%= form_for(@wishlist) do |f| %>
+	<div>
+		<%= f.text_area :link,placeholder: "Link of item..." %>
+	</div>
+	<div>
+		<%= f.text_area :price,placeholder: "Price" %>
+	</div>
+	<%= f.submit "Post" , class: "btn btn-large btn-primary" %>
+<% end %> 

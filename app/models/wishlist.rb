@@ -1,0 +1,9 @@
+class Wishlist < ActiveRecord::Base
+	include PublicActivity::Model
+  	tracked owner: ->(controller, model) { controller && controller.current_user }
+	belongs_to :user
+	validates :user_id, presence: true
+	validates :link, presence: true,length: {maximum: 140}
+	
+end
+
