@@ -47,7 +47,7 @@
               <a href="#about"><%= image_tag('Info.png') %> </a>
             </li>
             <li>
-              <%= link_to "Sign out", signout_path, id: "sign_out"%>
+              <%= link_to image_tag('sign_out.png'), signout_path, id: "sign_out"%>
             </li>
           </ul>
         </div>
@@ -126,16 +126,20 @@
               </div>
             </div>
             <!-- Wishlist -->
-            <div id="friends" style="display:none"> 
-                  <%= render 'facebook_api/friends' %>
-              
+            <div id="friends" style="display:none">
+            <a id="invite-btn"class="btn btn-default">Invite Friends</a>
+              <div id="invite-panel">
+                Invite Friends to Join Friend Fundr
+              </div> 
+
+                <%= render 'facebook_api/friends' %>           
             </div>
-            
             <!-- Friends -->
-            <div id="invite" style="display:none">
+
+            <!-- <div id="invite" style="display:none">
               <%#<%= render 'facebook/invite' %>
             </div>
-            
+             -->
             
             </div>
           </div><!-- centre -->

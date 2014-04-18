@@ -250,6 +250,32 @@
         margin-bottom: 5px;
     }
 
+    #invite-btn{
+      width: 27%;
+      position: relative;
+      left:27%;
+      margin-bottom: 10px;
+    }
+
+    #invite-btn:hover{
+      font-weight: bold;
+      background-color: white;
+      color: #16a085;
+    }
+
+    #invite-panel{
+      width: 82%;     
+      padding:50px;
+      display: none;
+        background-color: #ffffff;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px;
+        border-style: solid;
+        border-color: #DADFE1;
+        margin-bottom: 5px;
+    }
+
 	  #profile-sidebar{
 		  position:fixed; 
 		  width:19.5%; 
