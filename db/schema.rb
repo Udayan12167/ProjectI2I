@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20140416150146) do
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
-  add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
-  add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
+  add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
+  add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
+  add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 20140416150146) do
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "provider"
@@ -67,6 +67,6 @@ ActiveRecord::Schema.define(version: 20140416150146) do
     t.datetime "updated_at"
   end
 
-  add_index "wishlists", ["user_id", "created_at"], name: "index_wishlists_on_user_id_and_created_at"
+  add_index "wishlists", ["user_id", "created_at"], name: "index_wishlists_on_user_id_and_created_at", using: :btree
 
 end
