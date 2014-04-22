@@ -28,6 +28,11 @@
         padding-top: 10px;
       }
 
+      .container.jumbotron {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
       .notification-container{
         position: relative;
         border:0px;
@@ -283,15 +288,15 @@
     }
 
     #invite-panel{
-      width: 82%;     
+      width: 90%;     
       padding:50px;
       display: none;
-        background-color: #ffffff;
+        background-color: transparent;
         padding: 5px;
-        border-radius: 5px;
-        border: 1px;
-        border-style: solid;
-        border-color: #DADFE1;
+        border-radius: 0;
+        border: none;
+        border-style: none;
+        border-color: none;
         margin-bottom: 5px;
     }
 

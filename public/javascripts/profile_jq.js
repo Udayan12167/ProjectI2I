@@ -5,8 +5,11 @@
 
 
  $('#invite-btn').click(function(){
-            $("#invite-panel").slideToggle();
-          });
+            $('#invite-panel').slideToggle('medium', function() {
+    if ($('#invite-panel-panel').is(':visible'))
+        $('#invite-panel').css('display','inline-block');
+});
+        });
 
 $('#notification').click(function(){
 	$('#notification').css({
