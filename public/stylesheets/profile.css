@@ -64,6 +64,19 @@
       }
 
       .menu-icon{
+        -webkit-filter: grayscale(1);
+      }
+
+      .menu-icon:hover{
+        -webkit-filter: none;
+      }
+
+      #notification{
+        -webkit-filter: grayscale(1);
+      }
+
+      #notification:hover{
+        -webkit-filter: none;
       }
 
       .feed-container{
@@ -208,7 +221,7 @@
       }
 
       .badge.notification-count{
-        background-color: #16a085;  
+        background-color: #c0392b;  
          }
       .timeline-line{
         background-color:#16a085;
@@ -223,6 +236,12 @@
     #startnode{
       position:relative;
       top:-15px;
+      }
+
+
+      .eventnode{
+        position: relative;
+        top: -15px;
       }
 
     #addwish-btn{

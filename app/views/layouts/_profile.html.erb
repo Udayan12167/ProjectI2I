@@ -31,7 +31,7 @@
 		<div class="collapse navbar-collapse">
           <ul id="menu-bar" class="nav navbar-nav">
             <li class="dropdown">
-              <a href="#" data-toggle="dropdown" class="dropdown-toggle"><%= image_tag('notification.png',:class => "menu-icon") %><span id="notificaton-count" class="notification-count badge"><%=activities.size%></span></a>
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification") %><span id="notificaton-count" class="notification-count badge"><%=activities.size%></span></a>
               <ul class="dropdown-menu pull-right">
 
                     <%= render 'activities/notif' %>
@@ -41,13 +41,13 @@
              </li>
 
             <li class="active">
-              <%= link_to image_tag('home_button.png'), root_url, id: "home"%>
+              <%= link_to image_tag('home_button.png'), root_url, id: "home",:class => "menu-icon"%>
             </li>
             <li>
-              <a href="#about"><%= image_tag('Info.png') %> </a>
+              <a href="#about"><%= image_tag('highlight_info.png',:class=> "menu-icon") %> </a>
             </li>
             <li>
-              <%= link_to image_tag('sign_out.png'), signout_path, id: "sign_out"%>
+              <%= link_to image_tag('highlight_sign_out.png'), signout_path, id: "highlight_sign_out",:class => "menu-icon"%>
             </li>
           </ul>
         </div>
@@ -59,6 +59,7 @@
     <div class="timeline-bar">
       <div class="timeline-line">
         <%= image_tag('Start_node.png',:id => "startnode") %>
+        <%= image_tag('Timeline_node.png',:class => "eventnode") %>
       </div>
     </div>
     <div class="row row-offcanvas row-offcanvas-right" title>
