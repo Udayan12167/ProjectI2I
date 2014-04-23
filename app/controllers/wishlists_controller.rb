@@ -7,7 +7,7 @@ class WishlistsController < ApplicationController
     friendship=Friendship.all
     friendship.each do |t|
       if t.user_id==current_user.id
-        Notification.create(:user_id => t.friend_id , :content => "#{current_user.name} added item to wishlist")
+        Notification.create(:user_id => t.friend_id , :content => "added item to wishlist",:name => current_user.name)
       end
     end
 
