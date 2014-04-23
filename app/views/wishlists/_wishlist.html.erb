@@ -1,5 +1,10 @@
+
+            <% current_user.wishlist.each do |t| %>
+            <% if t.id != nil %>
+
             <% current_user.wishlist.each do |t|%>
             <% if t.id!= nil %>
+
             <li class="col-md-6">
               <div class="thumbnail" style="padding: 0">
                 <div style="padding:4px">
@@ -11,10 +16,26 @@
                     <h4><%=t.id%></h4>
 
                       <p>My project description
-                         <i class="icon icon-map-marker"></i> Place, Country
+                        <%= t.id %>
+                         <i class="icon icon-map-marker"></i>
                        </p>
                 </div>      
               </div>
+
+              <% if t.liked_by?(current_user).to_s == "false" %>
+                <%= link_to "like", {controller:"wishlists", action:"vote" , my_param: "#{t.id}"} ,id: "sign_out",:class => "btn btn-large btn-success" %>
+              <%end%>
+              
+              <% if t.liked_by?(current_user).to_s == "true" %>
+              <%= link_to "unlike", {controller:"wishlists", action:"unvote" , my_param: "#{t.id}"} ,id: "sign_out",:class => "btn btn-large btn-success" %>
+              <%end%>
+              <%= t.likers(User).count %>
+              
+            </li>
+            <%end%>
+            <%end%>
+
+
             </li>
             <%end%>
             <%end%>
