@@ -241,8 +241,8 @@
 
 
       .eventnode{
-        position: relative;
-        top: -15px;
+        position: absolute;
+        top: -10px;
       }
 
     #addwish-btn{
