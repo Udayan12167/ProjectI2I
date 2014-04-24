@@ -3,6 +3,17 @@
             $("#addwish-panel").slideToggle();
           });
 
+
+ $('#invite-btn').click(function(){
+            $("#invite-panel").slideToggle();
+          });
+
+$('#notification').click(function(){
+	$('#notification').css({
+		'-webkit-filter': 'none'
+	});
+})
+
 $('.img-gift').popover({
 		  container: 'body',
           html: true,

@@ -23,6 +23,18 @@ function reset_tab(id){
       tabbtn.style.color='black';
 }
 
+ 
+function set_eventnode(new_date){
+      var today= new Date();
+      var date_string=new String(new_date.getAttribute('id'));
+      var event_date=new Date(date_string);
+      var days_diff=Math.ceil((event_date.getTime()-today.getTime())/ (1000 * 3600 * 24));
+      var dist=(1.6*days_diff);
+      var distance=new String(dist);
+      alert(distance);
+      document.getElementById(new_date.getAttribute('id')).style.left=distance+"%";
+}
+
 function resize_image(x){
  	if(x.height>x.width){
 		x.style.height='200px';
