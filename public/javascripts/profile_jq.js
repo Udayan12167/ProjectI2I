@@ -9,5 +9,5 @@ $('.img-gift').popover({
           trigger: 'hover',
           placement: 'auto right',
           title:'Hey! It works',
-          content: 'better feel awesome better feel awesomebetter feel awesomebetter feel awesome',
+          content: 'better feel awesome better feel awesome better feel awesome better feel awesome',
                       });
