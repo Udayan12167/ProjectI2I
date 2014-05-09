@@ -1,4 +1,6 @@
 Facebooksignin::Application.routes.draw do
+  resources :notifications
+
   get "activities/index"
   get "activities/post"
 
