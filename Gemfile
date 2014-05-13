@@ -7,6 +7,7 @@ gem 'fb_graph'
 gem 'will_paginate'
 gem 'bootstrap-sass'
 gem 'bootstrap-will_paginate'
+gem 'socialization'
 
 
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'

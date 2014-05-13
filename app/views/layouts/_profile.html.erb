@@ -32,9 +32,19 @@
           <ul id="menu-bar" class="nav navbar-nav">
             <li class="dropdown">
               <a href="#" data-toggle="dropdown" id="notif-dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification-inactive") %><span id="notificaton-count" class="notification-count badge"><%=activities.size%></span></a>
+
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification") %><span id="notificaton-count" class="notification-count badge"><!--<% notifcount=0 %>
+                <% Notification.all.each do |t| %>
+                <% if (t.user_id==current_user.id) %>
+                <% notifcount=notifcount+1 %>
+                <% end%>
+                <% end%>
+                <%= notifcount %>!-->
+                <%= current_user.notifcount %> 
+                  </span></a>
               <ul class="dropdown-menu pull-right">
 
-                    <%= render 'activities/notif' %>
+                   
                     
 
                   </ul>
@@ -59,14 +69,16 @@
     <div class="timeline-bar">
       <div class="timeline-line">
         <%= image_tag('Start_node.png',:id => "startnode") %>
-        <%= image_tag('Timeline_node.png',:class => "eventnode") %>
+        <div class="eventnode" >
+          <%= image_tag('Timeline_node.png') %>
+        </div>
       </div>
     </div>
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
         <div class="well sidebar-nav pull-left well-sm" id="profile-sidebar" title>
           <div class="container">
-            <p class="text-center"><b><%= current_user.name %></b></p>
+            <p class="text-center"><b><%= current_user.name %><%= current_user.notifcount %></b></p>
           </div>
           <div class="dp-container">
             <%= image_tag(current_user.largeimage, :class => "display-pic")%>
@@ -99,7 +111,7 @@
             <!-- tab btns -->
             <div class="jumbotron">
             <div id="feed">
-              <%= render 'activities/index' %>
+              
 
             </div>
             <!-- Feed -->
@@ -107,20 +119,21 @@
               <%= link_to "share", "/activities/post", id: "sign_out",:class => "btn btn-large btn-success" %>
               <a id="addwish-btn"class="btn btn-default">Add Gifts to List</a>
               <div id="addwish-panel">
-                                    <%= render 'wishlists/wishlist_form' %>
+                <%= render 'wishlists/wishlist_form' %>
               </div>
               <div id="wishtext">
                 <div class="wishlist-container">
                   <div class="row">
-                  <%= current_wishlist.count %>
+                  
 
                   <% if current_user.wishlist.any? %>
                     <%= current_user.wishlist.count %>
                       
                     <ul class="thumbnails list-unstyled">
-                      <%= render current_wishlist %>
+                    <%= render 'wishlists/wishlist' %>
+
                     </ul>
-                    <%= will_paginate current_wishlist %>
+                    
                     <% end %>
                   </div>
                 </div>
@@ -129,11 +142,17 @@
             <!-- Wishlist -->
             <div id="friends" style="display:none">
             <a id="invite-btn"class="btn btn-default">Invite Friends</a>
+            <% friends_list= friends.paginate(:page => params[:page],:per_page => 5) %>
               <div id="invite-panel">
-                Invite Friends to Join Friend Fundr
-              </div> 
+        
+                <%= render 'facebook_api/invite' , :friends => friends_list %>
+                <%= will_paginate friends_list %>
+              </div>
 
+
+              <div id="friends-panel">
                 <%= render 'facebook_api/friends' %>           
+              </div>
             </div>
             <!-- Friends -->
 
