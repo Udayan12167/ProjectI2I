@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  acts_as_liker
   has_many :friendships
   has_many :friends,
    :through => :friendships,
