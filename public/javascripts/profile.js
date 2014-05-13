@@ -23,16 +23,21 @@ function reset_tab(id){
       tabbtn.style.color='black';
 }
 
+function call_set_eventnode(){
+      var a = document.getElementsByClassName('eventnode');
+      for (var index = 0; index < a.length; ++index) {
+            set_eventnode(a[index]);
+      }
+}
  
-function set_eventnode(new_date){
+function set_eventnode(new_node){
       var today= new Date();
-      var date_string=new String(new_date.getAttribute('id'));
-      var event_date=new Date(date_string);
+      var event_date=new Date("July 12, 2014");
       var days_diff=Math.ceil((event_date.getTime()-today.getTime())/ (1000 * 3600 * 24));
-      var dist=(1.6*days_diff);
+      var dist=(1.2*days_diff);
       var distance=new String(dist);
-      alert(distance);
-      document.getElementById(new_date.getAttribute('id')).style.left=distance+"%";
+      //alert(distance);
+      new_node.style.left=distance+"%";
 }
 
 function resize_image(x){

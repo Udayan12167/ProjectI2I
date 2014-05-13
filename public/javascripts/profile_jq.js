@@ -20,6 +20,10 @@ $('#notification').click(function(){
 	});
 })
 
+$('.eventnode').load(
+	call_set_eventnode()
+)
+
 $('.img-gift').popover({
 		  container: 'body',
           html: true,
