@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
     hide_action :current_user
     private
 
-  	def current_wishlist
-  		@wishlist ||= User.find(session[:user_id]).wishlist.paginate(page: params[:page])
-  	end
-  	helper_method :current_wishlist
+  	#def current_wishlist
+  	#	@wishlist ||= User.find(session[:user_id]).wishlist.paginate(page: params[:page])
+  	#end
+  	#helper_method :current_wishlist
 end

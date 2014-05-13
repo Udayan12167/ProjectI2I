@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140513084336) do
+=======
+ActiveRecord::Schema.define(version: 20140513092543) do
+>>>>>>> 333c1d364c35cd36a117961448089140715ea381
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -56,6 +60,11 @@ ActiveRecord::Schema.define(version: 20140513084336) do
     t.string   "likeable_type"
     t.integer  "likeable_id"
     t.datetime "created_at"
+<<<<<<< HEAD
+=======
+    t.datetime "updated_at"
+    t.string   "name"
+>>>>>>> 333c1d364c35cd36a117961448089140715ea381
   end
 
   add_index "likes", ["likeable_id", "likeable_type"], name: "fk_likeables", using: :btree
@@ -90,6 +99,7 @@ ActiveRecord::Schema.define(version: 20140513084336) do
     t.datetime "oauth_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "notifcount"
   end
 
   create_table "wishlists", force: true do |t|

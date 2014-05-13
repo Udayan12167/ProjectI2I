@@ -10,6 +10,8 @@ class Friendship < ActiveRecord::Base
 			transaction do 
 				create(:user => user,:friend => friend , :status => 'pending')
 				create(:user => friend,:friend => user, :status => 'requested')
+				Notification.create( :user_id => user.id , :content => "joined FriendFundr",:name => friend.name)
+				Notification.create( :user_id => friend.id, :content => "joined FriendFundr",:name => user.name)
 
 				
 			end
@@ -17,6 +19,7 @@ class Friendship < ActiveRecord::Base
 		end
 	end
 	def self.accept(user,friend)
+
 		transaction do
 			accepted_at = Time.now
 			accept_one_side(user,friend,accepted_at)

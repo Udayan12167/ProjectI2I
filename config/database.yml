@@ -19,7 +19,11 @@ test:
   database: friendfundr
   pool: 5
   username: root
+<<<<<<< HEAD
   password: passnot4fam
+=======
+  password: new
+>>>>>>> 333c1d364c35cd36a117961448089140715ea381
 
 production:
   adapter: mysql2
@@ -27,4 +31,8 @@ production:
   database: friendfundr
   pool: 5
   username: root
+<<<<<<< HEAD
   password: passnot4fam
+=======
+  password: new
+>>>>>>> 333c1d364c35cd36a117961448089140715ea381

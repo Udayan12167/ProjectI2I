@@ -28,11 +28,6 @@
         padding-top: 10px;
       }
 
-      .container.jumbotron {
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-
       .notification-container{
         position: relative;
         border:0px;
@@ -162,6 +157,7 @@
       .friends-container{
         display:inline-block;
         background-color: #ffffff;
+        vertical-align: top;
         padding: 5px;
         border-radius: 5px;
         border: 1px;
