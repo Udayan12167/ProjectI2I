@@ -138,10 +138,14 @@
             <!-- Wishlist -->
             <div id="friends" style="display:none">
             <a id="invite-btn"class="btn btn-default">Invite Friends</a>
+            <% friends_list= friends.paginate(:page => params[:page],:per_page => 5) %>
               <div id="invite-panel">
         
-                <%= render 'facebook_api/invite' %>
-              </div> 
+                <%= render 'facebook_api/invite' , :friends => friends_list %>
+                <%= will_paginate friends_list %>
+              </div>
+
+
               <div id="friends-panel">
                 <%= render 'facebook_api/friends' %>           
               </div>
