@@ -253,10 +253,10 @@
       top:-15px;
       }
 
-
       .eventnode{
         position: absolute;
         top: -10px;
+        font-size: 0px;
       }
 
     #addwish-btn{
