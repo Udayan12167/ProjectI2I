@@ -31,7 +31,7 @@
 		<div class="collapse navbar-collapse">
           <ul id="menu-bar" class="nav navbar-nav">
             <li class="dropdown">
-              <a href="#" data-toggle="dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification") %><span id="notificaton-count" class="notification-count badge"><%=activities.size%></span></a>
+              <a href="#" data-toggle="dropdown" id="notif-dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification-inactive") %><span id="notificaton-count" class="notification-count badge"><%=activities.size%></span></a>
               <ul class="dropdown-menu pull-right">
 
                     <%= render 'activities/notif' %>

@@ -1,5 +1,23 @@
+$('html').click(function(event)
+{
+  if(event.target.id == 'notif-dropdown' && ($('#notification-active').attr('id')=='notification-active'))
+  {
+    console.log("3");
+    $('#notification-active').attr('id','notification-inactive');
+  }
+  else if(event.target.id == 'notif-dropdown' || event.target.id == 'notification-inactive')
+  {
+      console.log("1");
+      $('#notification-inactive').attr('id','notification-active');
+  }
+  else
+  {
+    console.log("4");
+    $('#notification-active').attr('id','notification-inactive');
+  }
+});
 
- $('#addwish-btn').click(function(){
+$('#addwish-btn').click(function(){
             $("#addwish-panel").slideToggle();
           });
 
@@ -7,12 +25,6 @@
  $('#invite-btn').click(function(){
             $("#invite-panel").slideToggle();
           });
-
-$('#notification').click(function(){
-	$('#notification').css({
-		'-webkit-filter': 'none'
-	});
-})
 
 $('.img-gift:even').popover({
           container: 'body',
