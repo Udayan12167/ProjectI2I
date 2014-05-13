@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20140513084336) do
-=======
 ActiveRecord::Schema.define(version: 20140513092543) do
->>>>>>> 333c1d364c35cd36a117961448089140715ea381
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -60,11 +56,6 @@ ActiveRecord::Schema.define(version: 20140513092543) do
     t.string   "likeable_type"
     t.integer  "likeable_id"
     t.datetime "created_at"
-<<<<<<< HEAD
-=======
-    t.datetime "updated_at"
-    t.string   "name"
->>>>>>> 333c1d364c35cd36a117961448089140715ea381
   end
 
   add_index "likes", ["likeable_id", "likeable_type"], name: "fk_likeables", using: :btree
@@ -80,6 +71,14 @@ ActiveRecord::Schema.define(version: 20140513092543) do
 
   add_index "mentions", ["mentionable_id", "mentionable_type"], name: "fk_mentionables", using: :btree
   add_index "mentions", ["mentioner_id", "mentioner_type"], name: "fk_mentions", using: :btree
+
+  create_table "notifications", force: true do |t|
+    t.integer  "user_id"
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
 
   create_table "sessions", force: true do |t|
     t.string   "session_id", null: false
