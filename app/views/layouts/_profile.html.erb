@@ -118,9 +118,9 @@
                     <%= current_user.wishlist.count %>
                       
                     <ul class="thumbnails list-unstyled">
-                      <%= render current_wishlist %>
+                      
                     </ul>
-                    <%= will_paginate current_wishlist %>
+                    <%= render 'wishlists/wishlist' %>
                     <% end %>
                   </div>
                 </div>
