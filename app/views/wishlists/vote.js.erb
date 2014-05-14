@@ -1,0 +1,3 @@
+<% div_id=@object.to_i %>
+
+$('#refresh_<%= div_id%>').html("<%= escape_javascript(render :partial => "wishlists/like", :locals => {:id => @object} )%>");

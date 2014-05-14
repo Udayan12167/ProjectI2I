@@ -121,14 +121,14 @@
               </div>
               <div id="wishtext">
                 <div class="wishlist-container">
-                  <div class="row">
+                  <div class="row",id="refresh">
                   
 
                   <% if current_user.wishlist.any? %>
                     <%= current_user.wishlist.count %>
                       
                     <ul class="thumbnails list-unstyled">
-                    <%= render 'wishlists/wishlist' %>
+                    <%= render 'wishlists/wishlist' , :remote => true %>
 
                     </ul>
                     
