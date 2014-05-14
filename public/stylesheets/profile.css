@@ -16,6 +16,10 @@
         background-color: transparent;
       }
 
+      i.icon-home{
+        height:20px;
+        width: 20px;
+      }
       .container {
         position: relative;
       }
@@ -58,7 +62,7 @@
       }
 
       #notification-count{
-        background-color: #16a085;
+        background-color: #27ae60;
       }
 
       .dropdown-menu{ 
@@ -76,6 +80,8 @@
       .menu-icon:hover{
         -webkit-filter: none;
       }
+
+      
 
       #notification-inactive{
         -webkit-filter: grayscale(1);
@@ -129,7 +135,7 @@
       }
 
       #feed-btn{
-        background-color: #16a085;
+        background-color: #27ae60;
       color: white;
       font-weight: bold;
       }
@@ -272,7 +278,7 @@
         background-color: #c0392b;  
          }
       .timeline-line{
-        background-color:#16a085;
+        background-color:#ffffff;
         height:2.5px;
         position: relative;
         top:23px;
@@ -295,6 +301,22 @@
       .img-event{
         height:25px;
         width: 25px;
+        /*box-shadow: 3px 3px 3px #888888;*/
+        border: 1px;
+        border-style: solid;
+        border-color: #DADFE1;
+      }
+
+      .glyphicon-star{
+        color: #f1c40f;
+      }
+
+      .glyphicon-heart{
+        color: #f17288;
+      }
+
+      .glyphicon-user{
+        color: #52B3D9;
       }
 
       .event-btn{
@@ -312,7 +334,7 @@
     #addwish-btn:hover{
       font-weight: bold;
       background-color: white;
-      color: #16a085;
+      color: #27ae60;
     }
 
     #addwish-panel{     
@@ -337,7 +359,7 @@
     #invite-btn:hover{
       font-weight: bold;
       background-color: white;
-      color: #16a085;
+      color: #27ae60;
     }
 
     #invite-panel{
