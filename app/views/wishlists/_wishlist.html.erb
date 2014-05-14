@@ -3,9 +3,8 @@
             <% current_user.wishlist.each do |t|%>
             <% if t.id!= nil %>
             <li class="col-md-6">
-              <%= button_to "remove", {controller:"wishlists", action:"remove" , my_param: "#{t.id}" } %>
+              <%= link_to image_tag('remove.png',:class => "delete-icon"), {controller:"wishlists", action:"remove" , my_param: "#{t.id}" } %>
               <div class="thumbnail" style="padding: 0">
-
                 <div style="padding:4px;">
                  <div class="gift-info">   
                     <%= image_tag('flash.jpg',class: "img-gift",alt:"300x200") %>         

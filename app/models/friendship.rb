@@ -10,8 +10,8 @@ class Friendship < ActiveRecord::Base
 			transaction do 
 				create(:user => user,:friend => friend , :status => 'pending')
 				create(:user => friend,:friend => user, :status => 'requested')
-				Notification.create( :user_id => user.id , :content => "joined FriendFundr",:name => friend.name)
-				Notification.create( :user_id => friend.id, :content => "joined FriendFundr",:name => user.name)
+				Notification.create(:owner_id => friend.uid, :user_id => user.id , :content => "joined FriendFundr",:name => friend.name)
+				Notification.create(:owner_id => user.uid, :user_id => friend.id, :content => "joined FriendFundr",:name => user.name)
 
 				
 			end
