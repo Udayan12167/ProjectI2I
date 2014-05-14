@@ -46,7 +46,7 @@ function set_eventnode(new_node){
 function call_resize_image(){
       var a = document.getElementsByClassName('img-gift');
       for (var index = 0; index < a.length; ++index) {
-            console.log(a[index]);
+            //console.log(a[index]);
             resize_image(a[index]);
       }
 }

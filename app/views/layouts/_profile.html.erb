@@ -90,15 +90,34 @@
         <% days.each do |d| %>
         <% if d != nil %>
         <% if d - Date.today < 30  && d - Date.today > 1%>
-          <div class="eventnode" data-toggle="tooltip" data-placement="top" data-toggle="modal" data-target=".bs-example-modal-lg">
-          <%= image_tag('emma.png',class: "img-event img-circle") %>
-          <%= d.to_s %>
+        <div class="eventnode" data-toggle="tooltip" data-placement="top" >
+          <a href="#" data-toggle="modal" data-target="#basicModal" onClick="triggerModal(this)">
+            <%= image_tag('emma.png',class: "img-event img-circle") %>
+            <%= d.to_s %>
+          </a>
         </div>
         <%end%>
         <%end%>
         <%end%>
       </div>
     </div>
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body" >
+                <h3>Modal Head</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </div>
+  </div>
+</div>
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
         <div class="well sidebar-nav pull-left well-sm" id="profile-sidebar" title>
@@ -109,7 +128,7 @@
             <%= image_tag(current_user.largeimage, :class => "display-pic")%>
           </div>
           <div class="btn-group btn-group-justified">
-            <a class="btn btn-default" href="https://www.facebook.com/">Gifts</a><a class="btn btn-default" href="https://www.facebook.com/">Events</a>
+            <a class="btn btn-default" href="#">Gifts</a><a class="btn btn-default" href="https://www.facebook.com/">Events</a>
           </div>
           <ul class="nav"></ul>
         </div>

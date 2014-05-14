@@ -154,6 +154,10 @@
         height: width;
       }
       
+      .modal{
+        z-index: 9999;
+      }
+
        .img-gift
       {
         max-width: 100%;
@@ -264,6 +268,11 @@
         width: 25px;
       }
 
+      .event-btn{
+        height: 25px;
+        width: 25px;
+      }
+
     #addwish-btn{
       width: 33%;
       position: relative;
@@ -323,7 +332,7 @@
 		}
 		
 		#search-container{
-			z-index:9999; 
+			z-index:9900; 
 			position:absolute; 
 			top:15px; 
 			left:37%; 

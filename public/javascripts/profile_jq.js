@@ -58,8 +58,18 @@ $('.eventnode').load(
 //     call_resize_image()
 //   )
 
+function triggerModal(obj) {
+ 
+    //document.getElementById('the_id').value = avalue;
+    console.log(obj.innerText);
+    $('#basicModal').modal();
+ 
+}
+
 $('img').on('load',function(){
   call_resize_image()
 });
 
-$('eventnode').tooltip(options)
+//$('eventnode').tooltip(options)
+
+$('#modalwin').modal("show")
