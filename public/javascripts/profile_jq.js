@@ -2,17 +2,14 @@ $('html').click(function(event)
 {
   if(event.target.id == 'notif-dropdown' && ($('#notification-active').attr('id')=='notification-active'))
   {
-    console.log("3");
     $('#notification-active').attr('id','notification-inactive');
   }
   else if(event.target.id == 'notif-dropdown' || event.target.id == 'notification-inactive')
   {
-      console.log("1");
       $('#notification-inactive').attr('id','notification-active');
   }
   else
   {
-    console.log("4");
     $('#notification-active').attr('id','notification-inactive');
   }
 });
@@ -31,7 +28,7 @@ $('#addwish-btn').click(function(){
 		       $(this).text("Invite Friends");
           });
 
-$('.img-gift:even').popover({
+$('.thumbnail:even').popover({
           container: 'body',
           html: true,
           trigger: 'hover',
@@ -41,7 +38,7 @@ $('.img-gift:even').popover({
                       });
 
 
-$('.img-gift:odd').popover({
+$('.thumbnail:odd').popover({
           container: 'body',
           html: true,
           trigger: 'hover',
@@ -53,10 +50,6 @@ $('.img-gift:odd').popover({
 $('.eventnode').load(
 	call_set_eventnode()
 )
-
-// $('.img-gift').load(
-//     call_resize_image()
-//   )
 
 $('img').on('load',function(){
   call_resize_image()

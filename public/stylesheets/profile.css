@@ -63,16 +63,6 @@
          
       }
 
-      /*.dropdown
-      {
-        -webkit-filter: grayscale(1);
-      }
-
-      .dropdown:hover
-      {
-       -webkit-filter: none; 
-      }*/
-
       .menu-icon{
         -webkit-filter: grayscale(1);
       }
@@ -194,6 +184,19 @@
         padding-top:5px;
         font-size:12px;
       }
+
+      .delete-icon
+      {
+        height: 15px;
+        width: 15px;
+        margin-top: 10px;
+        position: absolute;
+        right: 25px;
+        display: block;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 100000;
+      }
       
       .thumbnail
       {
@@ -203,18 +206,29 @@
         text-align: center;
         position: relative;
         vertical-align: middle;
+        opacity: 1;
       }
 
       .gift-info
       {
         position: absolute;
-       width: 100%;
-       bottom: 0;
+        width: 100%;
+        bottom: 0;
+      }
+
+      .gift-info:hover
+      {
+        opacity: 0.5;
       }
 
       .col-md-6
       {
         margin-bottom: 10px;
+      }
+
+      .col-md-6:hover .delete-icon
+      {
+        opacity: 1;
       }
 	  
       .navbar{
