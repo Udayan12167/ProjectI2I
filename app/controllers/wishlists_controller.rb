@@ -1,4 +1,5 @@
 class WishlistsController < ApplicationController
+  respond_to :js
   def index
     @wishlist = Wishlist.all
   end
@@ -36,15 +37,16 @@ class WishlistsController < ApplicationController
   end
 
   def vote
-      @object = params[:my_param]
-      current_user.wishlist.each do |t|
+    @object = params[:my_param]
+    current_user.wishlist.each do |t|
       if @object.to_i == t.id.to_i
         current_user.like!(t)
       end
-
     end
-   redirect_to root_url  
-    end
+    respond_to do |format|
+      format.js
+    end 
+  end
   def unvote
       @object = params[:my_param]
       current_user.wishlist.each do |t|
@@ -53,7 +55,9 @@ class WishlistsController < ApplicationController
       end
 
     end
-    redirect_to root_url  
+    respond_to do |format|
+      format.js
+    end   
     end
 
   private

@@ -1,0 +1,15 @@
+<% id=@object.to_i %>
+ <% current_user.wishlist.each do |t|%>
+            <% if t.id== id %>
+				<% if t.liked_by?(current_user).to_s == "false" %>
+    				<%= link_to "like", {controller:"wishlists", action:"vote" , my_param: "#{t.id}"} ,id: "sign_out",:class => "btn btn-large btn-success" ,:remote => true%>
+			<%end%>
+              
+			<% if t.liked_by?(current_user).to_s == "true" %>
+  				<%= link_to "unlike", {controller:"wishlists", action:"unvote" , my_param: "#{t.id}"} ,id: "sign_out",:class => "btn btn-large btn-success",:remote => true %>
+			<%end%>
+
+			<%= t.likers(User).count %>
+	<%end%>
+<%end%>
+
