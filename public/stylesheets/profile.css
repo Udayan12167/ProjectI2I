@@ -10,6 +10,12 @@
         padding-left: 15px;
         padding-right: 15px;
       }
+
+      a:hover{
+        color: #666;
+        background-color: transparent;
+      }
+
       .container {
         position: relative;
       }
@@ -98,6 +104,7 @@
       .feed-text{
         width: 100%;
         text-align: left;
+        display: inline-block;
       }
 
       .feed-username{
@@ -106,6 +113,13 @@
 
       .feed-posttext{
         display: inline-block;
+        margin-bottom: 0;
+      }
+
+      .feed-time{
+        font-size: 10px;
+        color: #B6BBBD;
+        margin-bottom: 0;
       }
 
       .feed-thumbnail{
