@@ -30,8 +30,8 @@
         </div>       
 		<div class="collapse navbar-collapse">
           <ul id="menu-bar" class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="#" data-toggle="dropdown" id="notif-dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification-inactive") %><span id="notificaton-count" class="notification-count badge"><!--<% notifcount=0 %>
+             <li class="dropdown" title="Notification">
+             <a href="#" data-toggle="dropdown" id="notif-dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification-inactive",:class => "menu-icon") %><span id="notificaton-count" class="notification-count badge"><!--<% notifcount=0 %>
                 <% Notification.all.each do |t| %>
                 <% if (t.user_id==current_user.id) %>
                 <% notifcount=notifcount+1 %>
@@ -48,13 +48,13 @@
                   </ul>
              </li>
 
-            <li class="active">
+            <li class="active" title = "Home">
               <%= link_to image_tag('home_button.png'), root_url, id: "home",:class => "menu-icon"%>
             </li>
-            <li>
+            <li title = "About Us">
               <a href="#about"><%= image_tag('highlight_info.png',:class=> "menu-icon") %> </a>
             </li>
-            <li>
+            <li title = "Sign Out">
               <%= link_to image_tag('highlight_sign_out.png'), signout_path, id: "highlight_sign_out",:class => "menu-icon"%>
             </li>
           </ul>
