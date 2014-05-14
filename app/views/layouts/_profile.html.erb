@@ -31,7 +31,7 @@
 		<div class="collapse navbar-collapse">
           <ul id="menu-bar" class="nav navbar-nav">
             <li class="dropdown">
-              <a href="#" data-toggle="dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification") %><span id="notificaton-count" class="notification-count badge"><!--<% notifcount=0 %>
+              <a href="#" data-toggle="dropdown" id="notif-dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification-inactive") %><span id="notificaton-count" class="notification-count badge"><!--<% notifcount=0 %>
                 <% Notification.all.each do |t| %>
                 <% if (t.user_id==current_user.id) %>
                 <% notifcount=notifcount+1 %>
@@ -69,6 +69,7 @@
         <%= image_tag('Start_node.png',:id => "startnode") %>
         <div class="eventnode" >
           <%= image_tag('Timeline_node.png') %>
+          7/11/2014
         </div>
       </div>
     </div>

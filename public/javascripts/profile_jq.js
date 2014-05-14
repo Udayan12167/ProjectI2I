@@ -1,5 +1,23 @@
+$('html').click(function(event)
+{
+  if(event.target.id == 'notif-dropdown' && ($('#notification-active').attr('id')=='notification-active'))
+  {
+    console.log("3");
+    $('#notification-active').attr('id','notification-inactive');
+  }
+  else if(event.target.id == 'notif-dropdown' || event.target.id == 'notification-inactive')
+  {
+      console.log("1");
+      $('#notification-inactive').attr('id','notification-active');
+  }
+  else
+  {
+    console.log("4");
+    $('#notification-active').attr('id','notification-inactive');
+  }
+});
 
- $('#addwish-btn').click(function(){
+$('#addwish-btn').click(function(){
             $("#addwish-panel").slideToggle();
           });
 
@@ -13,22 +31,25 @@
 		       $(this).text("Invite Friends");
           });
 
+$('.img-gift:even').popover({
+          container: 'body',
+          html: true,
+          trigger: 'hover',
+          placement: 'auto left',
+          title:'Hey! It works',
+          content: 'better feel awesome TEDGlobal is heading to Brazil! In October 2014, in Rio de Janeiro, we will celebrate the outpouring of innovation, energy and creativity taking place all over South America and the global south. The world is changing fast. Fresh thinking can be found in every direction, in emerging geographies as well as in the western hemisphere. Join us in Rio to explore the realities of tomorrow.',
+                      });
 
-$('#notification').click(function(){
-	$('#notification').css({
-		'-webkit-filter': 'none'
-	});
-})
 
-$('.eventnode').load(
-	call_set_eventnode()
-)
-
-$('.img-gift').popover({
-		  container: 'body',
+$('.img-gift:odd').popover({
+          container: 'body',
           html: true,
           trigger: 'hover',
           placement: 'auto right',
           title:'Hey! It works',
-          content: 'better feel awesome better feel awesome better feel awesome better feel awesome',
-                      });
+          content: 'better feel awesome TEDGlobal is heading to Brazil! In October 2014, in Rio de Janeiro, we will celebrate the outpouring of innovation, energy and creativity taking place all over South America and the global south. The world is changing fast. Fresh thinking can be found in every direction, in emerging geographies as well as in the western hemisphere. Join us in Rio to explore the realities of tomorrow.',
+});
+
+$('.eventnode').load(
+	call_set_eventnode()
+)

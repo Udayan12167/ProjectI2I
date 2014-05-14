@@ -63,6 +63,16 @@
          
       }
 
+      /*.dropdown
+      {
+        -webkit-filter: grayscale(1);
+      }
+
+      .dropdown:hover
+      {
+       -webkit-filter: none; 
+      }*/
+
       .menu-icon{
         -webkit-filter: grayscale(1);
       }
@@ -71,11 +81,15 @@
         -webkit-filter: none;
       }
 
-      #notification{
+      #notification-inactive{
         -webkit-filter: grayscale(1);
       }
 
-      #notification:hover{
+      #notification-active{
+        -webkit-filter: none;
+      }
+
+     #notif-dropdown:hover img{
         -webkit-filter: none;
       }
 
@@ -239,10 +253,10 @@
       top:-15px;
       }
 
-
       .eventnode{
         position: absolute;
         top: -10px;
+        font-size: 0px;
       }
 
     #addwish-btn{
