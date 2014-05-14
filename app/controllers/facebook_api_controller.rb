@@ -23,4 +23,5 @@ class FacebookApiController < ApplicationController
     "http://graph.facebook.com/#{id}/birthday"
   end
   helper_method :fbday
+  
 end

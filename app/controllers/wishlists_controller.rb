@@ -22,6 +22,16 @@ class WishlistsController < ApplicationController
 
   def destroy
   end
+
+  def remove
+    @object = params[:my_param]
+    current_user.wishlist.each do |t|
+      if @object.to_i == t.id.to_i
+        current_user.wishlist.delete(t)
+      end
+    end
+    redirect_to root_url
+  end
   def initiate
     @wishlist =current_user.wishlist.build
   end

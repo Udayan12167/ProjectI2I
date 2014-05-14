@@ -5,7 +5,7 @@
 <body>
   		<% if current_user %>
   			
-    			<%= render 'layouts/profile' %>
+    			<%= render 'layouts/profile', :itemm => @friends %>
   		<% else %>
     		<%= render 'layouts/signout' %>
   		<% end %>

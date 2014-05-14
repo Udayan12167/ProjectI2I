@@ -32,11 +32,11 @@ function call_set_eventnode(){
  
 function set_eventnode(new_node){
       var today= new Date();
-      var event_date=new Date("July 12, 2014");
+      var event_date=new Date(new_node.innerText);
       var days_diff=Math.ceil((event_date.getTime()-today.getTime())/ (1000 * 3600 * 24));
-      var dist=(1.2*days_diff);
+      var dist=(1.65*days_diff);
       var distance=new String(dist);
-      //alert(distance);
+      //alert(event_date);
       new_node.style.left=distance+"%";
 }
 

@@ -19,6 +19,11 @@ test:
   database: friendfundr
   pool: 5
   username: root
+
+
+  password: new
+
+
   password: new
 
 
@@ -30,4 +35,5 @@ production:
   username: root
 
   password: new
+
 
