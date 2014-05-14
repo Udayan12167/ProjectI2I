@@ -1,6 +1,17 @@
-<div id="longtext">
-                <h1>Feed</h1>
-                bcbc bc 
-                <p> <%= render 'activities/index' %>
-                </p>
-              </div>
+<% notifs = Notification.order("created_at desc").all %>
+
+<% notifs.each do |n| %>
+
+          
+          <a href="#" class="notification-link">
+                      <div class="notification-container">
+                        
+                
+                  
+                           <%= image_tag(fimage(n.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
+                          <a class="feed-username" href=""><%= link_to n.name , root_url  %></a>
+                           <p class="feed-posttext"><%= n.content%> at <%= n.created_at %></p>
+                      </div>
+                    </a>
+                 <%end%>
+                
