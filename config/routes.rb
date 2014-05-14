@@ -1,5 +1,8 @@
 Facebooksignin::Application.routes.draw do
   resources :notifications
+  post 'wishlists/vote'
+  post 'wishlists/unvote'
+  post 'wishlists/remove'
   match ':controller(/:action(/:id))', :via => :get
   get "activities/index"
   get "activities/post"
