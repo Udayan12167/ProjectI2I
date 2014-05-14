@@ -5,17 +5,17 @@
             <li class="col-md-6">
               <%= button_to "remove", {controller:"wishlists", action:"remove" , my_param: "#{t.id}" } %>
               <div class="thumbnail" style="padding: 0">
-                <div style="padding:4px">
-
-                  <img class="img-gift" alt="300x200" data-toggle="popover" style="width: 100%; height:190px" src="Flash-Rebirth-TBP-Cover.jpg" >
+                <div style="padding:4px;">
+                 <div class="gift-info">   
+                    <%= image_tag('flash.jpg',class: "img-gift",alt:"300x200") %>         
                     <h4>BC</h4>
-
                     <h4><%=t.id%></h4>
-
-                      <p>My project description
+                     <p>My project description
                         <%= t.id %>
                          <i class="icon icon-map-marker"></i>
                        </p>
+              </div>
+                    
                 </div>      
               </div>
 

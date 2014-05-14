@@ -53,3 +53,11 @@ $('.img-gift:odd').popover({
 $('.eventnode').load(
 	call_set_eventnode()
 )
+
+// $('.img-gift').load(
+//     call_resize_image()
+//   )
+
+$('img').on('load',function(){
+  call_resize_image()
+});

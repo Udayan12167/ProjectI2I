@@ -40,17 +40,26 @@ function set_eventnode(new_node){
       new_node.style.left=distance+"%";
 }
 
+function call_resize_image(){
+      var a = document.getElementsByClassName('img-gift');
+      for (var index = 0; index < a.length; ++index) {
+            console.log(a[index]);
+            resize_image(a[index]);
+      }
+}
+
 function resize_image(x){
+      //console.log(x.height+"x"+x.width);
  	if(x.height>x.width){
-		x.style.height='200px';
+		x.style.height='190px';
  		x.style.width='auto';
  	}
  	else{
- 		x.style.width='300px';
+ 		x.style.width='240px';
 		x.style.height='auto'; 		
  	}
-
- }
+      //console.log(x.style.height+"x"+x.style.width);
+}
 
  function resize_feedimage(x){
  	if(x.height>x.width){
