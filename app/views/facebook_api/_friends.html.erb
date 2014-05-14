@@ -16,6 +16,7 @@
         <div class="friends-media-body">
             <h4 class="media-heading">
               <%= hash["name"]%>
+              <%= hash["birthday"]%>
             </h4>
             <%Friendship.request(current_user,user)%>
             <%Friendship.accept(user,current_user)%>

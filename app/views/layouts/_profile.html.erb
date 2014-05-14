@@ -64,20 +64,46 @@
       <!-- /.container -->
     </div>
     <!-- /.navbar -->
+            <% days = Array.new %>
+             <% itemm.each do |t| %>
+                <% if t["birthday"] != nil %>
+                <% str = t["birthday"].to_s %>
+                <% if str.length > 7  %>
+                 <% date = Date.strptime(str,'%m/%d/') %>
+                <%end%>
+                <% if str.length < 7 %>
+                  <% str << '/2000' %>
+                  <%date = Date.strptime(str,'%m/%d/%Y') %>
+                  <% time = Time.parse(date.to_s) %>
+                 <% time = time.change(:year => 2014) %>
+                 <% date= Date.parse(time.to_s) %>
+                <%end%>
+                <%end%>
+                <p>
+                  <% days.push(date) %>
+                  
+                </p>
+            <%end%> 
     <div class="timeline-bar">
       <div class="timeline-line">
         <%= image_tag('Start_node.png',:id => "startnode") %>
-        <div class="eventnode" >
+        <% days.each do |d| %>
+        <% if d != nil %>
+        <% if d - Date.today < 60  && d - Date.today > 0%>
+          <div class="eventnode" >
           <%= image_tag('Timeline_node.png') %>
-          7/11/2014
+          <%= d.to_s %>
         </div>
+        <%end%>
+        <%end%>
+        <%end%>
       </div>
     </div>
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
         <div class="well sidebar-nav pull-left well-sm" id="profile-sidebar" title>
           <div class="container">
-            <p class="text-center"><b><%= current_user.name %><%= current_user.notifcount %></b></p>
+            <p class="text-center"><b><%= current_user.name %></b></p>
           </div>
           <div class="dp-container">
             <%= image_tag(current_user.largeimage, :class => "display-pic")%>
@@ -111,7 +137,6 @@
             <div class="jumbotron">
             <div id="feed">
               
-
             </div>
             <!-- Feed -->
             <div id="wishlist" style="display:none">
