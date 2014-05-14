@@ -259,6 +259,11 @@
         font-size: 0px;
       }
 
+      .img-event{
+        height:25px;
+        width: 25px;
+      }
+
     #addwish-btn{
       width: 33%;
       position: relative;

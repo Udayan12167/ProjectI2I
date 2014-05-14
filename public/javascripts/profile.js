@@ -34,10 +34,13 @@ function set_eventnode(new_node){
       var today= new Date();
       var event_date=new Date(new_node.innerText);
       var days_diff=Math.ceil((event_date.getTime()-today.getTime())/ (1000 * 3600 * 24));
-      var dist=(1.65*days_diff);
+      var dist=(3.3*days_diff);
       var distance=new String(dist);
       //alert(event_date);
       new_node.style.left=distance+"%";
+      var date_string=new String(event_date);
+      var display_date=date_string.split(" ");
+      new_node.title=new String(display_date[1]+" "+display_date[2]+" "+display_date[3]);
 }
 
 function call_resize_image(){

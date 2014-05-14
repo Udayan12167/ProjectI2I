@@ -61,3 +61,5 @@ $('.eventnode').load(
 $('img').on('load',function(){
   call_resize_image()
 });
+
+$('eventnode').tooltip(options)

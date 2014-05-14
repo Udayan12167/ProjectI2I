@@ -89,9 +89,9 @@
         <%= image_tag('Start_node.png',:id => "startnode") %>
         <% days.each do |d| %>
         <% if d != nil %>
-        <% if d - Date.today < 60  && d - Date.today > 0%>
-          <div class="eventnode" >
-          <%= image_tag('Timeline_node.png') %>
+        <% if d - Date.today < 30  && d - Date.today > 1%>
+          <div class="eventnode" data-toggle="tooltip" data-placement="top" data-toggle="modal" data-target=".bs-example-modal-lg">
+          <%= image_tag('emma.png',class: "img-event img-circle") %>
           <%= d.to_s %>
         </div>
         <%end%>
