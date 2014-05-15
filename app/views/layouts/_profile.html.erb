@@ -109,7 +109,7 @@
             <%= image_tag(current_user.largeimage, :class => "display-pic")%>
           </div>
           <div class="btn-group btn-group-justified">
-            <a class="btn btn-default" href="https://www.facebook.com/">Gifts</a><a class="btn btn-default" href="https://www.facebook.com/">Events</a>
+            <a class="btn btn-default" href="https://www.facebook.com/">Gifts</a><a class="btn btn-default" href="https://www.facebook.com/" id="Event-btn">Events</a>
           </div>
           <ul class="nav"></ul>
         </div>
@@ -165,15 +165,16 @@
             </div>
             <!-- Wishlist -->
             <div id="friends" style="display:none">
-            <a id="invite-btn"class="btn btn-default">Invite Friends</a>
-            <% friends_list= friends.paginate(:page => params[:page],:per_page => 5) %>
-              <div id="invite-panel">
-        
-                <%= render 'facebook_api/invite' , :friends => friends_list %>
-                <%= will_paginate friends_list %>
-              </div>
+            <a ><%= link_to "Invite Friends", "/welcome/index", :remote => true,:class =>"btn btn-default" ,:id => "invite-btn",:page => 1%></a>
+                <div id="invite-panel">
+                
 
 
+                
+                </div>
+                <div id="infinite-scrolling">
+                  <%= will_paginate paginated_results %>
+                </div>
               <div id="friends-panel">
                 <%= render 'facebook_api/friends' %>           
               </div>
