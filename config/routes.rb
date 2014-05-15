@@ -8,6 +8,7 @@ Facebooksignin::Application.routes.draw do
   get "activities/index"
   get "activities/post"
   get "wishlists/vote"
+  get "wishlists/create"
   get "facebook_api/friends"
   resources :users
   get "welcome/index"
