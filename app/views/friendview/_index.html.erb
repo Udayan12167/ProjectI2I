@@ -1,4 +1,4 @@
-
+<% user = User.find_by_id(object) %>
 <!DOCTYPE html>
 
 <html title>
@@ -123,10 +123,11 @@
       <div class="col-sm-3 col-md-12" title>
         <div class="well sidebar-nav pull-left well-sm" id="profile-sidebar" title>
           <div class="container">
-            <p class="text-center"><b><%= current_user.name %></b></p>
+            <p class="text-center"><b><%= user.name %></b></p>
           </div>
           <div class="dp-container">
-            <%= image_tag(current_user.largeimage, :class => "display-pic")%>
+          	
+            <%= image_tag(user.largeimage, :class => "display-pic")%>
           </div>
           <div class="btn-group btn-group-justified">
             <a class="btn btn-default" href="#">Gifts</a><a class="btn btn-default" href="https://www.facebook.com/">Events</a>
@@ -152,54 +153,37 @@
     </div><!-- right-sidebar -->
     <div class="container main">
             <div class="tabs btn-group btn-group-justified">
-              <a id="feed-btn" class="tab btn btn-default" onclick="display(feed)">Feed</a><a id="wishlist-btn" class="tab btn btn-default" onclick="display(wishlist)">Wishlist</a><a id="friends-btn" class="tab btn btn-default" onclick="display(friends)">Friends</a>            </div>
+              <a id="wishlist-btn" class="tab btn btn-default" onclick="display(wishlist)">Wishlist</a>
+                 </div>
             <!-- tab btns -->
             <div class="jumbotron">
-            <div id="feed">
-              <%= render 'layouts/feed' , :activities => temp %>
-            </div>
-            <!-- Feed -->
+            
             <div id="wishlist" style="display:none">
               <%= link_to "share", "/activities/post", id: "sign_out",:class => "btn btn-large btn-success" %>
               <a id="addwish-btn"class="btn btn-default">Add Gifts to List</a>
               <div id="addwish-panel">
-                <% user = User.find_by_id(current_user.id) %>
                 <%= render 'wishlists/wishlist_form' %>
               </div>
               <div id="wishtext">
                 <div class="wishlist-container">
                   <div class="row",id="refresh">
                   
-
-                  <% if current_user.wishlist.any? %>
-                    <%= current_user.wishlist.count %>
+                  	
+                 <!-- <% if user.wishlist.any? %> -->
+                    <%= user %>
                       
                     <ul class="thumbnails list-unstyled">
-                    <%= render 'wishlists/wishlist' , :remote => true , :my_params => 1 %>
+                    <%= render 'wishlists/wishlist' , :remote => true, :my_params => object %>
 
                     </ul>
                     
-                    <% end %>
+                    <%end%>
                   </div>
                 </div>
               </div>
             </div>
             <!-- Wishlist -->
-            <div id="friends" style="display:none">
-            <a id="invite-btn"class="btn btn-default">Invite Friends</a>
-            <% friends_list= friends.paginate(:page => params[:page],:per_page => 5) %>
-              <div id="invite-panel">
-        
-                <%= render 'facebook_api/invite' , :friends => friends_list %>
-                <%= will_paginate friends_list %>
-              </div>
-
-
-              <div id="friends-panel">
-                <%= render 'facebook_api/friends' %>           
-              </div>
-            </div>
-            <!-- Friends -->
+            
 
             <!-- <div id="invite" style="display:none">
               <%#<%= render 'facebook/invite' %>

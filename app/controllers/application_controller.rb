@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
   before_filter :share_var
   def share_var
     @activities = PublicActivity::Activity.order("created_at desc")
+    @friends=Array.new
+    #@friendsonfundr=Array.new
+    if session["fb_access_token"].present?
+      graph= Koala::Facebook::GraphAPI.new(session["fb_access_token"])
+      @friends=graph.get_connections("me","friends","fields"=>"name,birthday,gender")
+    end
   end
   
   	def current_user

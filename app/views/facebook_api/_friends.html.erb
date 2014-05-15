@@ -11,7 +11,7 @@
         <div class="friends-container">
         <div class="friends-media">
         <a class="pull-left" href="#">
-            <%= image_tag(fimage(hash["id"]), :class => "friends-media-object")%>
+            <%= link_to image_tag(fimage(hash["id"]),:class => "friends-media-object"), {:action => 'index', :controller => 'friendview', my_params: user.id} %>
         </a>
         <div class="friends-media-body">
             <h4 class="media-heading">
