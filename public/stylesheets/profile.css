@@ -11,6 +11,11 @@
         padding-right: 15px;
       }
 
+      .feed-icon{
+        float: right;
+        margin: 10px;
+      }
+
       a:hover{
         color: #666;
         background-color: transparent;

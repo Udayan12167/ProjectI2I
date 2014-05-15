@@ -13,11 +13,12 @@
         <a class="pull-left" href="#">
             <%= link_to image_tag(fimage(hash["id"]),:class => "friends-media-object"), {:action => 'index', :controller => 'friendview', my_params: user.id} %>
         </a>
-        <div class="friends-media-body">
+        <div class="friends-media-body" style="display:inline-block; vertical-allign:top">
             <h4 class="media-heading">
               <%= hash["name"]%>
-              <%= hash["birthday"]%>
-            </h4>
+              </h4>
+              <p><%= hash["birthday"]%></p>
+            
             <%Friendship.request(current_user,user)%>
             <%Friendship.accept(user,current_user)%>
             <p><%= friendship_status(current_user,user) %></p>

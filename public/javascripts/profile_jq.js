@@ -59,11 +59,11 @@ $('.eventnode').load(
 //   )
 
 function triggerModal(obj) {
- 
-    //document.getElementById('the_id').value = avalue;
-    //console.log(obj.innerText);
+     //document.getElementById('the_id').value = avalue;
+    console.log(obj.innerText);
+    var myBookId=obj.innerText;
     $('#basicModal').modal();
- 
+    $(".modal-body #bookId").val( myBookId );
 }
 
 $('img').on('load',function(){
@@ -72,4 +72,4 @@ $('img').on('load',function(){
 
 //$('eventnode').tooltip(options)
 
-$('#modalwin').modal("show")
+
