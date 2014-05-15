@@ -1,0 +1,17 @@
+.facebook-btn{
+    background-color: #3b5998;
+    color: #fff;
+    border-color: rgba(0,0,0,0.2);
+}
+
+.facebook-btn:hover{
+    background-color: #30487b;
+    color: #fff;
+    border-color: rgba(0,0,0,0.2);
+}
+
+.img-signin{
+    height:100%;
+    width:100%;
+}
+

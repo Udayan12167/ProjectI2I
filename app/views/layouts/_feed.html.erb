@@ -17,7 +17,7 @@
                     
                     <%= image_tag(activity.owner.largeimage, :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
                     <div style="display:inline-block; vertical-align: top;">
-                      <p class="feed-time">at <%= activity.created_at %></p>
+                      <p class="feed-time"> <%= activity.created_at %></p>
                     <a class="feed-username" href=""><%= link_to activity.owner.name , root_url if activity.owner %></a>
                     
                     <p class="feed-posttext">added wishlist item <%= link_to activity.trackable, root_url %> </p>
@@ -35,7 +35,7 @@
                     
                     <%= image_tag(activity.owner.largeimage, :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
                     <div style="display:inline-block; vertical-align: top;">
-                      <p class="feed-time">at <%= activity.created_at %></p>
+                      <p class="feed-time"> <%= activity.created_at %></p>
                     <a class="feed-username" href=""><%= link_to activity.owner.name , root_url if activity.owner %></a>
                     
                     <p class="feed-posttext">liked wishlist item </p>
@@ -54,7 +54,7 @@
                     
                     <%= image_tag(activity.owner.largeimage, :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
                     <div style="display:inline-block; vertical-align: top;">
-                      <p class="feed-time">at <%= activity.created_at %></p>
+                      <p class="feed-time"> <%= activity.created_at %></p>
                     <a class="feed-username" href=""><%= link_to activity.owner.name , root_url if activity.owner %></a>
                     
                     <p class="feed-posttext">joined friendfundr</p>
