@@ -58,8 +58,10 @@ $('.eventnode').load(
 function triggerModal(obj) {
  
     //document.getElementById('the_id').value = avalue;
-    //console.log(obj.innerText);
+    console.log(obj.innerText);
+    var date=obj.innerText;
     $('#basicModal').modal();
+    $('#date-modal').val(date);
  
 }
 
