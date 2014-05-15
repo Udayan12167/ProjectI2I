@@ -307,6 +307,26 @@
         border-color: #DADFE1;
       }
 
+      .glyphicon-thumbs-up
+      {
+        font-size: 20px;
+      }
+
+      .glyphicon-thumbs-down
+      {
+        font-size: 25px;
+      }
+
+      .glyphicon-thumbs-up:hover
+      {
+        color: blue;
+      }
+
+      .glyphicon-thumbs-down:hover
+      {
+        color: blue;
+      }
+
       .glyphicon-star{
         color: #f1c40f;
       }

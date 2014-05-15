@@ -19,7 +19,7 @@
                       <p class="feed-time">at <%= activity.created_at %></p>
                     <a class="feed-username" href=""><%= link_to activity.owner.name , root_url if activity.owner %></a>
                     
-                    <p class="feed-posttext">added wishlist item <%= link_to activity.trackable.link, root_url %> </p>
+                    <p class="feed-posttext">added wishlist item <%= link_to activity.trackable, root_url %> </p>
                     </div>
                   </div>
                 </div>

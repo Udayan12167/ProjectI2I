@@ -1,6 +1,6 @@
           <% wish = Wishlist.all %>
           <% temp = my_params %>
-          in wishlist
+          <!-- in wishlist -->
             <% wish.each do |t|%>
             <% if t.user_id == temp %>
             <li class="col-md-6">
@@ -23,13 +23,14 @@
               <% div_id="refresh_#{t.id}" %>
               <div id="<%=div_id %>">
               <% if t.liked_by?(current_user).to_s == "false" %>
-
-                <%= link_to "like", {controller:"wishlists", action:"vote" , my_param: "#{t.id}"} ,id: "sign_out",:class => "btn btn-large btn-success" ,:remote => true%>
+                <!-- <i class="glyphicon glyphicon-thumbs-up"></i> -->
+                <%= link_to '<i class="glyphicon glyphicon-thumbs-up"></i>'.html_safe, {controller:"wishlists", action:"vote" , my_param: "#{t.id}"} ,id: "sign_out",:remote => true%>
 
               <%end%>
               
               <% if t.liked_by?(current_user).to_s == "true" %>
-              <%= link_to "unlike", {controller:"wishlists", action:"unvote" , my_param: "#{t.id}"} ,id: "sign_out",:class => "btn btn-large btn-success",:remote => true %>
+              <!-- <span class="glyphicon glyphicon-thumbs-down"></span> -->
+              <%= link_to '<i class="glyphicon glyphicon-thumbs-up"></i>'.html_safe, {controller:"wishlists", action:"unvote" , my_param: "#{t.id}"} ,id: "sign_out",:remote => true %>
               <%end%>
             
               <%= t.likers(User).count %>
