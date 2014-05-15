@@ -41,3 +41,15 @@
     text-align: center;
 }
 
+#logo{
+    position: absolute;
+    z-index: 9999;
+    height: 25%;
+    width: auto;
+    display: inline-block;
+    vertical-align: center;
+    margin: auto;
+    left: 44%;
+    top:62%;
+}
+
