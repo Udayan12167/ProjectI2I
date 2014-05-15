@@ -14,6 +14,13 @@ class FacebookApiController < ApplicationController
   	end
   end
   helper_method :friends
+  def notify
+     if session["fb_access_token"].present?
+      @graph= Koala::Facebook::GraphAPI.new(session["fb_access_token"])
+      @graph.put_wall_post("Join FriendFundr",{:link =>"cnet.com"},params[:uid])
+      
+    end
+  end
   def fimage(id)
   	"http://graph.facebook.com/#{id}/picture?type=large"
   end
