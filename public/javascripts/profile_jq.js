@@ -25,6 +25,7 @@ $('#addwish-btn').click(function(){
  $('#invite-btn').click(function(){
             $('#inviteModal').modal();
             $("#invite-panel").show();
+            $("#infinite-scrolling").hide();
             //$("#friends-panel").toggle();
           });
 

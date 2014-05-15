@@ -86,7 +86,9 @@
         -webkit-filter: none;
       }
 
-      
+      #loader{
+        margin: 15px;
+      }      
 
       #notification-inactive{
         -webkit-filter: grayscale(1);
@@ -200,18 +202,22 @@
 
       .friends-media{
         width:285px;
-		    margin-bottom:5px;
+		    margin-bottom:0px;
+        line-height: normal;
       }
       
       .friends-media-object{
          width:64px; 
          height:64px;
          margin-right: 5px;
+         vertical-align:top;
       }
       
       .friends-media-body{
         padding-top:5px;
         font-size:12px;
+        line-height: normal;
+        text-align: left;
       }
 
 
@@ -368,7 +374,7 @@
     }
 
     #invite-panel{
-      width: 90%;     
+      width: 100%;     
       padding:50px;
       display: none;
         background-color: transparent;
@@ -378,6 +384,11 @@
         border-style: none;
         border-color: none;
         margin-bottom: 5px;
+    }
+
+    #inviteModal .modal-dialog{
+      width: 50%;
+      text-align:center;
     }
 
 	  #profile-sidebar{

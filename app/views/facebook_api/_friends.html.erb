@@ -9,19 +9,19 @@
     <% if hash["id"].in? uuid %>
         <% user=User.find_by_uid(hash["id"]) %>
         <div class="friends-container">
-        <div class="friends-media">
+        <div class="friends-media" style="vertical-align:top">
         <a class="pull-left" href="#">
             <%= link_to image_tag(fimage(hash["id"]),:class => "friends-media-object"), {:action => 'index', :controller => 'friendview', my_params: user.id} %>
         </a>
-        <div class="friends-media-body" style="display:inline-block; vertical-allign:top">
+        <div class="friends-media-body" style="display:inline-block;">
             <h4 class="media-heading">
               <%= hash["name"]%>
               </h4>
-              <p><%= hash["birthday"]%></p>
+              <%= hash["birthday"]%><br>
             
             <%Friendship.request(current_user,user)%>
             <%Friendship.accept(user,current_user)%>
-            <p><%= friendship_status(current_user,user) %></p>
+            <%= friendship_status(current_user,user) %>
         </div>
     </div>
 </div>
