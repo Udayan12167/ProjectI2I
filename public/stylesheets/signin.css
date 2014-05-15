@@ -37,6 +37,11 @@
     margin: auto;
 }
 
+.carousel-control:hover{
+    background-color:#bdc3c7;
+    opacity: 0.5;
+}
+
 .jumbotron{
     text-align: center;
 }
