@@ -1,0 +1,7 @@
+$('#invite-panel').append('<%= j (render :partial => 'facebook_api/invite' , :friends => friends_list  %>');
+<% if friend_list.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate friend_list %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>

@@ -23,12 +23,9 @@ $('#addwish-btn').click(function(){
 
 
  $('#invite-btn').click(function(){
-            $("#invite-panel").slideToggle();
-            $("#friends-panel").toggle();
-            if ($(this).text() == "Invite Friends")
-		       $(this).text("View Friends")
-		    else
-		       $(this).text("Invite Friends");
+            $('#inviteModal').modal();
+            $("#invite-panel").show();
+            //$("#friends-panel").toggle();
           });
 
 $('.thumbnail:even').popover({

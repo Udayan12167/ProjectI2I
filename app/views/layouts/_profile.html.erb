@@ -102,7 +102,7 @@
         <%end%>
       </div>
     </div>
-    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <!-- <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -115,6 +115,20 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </div> -->
+    <div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="inviteModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div id="invite-panel">
+                
+
+
+                
+                </div>
+                <div id="infinite-scrolling">
+                  <%= will_paginate paginated_results %>
+                </div>
         </div>
     </div>
   </div>
@@ -130,6 +144,7 @@
           </div>
           <div class="btn-group btn-group-justified">
             <a class="btn btn-default" href="#">Gifts</a><a class="btn btn-default" href="https://www.facebook.com/">Events</a>
+
           </div>
           <ul class="nav"></ul>
         </div>
@@ -186,15 +201,16 @@
             </div>
             <!-- Wishlist -->
             <div id="friends" style="display:none">
-            <a id="invite-btn"class="btn btn-default">Invite Friends</a>
-            <% friends_list= friends.paginate(:page => params[:page],:per_page => 5) %>
-              <div id="invite-panel">
-        
-                <%= render 'facebook_api/invite' , :friends => friends_list %>
-                <%= will_paginate friends_list %>
-              </div>
+            <a ><%= link_to "Invite Friends", "/welcome/index", :remote => true,:class =>"btn btn-default" ,:id => "invite-btn",:page => 1%></a>
+                <!-- <div id="invite-panel">
+                
 
 
+                
+                </div> -->
+                <!-- <div id="infinite-scrolling">
+                  <%= will_paginate paginated_results %>
+                </div> -->
               <div id="friends-panel">
                 <%= render 'facebook_api/friends' %>           
               </div>
