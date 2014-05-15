@@ -1,16 +1,21 @@
-<% friends.each do |hash| %>
-      <div class="friends-container">  
-        <div class="friends-media">
-        <a class="pull-left" href="#">
-            <%= image_tag(fimage(hash["id"]), :class => "friends-media-object")%>
-        </a>
-        <div class="friends-media-body">
-            <h4 class="media-heading">
-              <%= hash["name"]%>
-            </h4>
-            <p><%= hash["birthday"]%></p>
+
+    <% @paginated_results.each do |hash| %>
+          <div class="friends-container">  
+            <div class="friends-media">
+            <a class="pull-left" href="#">
+                <%= image_tag(fimage(hash["id"]), :class => "friends-media-object")%>
+            </a>
+            <div class="friends-media-body">
+                <h4 class="media-heading">
+                <%= hash["name"]%>
+                </h4>
+                <p><%= hash["birthday"]%></p>
+            </div>
         </div>
-    </div>
-    </div>
-<%end%>
+        </div>
+    <%end%>
+
+</div>
+
+
 

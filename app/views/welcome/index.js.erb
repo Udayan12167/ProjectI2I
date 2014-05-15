@@ -1,0 +1,8 @@
+
+$("#invite-panel").append("<%= escape_javascript(render :partial => 'facebook_api/invite')%>")
+<% if @paginated_results.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @paginated_results %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>

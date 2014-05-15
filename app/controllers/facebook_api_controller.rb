@@ -1,15 +1,14 @@
 class FacebookApiController < ApplicationController
 
   def friends
-  	@friends=Array.new
+    	@friends=Array.new
   	#@friendsonfundr=Array.new
   	if session["fb_access_token"].present?
   		graph= Koala::Facebook::GraphAPI.new(session["fb_access_token"])
   		@friends=graph.get_connections("me","friends","fields"=>"name,birthday,gender")
       
   	end
-    @friends=@friends.paginate(params[:page],:per_page =>5)
-      	respond_to do |format|
+    respond_to do |format|
   		format.html
   		format.js
   	end
