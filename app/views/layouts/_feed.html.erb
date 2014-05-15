@@ -2,11 +2,13 @@
 
 <% activities.each do |activity| %>
         
-
+        <% if activity.key == "wishlist.destroy" %>
+        <%next%>
+        <%end%>
           
           
                 	 
-                    <%if activity.key == 'wishlist.create' %>
+                    <%if activity.key == "wishlist.create" %>
                     <div class="feed-container">
 
                 
