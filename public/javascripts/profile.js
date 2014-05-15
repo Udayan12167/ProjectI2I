@@ -10,7 +10,7 @@ function display(tab){
       reset_tab('wishlist-btn');
       reset_tab('friends-btn');
       document.getElementById(tab.getAttribute('id')).style.display='block';
-      document.getElementById(tab.getAttribute('id')+'-btn').style.backgroundColor= '#16a085';
+      document.getElementById(tab.getAttribute('id')+'-btn').style.backgroundColor= '#2ecc71';
       document.getElementById(tab.getAttribute('id')+'-btn').style.fontWeight='bold';
       document.getElementById(tab.getAttribute('id')+'-btn').style.color='white';
       window.scrollTo(0,0);
