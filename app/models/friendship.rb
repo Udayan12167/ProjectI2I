@@ -1,4 +1,6 @@
 class Friendship < ActiveRecord::Base
+	include PublicActivity::Model
+	tracked owner: ->(controller,model) { controller && controller.current_user}
 	belongs_to :user
 	belongs_to :friend , :class_name => "User",:foreign_key => "friend_id"
 	validates_presence_of :user_id,:friend_id

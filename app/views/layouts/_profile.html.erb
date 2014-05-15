@@ -1,4 +1,4 @@
-<% activities = PublicActivity::Activity.order("created_at desc") %>
+
 <!DOCTYPE html>
 
 <html title>
@@ -155,7 +155,7 @@
             <!-- tab btns -->
             <div class="jumbotron">
             <div id="feed">
-              <%= render 'layouts/feed' %>
+              <%= render 'layouts/feed' , :activities => temp %>
             </div>
             <!-- Feed -->
             <div id="wishlist" style="display:none">

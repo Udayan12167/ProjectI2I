@@ -1,7 +1,7 @@
 <% notifs = Notification.order("created_at desc").all %>
 
 <% notifs.each do |n| %>
-
+<% if n.user_id == current_user.id %>
           
           <a href="#" class="notification-link">
                       <div class="notification-container">
@@ -14,5 +14,6 @@
                            <p class="feed-posttext"><%= n.content%> at <%= n.created_at %></p>
                       </div>
                     </a>
+                 <%end%>
                  <%end%>
                 
