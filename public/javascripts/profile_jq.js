@@ -2,17 +2,17 @@ $('html').click(function(event)
 {
   if(event.target.id == 'notif-dropdown' && ($('#notification-active').attr('id')=='notification-active'))
   {
-    console.log("3");
+      
     $('#notification-active').attr('id','notification-inactive');
   }
   else if(event.target.id == 'notif-dropdown' || event.target.id == 'notification-inactive')
   {
-      console.log("1");
+      
       $('#notification-inactive').attr('id','notification-active');
   }
   else
   {
-    console.log("4");
+    
     $('#notification-active').attr('id','notification-inactive');
   }
 });
@@ -23,15 +23,12 @@ $('#addwish-btn').click(function(){
 
 
  $('#invite-btn').click(function(){
-            $("#invite-panel").slideToggle();
-            $("#friends-panel").toggle();
-            if ($(this).text() == "Invite Friends")
-		       $(this).text("View Friends")
-		    else
-		       $(this).text("Invite Friends");
+            $('#inviteModal').modal();
+            $("#invite-panel").show();
+            //$("#friends-panel").toggle();
           });
 
-$('.img-gift:even').popover({
+$('.thumbnail:even').popover({
           container: 'body',
           html: true,
           trigger: 'hover',
@@ -41,7 +38,7 @@ $('.img-gift:even').popover({
                       });
 
 
-$('.img-gift:odd').popover({
+$('.thumbnail:odd').popover({
           container: 'body',
           html: true,
           trigger: 'hover',
@@ -58,6 +55,18 @@ $('.eventnode').load(
 //     call_resize_image()
 //   )
 
+function triggerModal(obj) {
+ 
+    //document.getElementById('the_id').value = avalue;
+    //console.log(obj.innerText);
+    $('#basicModal').modal();
+ 
+}
+
 $('img').on('load',function(){
   call_resize_image()
 });
+
+//$('eventnode').tooltip(options)
+
+$('#modalwin').modal("show")

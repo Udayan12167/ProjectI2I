@@ -10,6 +10,7 @@ gem 'bootstrap-will_paginate'
 gem 'socialization'
 gem 'kaminari'
 
+
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 # Use sqlite3 as the database for Active Record

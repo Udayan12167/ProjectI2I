@@ -5,7 +5,7 @@
 <body>
   		<% if current_user %>
   			
-    			<%= render 'layouts/profile',:itemm => @friends,:paginated_results => @paginated_results%>
+    			<%= render 'layouts/profile',:itemm => @friends,:paginated_results => @paginated_results,:temp => @activities%>
   		<% else %>
     		<%= render 'layouts/signout' %>
   		<% end %>

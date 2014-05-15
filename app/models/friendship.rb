@@ -1,4 +1,6 @@
 class Friendship < ActiveRecord::Base
+	include PublicActivity::Model
+	tracked owner: ->(controller,model) { controller && controller.current_user}
 	belongs_to :user
 	belongs_to :friend , :class_name => "User",:foreign_key => "friend_id"
 	validates_presence_of :user_id,:friend_id
@@ -10,8 +12,8 @@ class Friendship < ActiveRecord::Base
 			transaction do 
 				create(:user => user,:friend => friend , :status => 'pending')
 				create(:user => friend,:friend => user, :status => 'requested')
-				Notification.create( :user_id => user.id , :content => "joined FriendFundr",:name => friend.name)
-				Notification.create( :user_id => friend.id, :content => "joined FriendFundr",:name => user.name)
+				Notification.create(:owner_id => friend.uid, :user_id => user.id , :content => "joined FriendFundr",:name => friend.name)
+				Notification.create(:owner_id => user.uid, :user_id => friend.id, :content => "joined FriendFundr",:name => user.name)
 
 				
 			end

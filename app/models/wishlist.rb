@@ -1,5 +1,6 @@
 class Wishlist < ActiveRecord::Base
 	include PublicActivity::Model
+	tracked owner: ->(controller,model) { controller && controller.current_user}
 	belongs_to :user
 	acts_as_likeable
 	validates :user_id, presence: true

@@ -8,7 +8,7 @@ class WishlistsController < ApplicationController
     friendship=Friendship.all
     friendship.each do |t|
       if t.user_id==current_user.id
-        Notification.create(:user_id => t.friend_id , :content => "added item to wishlist",:name => current_user.name)
+        Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist",:name => current_user.name)
       end
     end
 
@@ -38,9 +38,16 @@ class WishlistsController < ApplicationController
 
   def vote
     @object = params[:my_param]
+
     current_user.wishlist.each do |t|
       if @object.to_i == t.id.to_i
         current_user.like!(t)
+        friendship=Friendship.all
+        friendship.each do |f|
+          if f.user_id==current_user.id
+            Notification.create(:owner_id => current_user.uid ,:user_id => f.friend_id , :content => "liked your wishlist item #{t.id}",:name => current_user.name)
+          end
+        end
       end
     end
     respond_to do |format|
