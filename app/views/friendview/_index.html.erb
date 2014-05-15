@@ -85,16 +85,25 @@
                   
                 </p>
             <%end%> 
-    <div class="timeline-bar">
+        <div class="timeline-bar">
       <div class="timeline-line">
         <%= image_tag('Start_node.png',:id => "startnode") %>
-        <% days.each do |d| %>
+        <% days.zip(itemm).each do |d,i| %>
         <% if d != nil %>
         <% if d - Date.today < 30  && d - Date.today > 1%>
         <div class="eventnode" data-toggle="tooltip" data-placement="top" >
-          <a href="#" data-toggle="modal" data-target="#basicModal" onClick="triggerModal(this)">
-            <%= image_tag('emma.png',class: "img-event img-circle") %>
+          <a href="#" data-toggle="modal" data-id = "ayush" data-target="#basicModal" onClick="triggerModal(this)">
+            <% itemm.each do |i| %>
+            <% if i["birthday"] != nil %>
+              <% if  (d.to_s[5,8].scan(/\d+/).first == i["birthday"][0,5].scan(/\d+/).first) == 'true' %>
+                <% temp12 = i %>
+                <%break%>
+                <%end%>
+              <%end%>
+              <%end%>
+            <%= image_tag( fimage(i["id"]),class: "img-event img-circle") %>
             <%= d.to_s %>
+
           </a>
         </div>
         <%end%>
@@ -102,23 +111,6 @@
         <%end%>
       </div>
     </div>
-    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body" >
-                <h3>Modal Head</h3>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-    </div>
-  </div>
-</div>
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
         <div class="well sidebar-nav pull-left well-sm" id="profile-sidebar" title>
@@ -151,49 +143,40 @@
         </div>
       </div>
     </div><!-- right-sidebar -->
-    <div class="container main">
-            <div class="tabs btn-group btn-group-justified">
-              <a id="wishlist-btn" class="tab btn btn-default" onclick="display(wishlist)">Wishlist</a>
-                 </div>
+   <div class="container main">
+            <!-- <div class="tabs btn-group btn-group-justified">
+              <a id="wishlist-btn" class="tab btn btn-default" >Wishlist</a>            </div> -->
             <!-- tab btns -->
             <div class="jumbotron">
             
-            <div id="wishlist" style="display:none">
-              <%= link_to "share", "/activities/post", id: "sign_out",:class => "btn btn-large btn-success" %>
-              <a id="addwish-btn"class="btn btn-default">Add Gifts to List</a>
-              <div id="addwish-panel">
-                <%= render 'wishlists/wishlist_form' %>
-              </div>
+            <!-- Feed -->
+            <div id="wishlist" style="display:block" onclick="display(wishlist)">
+              
+              
               <div id="wishtext">
                 <div class="wishlist-container">
                   <div class="row",id="refresh">
                   
-                  	
-                 <!-- <% if user.wishlist.any? %> -->
-                    <%= user %>
+
                       
                     <ul class="thumbnails list-unstyled">
-                    <%= render 'wishlists/wishlist' , :remote => true, :my_params => object %>
+                    <%= render 'wishlists/wishlist' , :remote => true , :my_params => object.to_i %>
 
                     </ul>
-                    
-                    <%end%>
                   </div>
                 </div>
               </div>
             </div>
             <!-- Wishlist -->
-            
-
-            <!-- <div id="invite" style="display:none">
-              <%#<%= render 'facebook/invite' %>
+            <div id="friends" style="display:none">
+            <a ><%= link_to "Invite Friends", "/welcome/index", :remote => true,:class =>"btn btn-default" ,:id => "invite-btn",:page => 1%></a>
+              <div id="friends-panel">
+                <%= render 'facebook_api/friends' %>           
+              </div>
             </div>
-             -->
-            
-            </div>
-          </div><!-- centre -->
+        </div>
+      </div><!-- centre -->
       
-       
     <footer>
         <p>&copy; Company 2013</p>
       </footer>
@@ -201,6 +184,7 @@
     <script>  
       $(document).ready(function() {
         $('[data-toggle=offcanvas]').click(function() {
+          $("#local").val($(this).data('id'));
           $('.row-offcanvas').toggleClass('active');
         });
       });

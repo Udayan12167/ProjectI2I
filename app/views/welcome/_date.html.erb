@@ -1,0 +1,32 @@
+<div class="modal-body" >
+    <h3>Birthdays on</h3>
+    <%= @date %>
+    <% @id.each do |i| %>
+    	<% str = i["birthday"].to_s %>
+                <% if str.length > 7  %>
+                 <% date = Date.strptime(str,'%m/%d/') %>
+                <%end%>
+                <% if str.length < 7 %>
+                  <% str << '/2000' %>
+                  <%date = Date.strptime(str,'%m/%d/%Y') %>
+                  <% time = Time.parse(date.to_s) %>
+                 <% time = time.change(:year => 2014) %>
+                 <% date= Date.parse(time.to_s) %>
+                <%end%>
+    	<% if date.to_s==@date%>
+    		<div class="friends-container">  
+            <div class="friends-media">
+            <a class="pull-left" href="#">
+                <%= image_tag(fimage(i["id"]), :class => "friends-media-object")%>
+            </a>
+            <div class="friends-media-body">
+                <h4 class="media-heading">
+                <%= i["name"]%>
+                </h4>
+                <p><%= i["birthday"]%></p>
+            </div>
+        </div>
+        </div>
+    	<%end%>
+    <%end%>             
+</div>

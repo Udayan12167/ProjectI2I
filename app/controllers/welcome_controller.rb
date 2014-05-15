@@ -49,5 +49,12 @@ class WelcomeController < ApplicationController
 
     end
   end
+  def date
+    @date=params[:date]
+    @id=params[:person]
+    respond_to do |format|
+      format.js
+    end
+  end
  
 end

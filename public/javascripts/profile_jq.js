@@ -57,11 +57,15 @@ $('.eventnode').load(
 //   )
 
 function triggerModal(obj) {
-     //document.getElementById('the_id').value = avalue;
+
+ 
+    //document.getElementById('the_id').value = avalue;
     console.log(obj.innerText);
-    var myBookId=obj.innerText;
+    var date=obj.innerText;
     $('#basicModal').modal();
-    $(".modal-body #bookId").val( myBookId );
+    $('#date-modal').val(date);
+ 
+
 }
 
 $('img').on('load',function(){
