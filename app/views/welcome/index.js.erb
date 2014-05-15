@@ -5,4 +5,5 @@ $("#invite-panel").append("<%= escape_javascript(render :partial => 'facebook_ap
 <% else %>
   $(window).off('scroll');
   $('.pagination').remove();
+  $('#loader').hide();
 <% end %>

@@ -2,25 +2,27 @@
 
 <% activities.each do |activity| %>
         
-
+        <% if activity.key == "wishlist.destroy" %>
+        <%next%>
+        <%end%>
           
           
                 	 
-                    <%if activity.key == 'wishlist.create' %>
+                    <%if activity.key == "wishlist.create" %>
                     <div class="feed-container">
 
                 
                      <div class="feed-text">
-                      <span class="glyphicon glyphicon-star"></span>
-                    
+                      
                     
                     <%= image_tag(activity.owner.largeimage, :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
                     <div style="display:inline-block; vertical-align: top;">
                       <p class="feed-time">at <%= activity.created_at %></p>
                     <a class="feed-username" href=""><%= link_to activity.owner.name , root_url if activity.owner %></a>
                     
-                    <p class="feed-posttext">added wishlist item <%= link_to activity.trackable.link, root_url %> </p>
+                    <p class="feed-posttext">added wishlist item <%= link_to activity.trackable, root_url %> </p>
                     </div>
+                    <span class="glyphicon glyphicon-star feed-icon"></span>
                   </div>
                 </div>
                     <%elsif activity.key == 'like.create' %>
@@ -28,7 +30,7 @@
 
                 
                     <div class="feed-text">
-                    <span class="glyphicon glyphicon-heart"></span>
+                    
                     
                     
                     <%= image_tag(activity.owner.largeimage, :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
@@ -39,6 +41,7 @@
                     <p class="feed-posttext">liked wishlist item </p>
                       
                     </div>
+                    <span class="glyphicon glyphicon-heart feed-icon"></span>
                   </div>
                 </div>
                 <%elsif activity.key == 'friendship.create' && activity.trackable_id == 1 %>
@@ -46,7 +49,7 @@
 
                 
                     <div class="feed-text">
-                    <span class="glyphicon glyphicon-user"></span>
+                    
                     
                     
                     <%= image_tag(activity.owner.largeimage, :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
@@ -57,6 +60,7 @@
                     <p class="feed-posttext">joined friendfundr</p>
                       
                     </div>
+                    <span class="glyphicon glyphicon-user feed-icon"></span>
                   </div>
                 </div>
                     <%else next %>

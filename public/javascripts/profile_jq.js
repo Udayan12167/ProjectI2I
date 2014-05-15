@@ -25,6 +25,7 @@ $('#addwish-btn').click(function(){
  $('#invite-btn').click(function(){
             $('#inviteModal').modal();
             $("#invite-panel").show();
+            $("#infinite-scrolling").hide();
             //$("#friends-panel").toggle();
           });
 
@@ -56,6 +57,7 @@ $('.eventnode').load(
 //   )
 
 function triggerModal(obj) {
+
  
     //document.getElementById('the_id').value = avalue;
     console.log(obj.innerText);
@@ -63,6 +65,7 @@ function triggerModal(obj) {
     $('#basicModal').modal();
     $('#date-modal').val(date);
  
+
 }
 
 $('img').on('load',function(){
@@ -71,4 +74,4 @@ $('img').on('load',function(){
 
 //$('eventnode').tooltip(options)
 
-$('#modalwin').modal("show")
+
