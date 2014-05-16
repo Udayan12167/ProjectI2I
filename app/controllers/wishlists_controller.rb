@@ -37,9 +37,10 @@ class WishlistsController < ApplicationController
   end
 
   def vote
-    @object = params[:my_param]
-
-    current_user.wishlist.each do |t|
+    @object = params[:wish_param]
+    @user_id = User.find_by_id(params[:my_params])
+    
+    Wishlist.all.each do |t|
       if @object.to_i == t.id.to_i
         current_user.like!(t)
         friendship=Friendship.all
@@ -49,19 +50,24 @@ class WishlistsController < ApplicationController
           end
         end
       end
+
     end
-    respond_to do |format|
-      format.js
+    #redirect_to root_url
+    
+     respond_to do |format|
+       format.js
     end 
   end
   def unvote
-      @object = params[:my_param]
-      current_user.wishlist.each do |t|
+      @object = params[:wish_param]
+      @user_id = User.find_by_id(params[:my_params])
+      Wishlist.all.each do |t|
       if @object.to_i == t.id.to_i
         current_user.unlike!(t)
       end
-
+      
     end
+     #redirect_to root_url
     respond_to do |format|
       format.js
     end   
