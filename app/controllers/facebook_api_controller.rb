@@ -17,7 +17,7 @@ class FacebookApiController < ApplicationController
   def notify
      if session["fb_access_token"].present?
       @graph= Koala::Facebook::GraphAPI.new(session["fb_access_token"])
-      @graph.put_wall_post("Join FriendFundr",{:link =>"cnet.com"},params[:uid])
+      @graph.put_object(params[:uid],"feed",{:message => "Join friendsfundr"})
       
     end
   end

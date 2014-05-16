@@ -3,14 +3,12 @@
 
 <% notifs.each do |activity| %>
 
-        <% if activity.owner_id == current_user.uid %>
+        <% if activity.user_id != current_user.id %>
         <%next%>
-        <%end%>
         
           
-          
                    
-                    <%if activity.content["added"] == "added" %>
+                    <%elsif activity.content["added"] == "added" %>
 
 
                     <div class="feed-container">
@@ -26,6 +24,31 @@
                     
                     <p class="feed-posttext"> <%= link_to activity.content, root_url %> </p>
                     </div>
+                    <%id = activity.content.scan(/\d+/).first %>
+                    <%t = Wishlist.all.find_by_id(id) %>
+                    <% if t != nil %>
+                    <%user = User.find_by_id(activity.user_id) %>
+                    <li class="col-md-6">
+              
+              <div class="thumbnail" style="padding: 0">
+                <div style="padding:4px;">
+                 <div class="gift-info">  
+                    <%= image_tag('flash.jpg',class: "img-gift",alt:"300x200") %>        
+                    <h4>BC</h4>
+                    <h4><%=t.id%></h4>
+                     <p>My project description
+                        <%= user.wishlist.index(t) %>
+ 
+                         <i class="icon icon-map-marker"></i>
+                       </p>
+              </div>  
+              <% if user == current_user %>
+              <%= link_to "ADD",{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price} } %>
+              <%end%>
+              </div>      
+          </div>              
+        </li>
+        <%end%>
                     <span class="glyphicon glyphicon-star feed-icon"></span>
                   </div>
                 </div>
@@ -45,6 +68,41 @@
                     <p class="feed-posttext"> <%=activity.content %> </p>
                       
                     </div>
+                    <%id1= activity.content.scan(/\d+/).first %>
+                    <%t = Wishlist.all.find_by_id(id1) %>
+                    <%user = User.find_by_id(activity.user_id) %>
+                    <% if t != nil %>
+                    <li class="col-md-6">
+              <div class="thumbnail" style="padding: 0">
+                <div style="padding:4px;">
+                 <div class="gift-info">  
+                    <%= image_tag('flash.jpg',class: "img-gift",alt:"300x200") %>        
+                    <h4>BC</h4>
+                    <h4><%=t.id%></h4>
+                     <p>My project description
+                        <%= user.wishlist.index(t) %>
+ 
+                         <i class="icon icon-map-marker"></i>
+                       </p>
+              </div>  
+              </div>      
+              <% div_id="refresh_#{t.id}" %>
+              <div id="<%=div_id %>">
+              <% if t.liked_by?(current_user).to_s == "false" %>
+ 
+                <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, {controller:"wishlists", action:"vote" , wish_param: "#{t.id}" ,my_params: activity.user_id} ,id: "sign_out", :remote => true %>
+ 
+              <%end%>
+             
+              <% if t.liked_by?(current_user).to_s == "true" %>
+              <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, {controller:"wishlists", action:"unvote" , wish_param: "#{t.id}",  my_params: activity.user_id} ,id: "sign_out", :remote => true%>
+              <%end%>
+           
+              <%= t.likers(User).count %>
+            </div>
+          </div>              
+        </li>
+        <%end%>
                     <span class="glyphicon glyphicon-heart feed-icon"></span>
                   </div>
                 </div>

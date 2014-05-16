@@ -1,3 +1,4 @@
+<ul class="thumbnails list-unstyled">
  <% wish = Wishlist.all %>
           <% temp = my_params %>
           <% user = User.find_by_id(temp) %>
@@ -18,8 +19,9 @@
  
                          <i class="icon icon-map-marker"></i>
                        </p>
-                    <% if user != current_user %>
-              <%= link_to "ADD",{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price} , :flag => t.id} %>
+              </div>  
+              <% if user != current_user %>
+              <%= link_to "ADD",{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price} } %>
               <%end%>
 
               <% div_id="refresh_#{t.id}" %>
@@ -43,3 +45,7 @@
         </li>
       <%end%>
     <%end%>
+<<<<<<< HEAD
+=======
+</ul>
+>>>>>>> beccadbd5a44f94ececaca5013104e8b5f15e9b7
