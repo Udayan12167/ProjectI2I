@@ -19,7 +19,7 @@
             </p>
           </div>  
           <% if user != current_user %>
-            <%= link_to "ADD",{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price} } %>
+            <%= link_to "ADD",{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price},:remote => true } %>
           <%end%>
         </div>      
       <% div_id="refresh1_#{t.id}" %>
