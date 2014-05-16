@@ -21,7 +21,7 @@
                        </p>
               </div>  
               <% if user != current_user %>
-              <%= link_to "ADD",{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price} , :flag => t.id} %>
+              <%= link_to "ADD",{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price} } %>
               <%end%>
               </div>      
               <% div_id="refresh_#{t.id}" %>
