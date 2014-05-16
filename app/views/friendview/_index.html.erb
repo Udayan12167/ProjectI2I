@@ -149,31 +149,49 @@
                  </div> -->
             <!-- tab btns -->
             <div class="jumbotron">
-            <div id="wishlist">
-              <%= link_to "share", "/activities/post", id: "sign_out",:class => "btn btn-large btn-success" %>
-              <!-- <a id="addwish-btn"class="btn btn-default">Add Gifts to List</a>
-              <div id="addwish-panel">
-                <%= render 'wishlists/wishlist_form' %>
-              </div> -->
+           
+            <!-- Feed -->
+            <div id="wishlist" style="display:block">
+             
+             
               <div id="wishtext">
                 <div class="wishlist-container">
                   <div class="row",id="refresh">
-                  
-                  	
-                 <!-- <% if user.wishlist.any? %> -->
-                    <%= user %>
-                      
+                 
+ 
+                     
                     <ul class="thumbnails list-unstyled">
-                    <%= render 'wishlists/wishlist' , :remote => true, :my_params => object %>
-
+                    <%= render 'wishlists/wishlist' , :remote => true , :my_params => object.to_i %>
+ 
                     </ul>
-                    
-                    <%end%>
+                   
+                   
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+            <!-- Wishlist -->
+            <div id="friends" style="display:none">
+            <a ><%= link_to "Invite Friends", "/welcome/index", :remote => true,:class =>"btn btn-default" ,:id => "invite-btn",:page => 1%></a>
+                <!-- <div id="invite-panel">
+               
+ 
+ 
+               
+               
+              <div id="friends-panel">
+                <%= render 'facebook_api/friends' %>          
+              </div>
+            </div>
+            <!-- Friends -->
+ 
+            <!-- <div id="invite" style="display:none">
+              <%#<%= render 'facebook/invite' %>
+            </div>
+             -->
+           
+            </div>
+          </div><!-- centre -->
         </div>
       </div><!-- centre -->
       
