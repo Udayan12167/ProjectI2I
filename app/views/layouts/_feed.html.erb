@@ -1,5 +1,6 @@
 <% notifs = Notification.order("created_at desc").all %>
 
+
 <% notifs.each do |activity| %>
         <% if activity.owner_id == current_user.id %>
         <%next%>
@@ -9,6 +10,8 @@
           
                 	 
                     <%if activity.content["added"] == "added" %>
+
+
                     <div class="feed-container">
 
                 
