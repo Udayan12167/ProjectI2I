@@ -88,13 +88,22 @@
     <div class="timeline-bar">
       <div class="timeline-line">
         <%= image_tag('Start_node.png',:id => "startnode") %>
-        <% days.each do |d| %>
+        <% days.zip(itemm).each do |d,i| %>
         <% if d != nil %>
         <% if d - Date.today < 30  && d - Date.today > 1%>
         <div class="eventnode" data-toggle="tooltip" data-placement="top" >
-          <a href="#" data-toggle="modal" data-target="#basicModal" onClick="triggerModal(this)">
-            <%= image_tag('emma.png',class: "img-event img-circle") %>
+          <a href="#" data-toggle="modal" data-id = "ayush" data-target="#basicModal" onClick="triggerModal(this)">
+            <% itemm.each do |i| %>
+            <% if i["birthday"] != nil %>
+              <% if  (d.to_s[5,8].scan(/\d+/).first == i["birthday"][0,5].scan(/\d+/).first) == 'true' %>
+                <% temp12 = i %>
+                <%break%>
+                <%end%>
+              <%end%>
+              <%end%>
+            <%= image_tag( fimage(i["id"]),class: "img-event img-circle") %>
             <%= d.to_s %>
+
           </a>
         </div>
         <%end%>
@@ -151,39 +160,46 @@
         </div>
       </div>
     </div><!-- right-sidebar -->
-    <div class="container main">
+   <div class="container main">
             <div class="tabs btn-group btn-group-justified">
-              <a id="wishlist-btn" class="tab btn btn-default" onclick="display(wishlist)">Wishlist</a>
-                 </div>
+              <a id="wishlist-btn" class="tab btn btn-default" onclick="display(wishlist)">Wishlist</a>            </div>
             <!-- tab btns -->
             <div class="jumbotron">
             
-            <div id="wishlist" style="display:none">
-              <%= link_to "share", "/activities/post", id: "sign_out",:class => "btn btn-large btn-success" %>
-              <a id="addwish-btn"class="btn btn-default">Add Gifts to List</a>
-              <div id="addwish-panel">
-                <%= render 'wishlists/wishlist_form' %>
-              </div>
+            <!-- Feed -->
+            <div id="wishlist" style="display:block">
+              
+              
               <div id="wishtext">
                 <div class="wishlist-container">
                   <div class="row",id="refresh">
                   
-                  	
-                 <!-- <% if user.wishlist.any? %> -->
-                    <%= user %>
+
                       
                     <ul class="thumbnails list-unstyled">
-                    <%= render 'wishlists/wishlist' , :remote => true, :my_params => object %>
+                    <%= render 'wishlists/wishlist' , :remote => true , :my_params => object.to_i %>
 
                     </ul>
                     
-                    <%end%>
+                    
                   </div>
                 </div>
               </div>
             </div>
             <!-- Wishlist -->
-            
+            <div id="friends" style="display:none">
+            <a ><%= link_to "Invite Friends", "/welcome/index", :remote => true,:class =>"btn btn-default" ,:id => "invite-btn",:page => 1%></a>
+                <!-- <div id="invite-panel">
+                
+
+
+                
+                
+              <div id="friends-panel">
+                <%= render 'facebook_api/friends' %>           
+              </div>
+            </div>
+            <!-- Friends -->
 
             <!-- <div id="invite" style="display:none">
               <%#<%= render 'facebook/invite' %>
@@ -201,6 +217,7 @@
     <script>  
       $(document).ready(function() {
         $('[data-toggle=offcanvas]').click(function() {
+          $("#local").val($(this).data('id'));
           $('.row-offcanvas').toggleClass('active');
         });
       });
