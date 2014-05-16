@@ -6,21 +6,22 @@ class WishlistsController < ApplicationController
   def create
     @wishlist = current_user.wishlist.build(wishlist_params)
     @wishlist.user = current_user
-    friendship=Friendship.all
-    friendship.each do |t|
-      if t.user_id==current_user.id
-        Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist bhenchod #{t.user_id}",:name => current_user.name)
-      end
-      if params[:flag] != nil 
-        redirect_to root_url
-      end
-    end
+    
 
     if @wishlist.save
       flash[:notice] = "Micropost created!"
       redirect_to root_url
     else
       render 'layouts/profile'
+    end
+    friendship=Friendship.all
+    friendship.each do |t|
+      if t.user_id==current_user.id
+        Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist bhenchod #{@wishlist.id}",:name => current_user.name)
+      end
+      if params[:flag] != nil 
+        redirect_to root_url
+      end
     end
   end
 
@@ -75,6 +76,12 @@ class WishlistsController < ApplicationController
     respond_to do |format|
       format.js
     end   
+    # Notification.all.each do |n|
+    #   del = Notification.find_by_content_and_by_name("liked your wishlist item #{@object}",current_user.name)
+    #   if del != nil
+    #   del.destroy
+    # end
+    # end
     end
 
   private
