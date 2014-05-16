@@ -323,14 +323,16 @@
       {
         font-size: 25px;
         position: absolute;
-        bottom: 0px;
-        left: 0px;
+        top: 0;
+        left: 0;
+        /*float: bottom;*/
         margin-bottom: 5px;
         margin-left: 5px;
+        /*visibility: 0;*/
 
         /*display: block;*/
         /*opacity: 0;*/
-        cursor: pointer;
+        /*cursor: pointer;*/
         /*z-index: 1;*/
       }
 
@@ -338,24 +340,28 @@
       {
         font-size: 25px;
         position: absolute;
-        bottom: 0px;
-        left: 0px;
+        top: 0;
+        left: 0;
+        /*float: bottom;*/
         margin-bottom: 5px;
         margin-left: 5px;
+        /*visibility: 0;*/
 
         /*display: block;*/
         /*opacity: 0;*/
-        cursor: pointer;
+        /*cursor: pointer;*/
         /*z-index: 1;*/
       }
 
       .glyphicon-thumbs-up:hover
       {
+        /*visibility: 1;*/
         color: blue;
       }
 
       .glyphicon-thumbs-down:hover
       {
+        /*visibility: 1;*/
         color: blue;
       }
 

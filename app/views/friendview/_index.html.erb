@@ -10,7 +10,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <%= stylesheet_link_tag 'profile.css' %>
-    <%= javascript_include_tag 'friendview.js' %>
+    <%= javascript_include_tag 'profile.js' %>
 	  
   </head>
   
@@ -144,13 +144,13 @@
       </div>
     </div><!-- right-sidebar -->
    <div class="container main">
-            <div class="tabs btn-group btn-group-justified">
-              <a id="wishlist-btn" class="tab btn btn-default" onclick="display(wishlist)">Wishlist</a>            </div>
+            <!-- <div class="tabs btn-group btn-group-justified">
+              <a id="wishlist-btn" class="tab btn btn-default" >Wishlist</a>            </div> -->
             <!-- tab btns -->
             <div class="jumbotron">
             
             <!-- Feed -->
-            <div id="wishlist" style="display:block">
+            <div id="wishlist" style="display:block" onclick="display(wishlist)">
               
               
               <div id="wishtext">
@@ -189,7 +189,7 @@
         });
       });
     </script>
-    <%= javascript_include_tag 'friendview_jq.js' %>
+    <%= javascript_include_tag 'profile_jq.js' %>
     
   </body>
 

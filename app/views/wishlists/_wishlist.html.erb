@@ -19,19 +19,18 @@
 
                          <i class="icon icon-map-marker"></i>
                        </p>
-              </div>
-                    
-                </div>      
-                <% div_id="refresh_#{t.id}" %>
+              </div>   
+              </div>      
+              <% div_id="refresh_#{t.id}" %>
               <div id="<%=div_id %>">
               <% if t.liked_by?(current_user).to_s == "false" %>
-                <!-- <i class="glyphicon glyphicon-thumbs-up"></i> -->
-                <%= link_to '<i class="glyphicon glyphicon-thumbs-up"></i>'.html_safe, {controller:"wishlists", action:"vote" , my_param: "#{t.id}"} ,id: "sign_out",:remote => true%>
-                <%end%>
+
+                <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, {controller:"wishlists", action:"vote" , wish_param: "#{t.id}" ,my_params: my_params} ,id: "sign_out", :remote => true %>
+
+              <%end%>
               
               <% if t.liked_by?(current_user).to_s == "true" %>
-              <!-- <span class="glyphicon glyphicon-thumbs-down"></span> -->
-              <%= link_to '<i class="glyphicon glyphicon-thumbs-down"></i>'.html_safe, {controller:"wishlists", action:"unvote" , my_param: "#{t.id}"} ,id: "sign_out",:remote => true %>
+              <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, {controller:"wishlists", action:"unvote" , wish_param: "#{t.id}",  my_params: my_params} ,id: "sign_out", :remote => true%>
               <%end%>
             
               <%= t.likers(User).count %>
