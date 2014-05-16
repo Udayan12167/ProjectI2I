@@ -91,9 +91,18 @@
     <div class="timeline-bar">
       <div class="timeline-line">
         <%= image_tag('Start_node.png',:id => "startnode") %>
+        <%birthdays = Array.new %>
         <% days.zip(itemm).each do |d,i| %>
-        <% if d != nil %>
-        <% if d - Date.today < 30  && d - Date.today > 1%>
+        <% if d!= nil %> 
+        <% if d - Date.today < 31  && d - Date.today > 0%>
+          <%birthdays << i %>
+          
+        <%end%>
+        <%end%>
+        <%end %>
+        <% days.zip(itemm).each do |d,i| %>
+        <% if d!= nil %> 
+        <% if d - Date.today < 31  && d - Date.today > 0%>
 
         <div class="eventnode" data-toggle="tooltip" data-placement="top" >
           <!-- <a href="#" data-toggle="modal" data-target="#basicModal" onClick="triggerModal(this)">
@@ -103,21 +112,21 @@
 
           
 
-            <% itemm.each do |i| %>
+            <!--<% itemm.each do |i| %>
             <% if i["birthday"] != nil %>
               <% if  (d.to_s[5,8].scan(/\d+/).first == i["birthday"][0,5].scan(/\d+/).first) == 'true' %>
                 <% temp12 = i %>
                 <%break%>
                 <%end%>
               <%end%>
-              <%end%>
+              <%end%>-->
            
             <%= d.to_s %>
-              <%= link_to  image_tag( fimage(i["id"]),class: "img-event img-circle"),{controller: "welcome",action: "date",date: d.to_s}, "data-toggle" => "modal", "data-target" =>"tooltip","data-id" => "ayush", onClick:"triggerModal(this)",:remote => true%>
+              <%= link_to  image_tag( fimage(i["id"]),class: "img-event img-circle"),{controller: "welcome",action: "date",date: d.to_s,person: birthdays}, "data-toggle" => "modal", "data-target" =>"tooltip","data-id" => "ayush", onClick:"triggerModal(this)",:remote => true%>
         </div>
         <%end%>
         <%end%>
-        <%end%>
+        <%end %>
       </div>
     </div>
 

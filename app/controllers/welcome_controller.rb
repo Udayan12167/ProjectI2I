@@ -51,7 +51,7 @@ class WelcomeController < ApplicationController
   end
   def date
     @date=params[:date]
-    puts @date
+    @id=params[:person]
     respond_to do |format|
       format.js
     end
