@@ -1,20 +1,19 @@
 <% notifs = Notification.order("created_at desc").all %>
 
 <% notifs.each do |n| %>
-<% if n.user_id == current_user.id %>
+<% if n.user_id == current_user.id && n.content_id == 1%>
           
-          <a href="#" class="notification-link">
+          <a href= "#" class="notification-link">
                       <div class="notification-container">
+
 
                         
                 
                   
                            <%= image_tag(fimage(n.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
-                           <div style="display:inline-block; vertical-align: top;">
-                             <p class="feed-time"><%= n.created_at %></p>
-                            <a class="feed-username" href=""><%= link_to n.name , root_url  %></a>
-                             <p class="feed-posttext"><%= n.content%> </p>
-                           </div>
+                          <a class="feed-username" href=""><%= link_to n.name , root_url  %></a>
+                           <p class="feed-posttext"><%= n.content%> at <%= n.created_at %></p>
+                           <%= link_to "read",  {:controller => "wishlists", :action => "read" , :created => n.created_at ,:u => n.user_id },:class => "btn btn-large btn-success" %>
                       </div>
                     </a>
                  <%end%>
