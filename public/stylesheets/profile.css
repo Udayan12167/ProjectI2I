@@ -320,38 +320,51 @@
         border-color: #DADFE1;
       }
 
+      .like_button
+      {
+        /*background-color: #3498db;*/
+        font-size: 18px;
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 10px;
+        margin-left: 6px;
+        color: black;
+      }
+
+      .like_button:hover
+      {
+        color:blue;
+      }
+
+      .add_button
+      {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-bottom: 10px;
+        margin-right: 20px;
+        z-index: 1;
+      }
+
+      .glyphicon
+      {
+        color: gray;
+      }
+
       .glyphicon-thumbs-up
       {
-        font-size: 25px;
+        font-size: 18px;
         position: absolute;
-        top: 0;
-        left: 0;
-        /*float: bottom;*/
-        margin-bottom: 5px;
+        margin-bottom: 10px;
         margin-left: 5px;
-        /*visibility: 0;*/
-
-        /*display: block;*/
-        /*opacity: 0;*/
-        /*cursor: pointer;*/
-        /*z-index: 1;*/
       }
 
       .glyphicon-thumbs-down
       {
-        font-size: 25px;
+        font-size: 18px;
         position: absolute;
-        top: 0;
-        left: 0;
-        /*float: bottom;*/
-        margin-bottom: 5px;
+        margin-bottom: 10px;
         margin-left: 5px;
-        /*visibility: 0;*/
-
-        /*display: block;*/
-        /*opacity: 0;*/
-        /*cursor: pointer;*/
-        /*z-index: 1;*/
       }
 
       .glyphicon-thumbs-up:hover
@@ -364,6 +377,16 @@
       {
         /*visibility: 1;*/
         color: blue;
+      }
+
+      .glyphicon-plus
+      {
+        font-size: 15px;
+      }
+
+      .glyphicon-plus:hover
+      {
+        color: green;
       }
 
       .glyphicon-star{

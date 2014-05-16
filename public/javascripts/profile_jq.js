@@ -29,6 +29,18 @@ $('#addwish-btn').click(function(){
             //$("#friends-panel").toggle();
           });
 
+ $('.col-md-6').hover(function () 
+        {
+            $(this).find('.like_button').slideDown("fast");
+            $(this).find('.add_button').slideDown("fast");
+        },
+        function ()
+        {
+            $(this).find('.like_button').slideUp("fast");
+            $(this).find('.add_button').slideUp("fast");
+        }
+    );
+
 $('.thumbnail:even').popover({
           container: 'body',
           html: true,

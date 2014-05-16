@@ -22,9 +22,6 @@ class WishlistsController < ApplicationController
       if params[:flag] != nil 
         redirect_to root_url
       end
-      if params[:flag] != nil
-        redirect_to root_url
-      end
     end
 
     @wishlist.save
