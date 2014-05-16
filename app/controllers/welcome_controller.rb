@@ -49,5 +49,12 @@ class WelcomeController < ApplicationController
 
     end
   end
+  def date
+    @date=params[:date]
+    puts @date
+    respond_to do |format|
+      format.js
+    end
+  end
  
 end

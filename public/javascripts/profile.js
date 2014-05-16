@@ -40,7 +40,7 @@ function set_eventnode(new_node){
       new_node.style.left=distance+"%";
       var date_string=new String(event_date);
       var display_date=date_string.split(" ");
-      new_node.title=new String(display_date[1]+" "+display_date[2]+" "+display_date[3]);
+      new_node.title=new String("Birthdays on "+display_date[1]+" "+display_date[2]+" "+display_date[3]);
 }
 
 function call_resize_image(){
