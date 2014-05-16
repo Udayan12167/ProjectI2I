@@ -44,12 +44,12 @@
 #logo{
     position: absolute;
     z-index: 9999;
-    height: 25%;
+    height: 15%;
     width: auto;
     display: inline-block;
     vertical-align: center;
     margin: auto;
     left: 44%;
-    top:62%;
+    top:40%;
 }
 
