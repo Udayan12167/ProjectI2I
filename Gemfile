@@ -13,6 +13,7 @@ gem 'kaminari'
 
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
@@ -29,7 +30,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'public_activity'
 
 gem 'certified'
-
+gem 'thin'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

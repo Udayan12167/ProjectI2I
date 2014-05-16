@@ -1,3 +1,4 @@
+
 $('html').click(function(event)
 {
   if(event.target.id == 'notif-dropdown' && ($('#notification-active').attr('id')=='notification-active'))
@@ -16,6 +17,10 @@ $('html').click(function(event)
     $('#notification-active').attr('id','notification-inactive');
   }
 });
+
+$body = $("body");
+
+
 
 $('#addwish-btn').click(function(){
             $("#addwish-panel").slideToggle();
@@ -57,21 +62,20 @@ $('.eventnode').load(
 //   )
 
 function triggerModal(obj) {
-
- 
-    //document.getElementById('the_id').value = avalue;
-    console.log(obj.innerText);
-    var date=obj.innerText;
+   
     $('#basicModal').modal();
-    $('#date-modal').val(date);
- 
-
+    
 }
+
+$body = $("body");
+
+$(document).on({
+    ajaxStart: function() { $body.addClass("loading");    },
+     ajaxStop: function() { $body.removeClass("loading"); }    
+});
 
 $('img').on('load',function(){
   call_resize_image()
 });
 
 //$('eventnode').tooltip(options)
-
-
