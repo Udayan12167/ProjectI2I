@@ -1,29 +1,35 @@
+<% notifs = Notification.order("created_at desc").all %>
 
 
-<% activities.each do |activity| %>
+<% notifs.each do |activity| %>
+
+        <% if activity.owner_id == current_user.uid %>
+        <%next%>
+        <%end%>
         
+          
+          
+                   
+                    <%if activity.content["added"] == "added" %>
 
-          
-          
-                	 
-                    <%if activity.key == 'wishlist.create' %>
+
                     <div class="feed-container">
 
                 
                      <div class="feed-text">
                       
                     
-                    <%= image_tag(activity.owner.largeimage, :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
+                    <%= image_tag(fimage(activity.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
                     <div style="display:inline-block; vertical-align: top;">
                       <p class="feed-time">at <%= activity.created_at %></p>
-                    <a class="feed-username" href=""><%= link_to activity.owner.name , root_url if activity.owner %></a>
+                    <a class="feed-username" href=""><%= link_to activity.name , root_url  %></a>
                     
-                    <p class="feed-posttext">added wishlist item <%= link_to activity.trackable, root_url %> </p>
+                    <p class="feed-posttext"> <%= link_to activity.content, root_url %> </p>
                     </div>
                     <span class="glyphicon glyphicon-star feed-icon"></span>
                   </div>
                 </div>
-                    <%elsif activity.key == 'like.create' %>
+                    <%elsif activity.content["liked"] == "liked" %>
                     <div class="feed-container">
 
                 
@@ -31,18 +37,18 @@
                     
                     
                     
-                    <%= image_tag(activity.owner.largeimage, :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
+                    <%= image_tag(fimage(activity.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
                     <div style="display:inline-block; vertical-align: top;">
                       <p class="feed-time">at <%= activity.created_at %></p>
-                    <a class="feed-username" href=""><%= link_to activity.owner.name , root_url if activity.owner %></a>
+                    <a class="feed-username" href=""><%= link_to activity.name , root_url  %></a>
                     
-                    <p class="feed-posttext">liked wishlist item </p>
+                    <p class="feed-posttext"> <%=activity.content %> </p>
                       
                     </div>
                     <span class="glyphicon glyphicon-heart feed-icon"></span>
                   </div>
                 </div>
-                <%elsif activity.key == 'friendship.create' && activity.trackable_id == 1 %>
+                <%elsif activity.content["joined"] == "joined" %>
                     <div class="feed-container">
 
                 
@@ -50,12 +56,12 @@
                     
                     
                     
-                    <%= image_tag(activity.owner.largeimage, :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
+                    <%= image_tag(fimage(activity.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
                     <div style="display:inline-block; vertical-align: top;">
                       <p class="feed-time">at <%= activity.created_at %></p>
-                    <a class="feed-username" href=""><%= link_to activity.owner.name , root_url if activity.owner %></a>
+                    <a class="feed-username" href=""><%= link_to activity.name , root_url %></a>
                     
-                    <p class="feed-posttext">joined friendfundr</p>
+                    <p class="feed-posttext"><%= activity.content %></p>
                       
                     </div>
                     <span class="glyphicon glyphicon-user feed-icon"></span>
@@ -68,9 +74,3 @@
                 
               
               <%end%>
-
-                       
-               
-                                
-
-                

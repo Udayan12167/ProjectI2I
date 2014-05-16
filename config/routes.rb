@@ -1,4 +1,5 @@
 Facebooksignin::Application.routes.draw do
+  
   get "friendview/index"
   resources :notifications
   post 'wishlists/vote'
@@ -8,6 +9,7 @@ Facebooksignin::Application.routes.draw do
   get "activities/index"
   get "activities/post"
   get "wishlists/vote"
+  get "wishlists/create"
   get "facebook_api/friends"
   resources :users
   get "welcome/index"

@@ -10,6 +10,7 @@
                 <%= hash["name"]%>
                 </h4>
                 <p><%= hash["birthday"]%></p>
+                <%= link_to "Invite",{:controller => "facebook_api",:action => "notify",:uid => hash["id"]} ,:class => "btn btn-large btn-success",:remote => true%>
             </div>
         </div>
         </div>
