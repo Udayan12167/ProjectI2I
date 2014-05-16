@@ -10,7 +10,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <%= stylesheet_link_tag 'profile.css' %>
-    <%= javascript_include_tag 'profile.js' %>
+    <%= javascript_include_tag 'friendview.js' %>
 	  
   </head>
   
@@ -85,16 +85,25 @@
                   
                 </p>
             <%end%> 
-    <div class="timeline-bar">
+        <div class="timeline-bar">
       <div class="timeline-line">
         <%= image_tag('Start_node.png',:id => "startnode") %>
-        <% days.each do |d| %>
+        <% days.zip(itemm).each do |d,i| %>
         <% if d != nil %>
         <% if d - Date.today < 30  && d - Date.today > 1%>
         <div class="eventnode" data-toggle="tooltip" data-placement="top" >
-          <a href="#" data-toggle="modal" data-target="#basicModal" onClick="triggerModal(this)">
-            <%= image_tag('emma.png',class: "img-event img-circle") %>
+          <a href="#" data-toggle="modal" data-id = "ayush" data-target="#basicModal" onClick="triggerModal(this)">
+            <% itemm.each do |i| %>
+            <% if i["birthday"] != nil %>
+              <% if  (d.to_s[5,8].scan(/\d+/).first == i["birthday"][0,5].scan(/\d+/).first) == 'true' %>
+                <% temp12 = i %>
+                <%break%>
+                <%end%>
+              <%end%>
+              <%end%>
+            <%= image_tag( fimage(i["id"]),class: "img-event img-circle") %>
             <%= d.to_s %>
+
           </a>
         </div>
         <%end%>
@@ -102,23 +111,6 @@
         <%end%>
       </div>
     </div>
-    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body" >
-                <h3>Modal Head</h3>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-    </div>
-  </div>
-</div>
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
         <div class="well sidebar-nav pull-left well-sm" id="profile-sidebar" title>
@@ -152,18 +144,17 @@
       </div>
     </div><!-- right-sidebar -->
     <div class="container main">
-            <div class="tabs btn-group btn-group-justified">
+            <!-- <div class="tabs btn-group btn-group-justified">
               <a id="wishlist-btn" class="tab btn btn-default" onclick="display(wishlist)">Wishlist</a>
-                 </div>
+                 </div> -->
             <!-- tab btns -->
             <div class="jumbotron">
-            
-            <div id="wishlist" style="display:none">
+            <div id="wishlist">
               <%= link_to "share", "/activities/post", id: "sign_out",:class => "btn btn-large btn-success" %>
-              <a id="addwish-btn"class="btn btn-default">Add Gifts to List</a>
+              <!-- <a id="addwish-btn"class="btn btn-default">Add Gifts to List</a>
               <div id="addwish-panel">
                 <%= render 'wishlists/wishlist_form' %>
-              </div>
+              </div> -->
               <div id="wishtext">
                 <div class="wishlist-container">
                   <div class="row",id="refresh">
@@ -182,16 +173,9 @@
                 </div>
               </div>
             </div>
-            <!-- Wishlist -->
-            
-
-            <!-- <div id="invite" style="display:none">
-              <%#<%= render 'facebook/invite' %>
-            </div>
-             -->
-            
-            </div>
-          </div><!-- centre -->
+          </div>
+        </div>
+      </div><!-- centre -->
       
        
     <footer>
@@ -205,7 +189,7 @@
         });
       });
     </script>
-    <%= javascript_include_tag 'profile_jq.js' %>
+    <%= javascript_include_tag 'friendview_jq.js' %>
     
   </body>
 

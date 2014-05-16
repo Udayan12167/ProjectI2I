@@ -1,5 +1,5 @@
 function display(tab){
-      // alert((tab.getAttribute('id')))
+      console.log((tab.getAttribute('id')));
       feed=document.getElementById('feed');
       wishlist=document.getElementById('wishlist');
       friends=document.getElementById('friends');

@@ -212,16 +212,17 @@
 
      .delete-icon
        {
-         height: 15px;
-         width: 15px;
+         height: 20px;
+         width: 20px;
          margin-top: 10px;
-        position: absolute;
+         position: absolute;
          right: 25px;
          display: block;
          opacity: 0;
          cursor: pointer;
          z-index: 1;
-       }     
+       }
+
       .thumbnail
       {
         font-size : 15px;
@@ -309,12 +310,32 @@
 
       .glyphicon-thumbs-up
       {
-        font-size: 20px;
+        font-size: 25px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+
+        /*display: block;*/
+        /*opacity: 0;*/
+        cursor: pointer;
+        /*z-index: 1;*/
       }
 
       .glyphicon-thumbs-down
       {
         font-size: 25px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+
+        /*display: block;*/
+        /*opacity: 0;*/
+        cursor: pointer;
+        /*z-index: 1;*/
       }
 
       .glyphicon-thumbs-up:hover
