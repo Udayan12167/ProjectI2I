@@ -33,7 +33,7 @@
              <a href="#" data-toggle="dropdown" id="notif-dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification-inactive",:class => "menu-icon") %><span id="notificaton-count" class="notification-count badge">
                 <% notifcount=0 %>
                 <% Notification.all.each do |t| %>
-                <% if (t.user_id==current_user.id) %>
+                <% if (t.user_id==current_user.id && t.content_id == 1) %>
                 <% notifcount=notifcount+1 %>
                 <% end%>
                 <% end%>

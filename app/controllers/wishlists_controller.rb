@@ -17,7 +17,7 @@ class WishlistsController < ApplicationController
     friendship=Friendship.all
     friendship.each do |t|
       if t.user_id==current_user.id
-        Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist bhenchod #{@wishlist.id}",:name => current_user.name)
+        Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist bhenchod #{@wishlist.id}",:name => current_user.name, :content_id => 1)
       end
       if params[:flag] != nil 
         redirect_to root_url
@@ -41,6 +41,20 @@ class WishlistsController < ApplicationController
     @wishlist =current_user.wishlist.build
   end
 
+
+
+  def read
+    
+    @c = params[:created]
+    @u = params[:u]
+    @del = Notification.find_by_user_id_and_created_at(@u,@c)
+    if @del != nil
+      @del.content_id = 0
+      @del.save!
+    end
+    redirect_to root_url
+  end
+
   def vote
     @object = params[:wish_param]
     @user_id = User.find_by_id(params[:my_params])
@@ -51,7 +65,7 @@ class WishlistsController < ApplicationController
         friendship=Friendship.all
         friendship.each do |f|
           if f.user_id==current_user.id
-            Notification.create(:owner_id => current_user.uid ,:user_id => f.friend_id , :content => "liked your wishlist item #{t.id}",:name => current_user.name)
+            Notification.create(:owner_id => current_user.uid ,:user_id => f.friend_id , :content => "liked your wishlist item #{t.id}",:name => current_user.name ,:content_id => 1)
           end
         end
       end
