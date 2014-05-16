@@ -5,10 +5,14 @@ class WishlistsController < ApplicationController
   end
   def create
     @wishlist = current_user.wishlist.build(wishlist_params)
+    @wishlist.user = current_user
     friendship=Friendship.all
     friendship.each do |t|
       if t.user_id==current_user.id
         Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist",:name => current_user.name)
+      end
+      if params[:flag] != nil
+        redirect_to root_url
       end
     end
 
