@@ -3,9 +3,8 @@
  <% user.wishlist.each do |t|%>
 
             <% if t.id==@object.to_i %>
-				<%= t.likers(User.all).count %>
-				<br>
-				<% if t.liked_by?(current_user).to_s == "false" %>
+			<%= t.likers(User.all).count %>
+			<% if t.liked_by?(current_user).to_s == "false" %>
 
 				
     				<%= link_to '<span class="glyphicon glyphicon-thumbs-up" title="Like"></span>'.html_safe, {controller:"wishlists", action:"vote" , wish_param: t.id ,my_params: @user_id.id} ,id: "sign_out", :remote => true %>

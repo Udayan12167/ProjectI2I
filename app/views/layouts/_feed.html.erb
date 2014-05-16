@@ -17,24 +17,26 @@
                 <%t = Wishlist.all.find_by_id(id) %>
                 <% if t != nil %>
                     <%user = User.find_by_id(activity.user_id) %>
-                    <li class="col-md-6">
+                        <li class="col-md-6">
                         <div class="thumbnail" style="padding: 0">
                             <div style="padding:4px;">
                                 <div class="gift-info">  
                                     <%= image_tag('flash.jpg',class: "img-gift",alt:"300x200") %>        
-                                        <h4>BC</h4>
-                                        <h4><%=t.id%></h4>
-                                        <p>My project description
-                                            <%= user.wishlist.index(t) %>
-                                            <i class="icon icon-map-marker"></i>
-                                        </p>
-                                </div>  
-                                <% if user == current_user %>
-                                    <%= link_to "ADD",{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price} } %>
-                                <%end%>
+                                    <h4>BC</h4>
+                                    <h4><%=t.id%></h4>
+                                    <p>My project description
+                                        <%= user.wishlist.index(t) %>
+                                        <i class="icon icon-map-marker"></i>
+                                    </p>
+                                </div> 
                             </div>      
-                        </div>              
-                    </li>
+                        </div>
+                        <div class="add_delete_button">
+                        <% if user == current_user %>
+                                    <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe, {:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price} } %>
+                                <%end%>
+                            </div>
+                        </li>
                 <%end%>
                 <span class="glyphicon glyphicon-star feed-icon"></span>
             </div>

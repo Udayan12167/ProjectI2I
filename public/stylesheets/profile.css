@@ -246,20 +246,6 @@
         text-align: left;
       }
 
-
-     .delete-icon
-       {
-         height: 20px;
-         width: 20px;
-         margin-top: 10px;
-         position: absolute;
-         right: 25px;
-         display: block;
-         opacity: 0;
-         cursor: pointer;
-         z-index: 1;
-       }
-
       .thumbnail
       {
         font-size : 15px;
@@ -279,7 +265,7 @@
        bottom: 0;
       }
 
-      .gift-info:hover
+      .thumbnail:hover
       {
          opacity: 0.5;
       }
@@ -289,11 +275,6 @@
         margin-bottom: 10px;
       }
 	  
-
-      .col-md-6:hover .delete-icon
-      {
-        opacity: 1;
-      }
       .navbar{
         z-index: 8999;
       }
@@ -348,28 +329,62 @@
 
       .like_button
       {
-        /*background-color: #3498db;*/
         font-size: 18px;
         position: absolute;
         bottom: 0;
         margin-bottom: 10px;
-        margin-left: 6px;
-        color: black;
+        margin-left: 8px;
+        color: gray;
       }
 
       .like_button:hover
       {
-        color:blue;
+        color:#3498db;
       }
 
-      .add_button
+      .like_button:hover .glyphicon-thumbs-down
       {
+          color:#3498db;
+      }
+
+      .like_button:hover .glyphicon-thumbs-up
+      {
+        color:#3498db;
+      }
+
+     .add_delete_button
+       {
         position: absolute;
-        bottom: 0;
+        top: 0;
         right: 0;
-        margin-bottom: 10px;
+        margin-top: 8px;
         margin-right: 20px;
         z-index: 1;
+       }
+
+       .glyphicon-trash
+      {
+        font-size: 18px; 
+      }
+
+       .add_delete_button:hover .glyphicon-trash
+       {
+        color: #e74c3c;
+       }
+
+      /*.add_button
+      {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-top: 8px;
+        margin-right: 20px;
+        z-index: 1;
+      }
+*/
+      .add_delete_button:hover .glyphicon-floppy-save
+      {
+        color: #0C6;
       }
 
       .glyphicon
@@ -377,32 +392,19 @@
         color: gray;
       }
 
+      .glyphicon-floppy-save
+      {
+       font-size: 18px; 
+      }
+
       .glyphicon-thumbs-up
       {
         font-size: 18px;
-        position: absolute;
-        margin-bottom: 10px;
-        margin-left: 5px;
       }
 
       .glyphicon-thumbs-down
       {
         font-size: 18px;
-        position: absolute;
-        margin-bottom: 10px;
-        margin-left: 5px;
-      }
-
-      .glyphicon-thumbs-up:hover
-      {
-        /*visibility: 1;*/
-        color: blue;
-      }
-
-      .glyphicon-thumbs-down:hover
-      {
-        /*visibility: 1;*/
-        color: blue;
       }
 
       .glyphicon-plus

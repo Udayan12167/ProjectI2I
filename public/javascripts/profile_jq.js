@@ -1,4 +1,3 @@
-
 $('html').click(function(event)
 {
   if(event.target.id == 'notif-dropdown' && ($('#notification-active').attr('id')=='notification-active'))
@@ -20,8 +19,6 @@ $('html').click(function(event)
 
 $body = $("body");
 
-
-
 $('#addwish-btn').click(function(){
             $("#addwish-panel").slideToggle();
           });
@@ -37,12 +34,12 @@ $('#addwish-btn').click(function(){
  $('.col-md-6').hover(function () 
         {
             $(this).find('.like_button').slideDown("fast");
-            $(this).find('.add_button').slideDown("fast");
+            $(this).find('.add_delete_button').slideDown("fast");
         },
         function ()
         {
             $(this).find('.like_button').slideUp("fast");
-            $(this).find('.add_button').slideUp("fast");
+            $(this).find('.add_delete_button').slideUp("fast");
         }
     );
 
