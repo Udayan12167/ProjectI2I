@@ -15,13 +15,10 @@ class WishlistsController < ApplicationController
         redirect_to root_url
       end
     end
-
-    if @wishlist.save
-      flash[:notice] = "Micropost created!"
-      redirect_to root_url
-    else
-      render 'layouts/profile'
-    end
+    @wishlist.save
+    respond_to do |format|
+      format.js
+    end 
   end
 
   def destroy

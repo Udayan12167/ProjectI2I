@@ -29,6 +29,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'public_activity'
 
 gem 'certified'
+gem 'thin'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
