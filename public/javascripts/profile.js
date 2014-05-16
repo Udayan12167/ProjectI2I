@@ -1,5 +1,5 @@
 function display(tab){
-      // alert((tab.getAttribute('id')))
+      console.log((tab.getAttribute('id')));
       feed=document.getElementById('feed');
       wishlist=document.getElementById('wishlist');
       friends=document.getElementById('friends');
@@ -42,6 +42,7 @@ function set_eventnode(new_node){
       var display_date=date_string.split(" ");
       new_node.title=new String("Birthdays on "+display_date[1]+" "+display_date[2]+" "+display_date[3]);
 }
+
 
 function call_resize_image(){
       var a = document.getElementsByClassName('img-gift');

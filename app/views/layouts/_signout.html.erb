@@ -1,5 +1,66 @@
-<div class="jumbotron">
-            	<img id="logo" src="FriendFundrLogo.png" title="FriendFundr" alt="Logo" height="250px" />
-		    	<p class="lead">Gift your friends what they want</p>
-            	<%= link_to "Sign in with Facebook", "/auth/facebook", :class => "btn btn-large btn-success" %>
-        	</div>
+<!DOCTYPE html>
+
+<html title>
+  
+  <head>
+    <title>Off Canvas Nav</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <%= stylesheet_link_tag 'signin.css' %>
+    <%= javascript_include_tag 'signin.js' %>
+	  
+  </head>
+
+  <body>
+		<div class="jumbotron">
+			<img src="/images/FriendFundrLogo.png" alt="..." class="img-signin" id="logo">
+		    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				  <!-- Indicators -->
+				  <ol class="carousel-indicators">
+				    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				  </ol>
+
+				  <!-- Wrapper for slides -->
+				  <div class="carousel-inner">
+				    <div class="item active">
+				      <img src="/images/cover4.jpg" alt="..." class="img-signin">
+				      <div class="carousel-caption">
+				        <p class="lead">Gift your friends what they want</p>
+		       				
+		       			<%= button_to "Sign in with Facebook", "/auth/facebook", :class => "facebook-btn btn btn-large btn-success" %>
+				      		
+				      </div>
+				    </div>
+				    <div class="item">
+				      <img src="/images/cover3.jpg" alt="..." class="img-signin">
+				      <div class="carousel-caption">
+				        <p class="lead">Add items to your wish list from Amazon</p>
+		       			<%= button_to "Sign in with Facebook", "/auth/facebook", :class => "facebook-btn btn btn-large btn-success" %>
+				      </div>
+				    </div>
+				     <div class="item">
+				      <img src="/images/cover1.jpg" alt="..." class="img-signin">
+				      <div class="carousel-caption">
+				        <p class="lead">Pool in to get your friends their dream gift</p>
+		       			<%= button_to "Sign in with Facebook", "/auth/facebook", :class => "facebook-btn btn btn-large btn-success" %>
+				      </div>
+				    </div>
+				  </div>
+
+				  <!-- Controls -->
+				  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+				    <span class="glyphicon glyphicon-chevron-left"></span>
+				  </a>
+				  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+				    <span class="glyphicon glyphicon-chevron-right"></span>
+				  </a>
+				</div>
+		    	
+		 </div>
+
+</body>
