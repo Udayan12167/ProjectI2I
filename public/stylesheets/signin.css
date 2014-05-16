@@ -25,19 +25,27 @@
 }
 
 .carousel-inner{
-    max-width: 1200px;
-    margin: 0px;
+    max-width: inherit;
+    max-height: inherit;
+    height: 100%;
+    width: 100%;
     text-align: center; 
 }
 
 .carousel{
     display: inline-block;
-    max-width: 1200px;
+    max-width: inherit;
+    max-height: inherit;
+    height: 100%;
     width: 100%;
     margin: auto;
 }
 
 .jumbotron{
+    max-width: inherit;
+    max-height: inherit;
+    height: 100%;
+    width: 100%;
     text-align: center;
 }
 
@@ -49,7 +57,7 @@
     display: inline-block;
     vertical-align: center;
     margin: auto;
-    left: 44%;
+    left: 45%;
     top:40%;
 }
 

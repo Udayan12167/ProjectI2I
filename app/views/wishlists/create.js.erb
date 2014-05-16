@@ -1,0 +1,4 @@
+$('#refresh').html("<%= j(render 'wishlists/wishlist' , :my_params => current_user.id) %>");
+$('img').on('load',function(){
+  call_resize_image()
+});
