@@ -6,14 +6,6 @@ class WishlistsController < ApplicationController
   def create
     @wishlist = current_user.wishlist.build(wishlist_params)
     @wishlist.user = current_user
-    
-
-    if @wishlist.save
-      flash[:notice] = "Micropost created!"
-      redirect_to root_url
-    else
-      render 'layouts/profile'
-    end
     friendship=Friendship.all
     friendship.each do |t|
       if t.user_id==current_user.id

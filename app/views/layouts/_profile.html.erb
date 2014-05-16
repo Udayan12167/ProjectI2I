@@ -202,11 +202,11 @@
 
                   <% if current_user.wishlist.any? %>
                     <% current_user.wishlist.count %>
-                      
+                      <ul class="thumbnails list-unstyled">
                     
                     <%= render 'wishlists/wishlist' , :remote => true , :my_params => current_user.id %>
 
-                    
+                    </ul>
                     
                     <% end %>
                   </div>
