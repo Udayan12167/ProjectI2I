@@ -23,6 +23,12 @@ class WishlistsController < ApplicationController
         redirect_to root_url
       end
     end
+
+    @wishlist.save
+    respond_to do |format|
+      format.js
+    end 
+
   end
 
   def destroy

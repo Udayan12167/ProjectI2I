@@ -197,16 +197,16 @@
               </div>
               <div id="wishtext">
                 <div class="wishlist-container">
-                  <div class="row",id="refresh">
+                  <div class="row" id="refresh">
                   
 
                   <% if current_user.wishlist.any? %>
-                    <%= current_user.wishlist.count %>
+                    <% current_user.wishlist.count %>
                       
-                    <ul class="thumbnails list-unstyled">
+                    
                     <%= render 'wishlists/wishlist' , :remote => true , :my_params => current_user.id %>
 
-                    </ul>
+                    
                     
                     <% end %>
                   </div>
