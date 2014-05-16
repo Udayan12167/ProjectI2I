@@ -2,7 +2,8 @@
 
 
 <% notifs.each do |activity| %>
-        <% if activity.owner_id == current_user.id %>
+
+        <% if activity.owner_id == current_user.uid %>
         <%next%>
         <%end%>
         
@@ -41,7 +42,7 @@
                       <p class="feed-time">at <%= activity.created_at %></p>
                     <a class="feed-username" href=""><%= link_to activity.name , root_url  %></a>
                     
-                    <p class="feed-posttext"> <%=activity.content %></p>
+                    <p class="feed-posttext"> <%=activity.content %> </p>
                       
                     </div>
                     <span class="glyphicon glyphicon-heart feed-icon"></span>
