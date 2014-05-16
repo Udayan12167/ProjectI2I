@@ -9,10 +9,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   
+  
+  
+  
   before_filter :share_var
   def share_var
     @activities = PublicActivity::Activity.order("created_at desc")
     @friends=Array.new
+    
     #@friendsonfundr=Array.new
     if session["fb_access_token"].present?
       graph= Koala::Facebook::GraphAPI.new(session["fb_access_token"])

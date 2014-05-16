@@ -1,4 +1,5 @@
 Facebooksignin::Application.routes.draw do
+  
   get "friendview/index"
   resources :notifications
   post 'wishlists/vote'
