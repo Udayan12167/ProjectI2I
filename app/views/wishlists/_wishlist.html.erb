@@ -1,11 +1,9 @@
-          
-          <% wish = Wishlist.all %>
+ <% wish = Wishlist.all %>
           <% temp = my_params %>
           <% user = User.find_by_id(temp) %>
             <% wish.each do |t|%>
             <% if t.user_id == temp %>
-
-             <li class="col-md-6">
+            <li class="col-md-6">
               <%if user == current_user %>
               <%= link_to image_tag('remove.png',:class => "delete-icon"), {controller:"wishlists", action:"remove" , my_param: "#{t.id}" } %>
               <%end%>
@@ -13,23 +11,15 @@
                 <div style="padding:4px;">
                  <div class="gift-info">   
                     <%= image_tag('flash.jpg',class: "img-gift",alt:"300x200") %>         
-                    <h4> Item: <%= t.link %> for price <%= t.price %></h4>
+                    <h4>BC</h4>
                     <h4><%=t.id%></h4>
-                     <p>
-                        
+                     <p>My project description
+                        <%= user.wishlist.index(t) %>
 
                          <i class="icon icon-map-marker"></i>
                        </p>
-
-              </div>
-                    
-                </div>      
-              </div>
-              <%if user != current_user %>
-              <%= link_to "ADD",{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price} } %>
-              <%end%>
-
               </div>   
+              <%= link_to "ADD",{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price} } %>
               </div>      
 
               <% div_id="refresh_#{t.id}" %>
@@ -50,5 +40,3 @@
         </li>
       <%end%>
     <%end%>
-
-
