@@ -143,29 +143,26 @@
         </div>
       </div>
     </div><!-- right-sidebar -->
-    <div class="container main">
-            <!-- <div class="tabs btn-group btn-group-justified">
-              <a id="wishlist-btn" class="tab btn btn-default" onclick="display(wishlist)">Wishlist</a>
-                 </div> -->
+   <div class="container main">
+            <div class="tabs btn-group btn-group-justified">
+              <a id="wishlist-btn" class="tab btn btn-default" onclick="display(wishlist)">Wishlist</a>            </div>
             <!-- tab btns -->
             <div class="jumbotron">
-           
+            
             <!-- Feed -->
             <div id="wishlist" style="display:block">
-             
-             
+              
+              
               <div id="wishtext">
                 <div class="wishlist-container">
                   <div class="row",id="refresh">
-                 
- 
-                     
+                  
+
+                      
                     <ul class="thumbnails list-unstyled">
                     <%= render 'wishlists/wishlist' , :remote => true , :my_params => object.to_i %>
- 
+
                     </ul>
-                   
-                   
                   </div>
                 </div>
               </div>
@@ -173,29 +170,13 @@
             <!-- Wishlist -->
             <div id="friends" style="display:none">
             <a ><%= link_to "Invite Friends", "/welcome/index", :remote => true,:class =>"btn btn-default" ,:id => "invite-btn",:page => 1%></a>
-                <!-- <div id="invite-panel">
-               
- 
- 
-               
-               
               <div id="friends-panel">
-                <%= render 'facebook_api/friends' %>          
+                <%= render 'facebook_api/friends' %>           
               </div>
             </div>
-            <!-- Friends -->
- 
-            <!-- <div id="invite" style="display:none">
-              <%#<%= render 'facebook/invite' %>
-            </div>
-             -->
-           
-            </div>
-          </div><!-- centre -->
         </div>
       </div><!-- centre -->
       
-       
     <footer>
         <p>&copy; Company 2013</p>
       </footer>
@@ -203,6 +184,7 @@
     <script>  
       $(document).ready(function() {
         $('[data-toggle=offcanvas]').click(function() {
+          $("#local").val($(this).data('id'));
           $('.row-offcanvas').toggleClass('active');
         });
       });

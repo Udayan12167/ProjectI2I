@@ -1,3 +1,18 @@
+function display(tab){
+      // alert((tab.getAttribute('id')))
+      wishlist=document.getElementById('wishlist');
+      friends=document.getElementById('friends');
+      wishlist.style.display = 'none';
+      friends.style.display='none';
+      reset_tab('wishlist-btn');
+      reset_tab('friends-btn');
+      document.getElementById(tab.getAttribute('id')).style.display='block';
+      document.getElementById(tab.getAttribute('id')+'-btn').style.backgroundColor= '#2ecc71';
+      document.getElementById(tab.getAttribute('id')+'-btn').style.fontWeight='bold';
+      document.getElementById(tab.getAttribute('id')+'-btn').style.color='white';
+      window.scrollTo(0,0);
+     }
+
 function reset_tab(id){
 	tabbtn=document.getElementById(id);
 	tabbtn.style.backgroundColor='#fff';

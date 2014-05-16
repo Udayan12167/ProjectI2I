@@ -1,10 +1,13 @@
+          
           <% wish = Wishlist.all %>
           <% temp = my_params %>
-          <!-- in wishlist -->
+          <% user = User.find_by_id(temp) %>
             <% wish.each do |t|%>
             <% if t.user_id == temp %>
             <li class="col-md-6">
+              <%if user == current_user %>
               <%= link_to image_tag('remove.png',:class => "delete-icon"), {controller:"wishlists", action:"remove" , my_param: "#{t.id}" } %>
+              <%end%>
               <div class="thumbnail" style="padding: 0">
                 <div style="padding:4px;">
                  <div class="gift-info">   
@@ -12,7 +15,7 @@
                     <h4>BC</h4>
                     <h4><%=t.id%></h4>
                      <p>My project description
-                        <%= current_user.wishlist.index(t) %>
+                        <%= user.wishlist.index(t) %>
 
                          <i class="icon icon-map-marker"></i>
                        </p>
@@ -24,8 +27,7 @@
               <% if t.liked_by?(current_user).to_s == "false" %>
                 <!-- <i class="glyphicon glyphicon-thumbs-up"></i> -->
                 <%= link_to '<i class="glyphicon glyphicon-thumbs-up"></i>'.html_safe, {controller:"wishlists", action:"vote" , my_param: "#{t.id}"} ,id: "sign_out",:remote => true%>
-
-              <%end%>
+                <%end%>
               
               <% if t.liked_by?(current_user).to_s == "true" %>
               <!-- <span class="glyphicon glyphicon-thumbs-down"></span> -->
