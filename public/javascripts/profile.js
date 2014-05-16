@@ -43,6 +43,7 @@ function set_eventnode(new_node){
       new_node.title=new String("Birthdays on "+display_date[1]+" "+display_date[2]+" "+display_date[3]);
 }
 
+
 function call_resize_image(){
       var a = document.getElementsByClassName('img-gift');
       for (var index = 0; index < a.length; ++index) {

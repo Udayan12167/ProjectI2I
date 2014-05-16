@@ -1,0 +1,55 @@
+.facebook-btn{
+    background-color: #3b5998;
+    color: #fff;
+    border-color: rgba(0,0,0,0.2);
+}
+
+.facebook-btn:hover{
+    background-color: #30487b;
+    color: #fff;
+    border-color: rgba(0,0,0,0.2);
+}
+
+.img-signin{
+    max-height: 500px;
+    max-width: 1200px;
+    height:auto;
+    width:auto;
+    margin: auto;
+    display: inline-block;
+}
+
+.item{ 
+
+    text-align: center;  
+}
+
+.carousel-inner{
+    max-width: 1200px;
+    margin: 0px;
+    text-align: center; 
+}
+
+.carousel{
+    display: inline-block;
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+}
+
+.jumbotron{
+    text-align: center;
+}
+
+#logo{
+    position: absolute;
+    z-index: 9999;
+    height: 25%;
+    width: auto;
+    display: inline-block;
+    vertical-align: center;
+    margin: auto;
+    left: 44%;
+    top:62%;
+}
+
