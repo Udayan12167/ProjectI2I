@@ -121,7 +121,7 @@
               <%end%>-->
            
             <%= d.to_s %>
-              <%= link_to  image_tag( fimage(i["id"]),class: "img-event img-circle"),{controller: "welcome",action: "date",date: d.to_s,person: birthdays}, "data-toggle" => "modal", "data-target" =>"tooltip","data-id" => "ayush", onClick:"triggerModal(this)",:remote => true%>
+              <%= link_to  image_tag( fimage(i["id"]),class: "img-event img-circle"),{controller: "welcome",action: "date", date: d.to_s,person: birthdays}, "data-toggle" => "modal", "data-target" =>"tooltip","data-id" => "ayush", onClick:"triggerModal(this)",:remote => true %>
         </div>
         <%end%>
         <%end%>
@@ -239,9 +239,11 @@
             </div>
              <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
+        <!-- <img id="birthday-loader" src="/images/new-loader.GIF" alt="Loading..." title="Loading..." /> -->
         <div class="modal-content" id="modal-cont">
             
             
+          
         </div>
     </div>
           </div><!-- centre -->
@@ -253,6 +255,15 @@
     
     <script>  
       $(document).ready(function() {
+        $.ajaxSetup({
+        'beforeSend' : function() {
+            console.log('ajazset');
+            $('pleasewaitelement').show();
+        },
+      'complete'   : function() {
+              $('pleasewaitelement').hide();
+        }
+    });
         $('[data-toggle=offcanvas]').click(function() {
           $("#local").val($(this).data('id'));
           $('.row-offcanvas').toggleClass('active');

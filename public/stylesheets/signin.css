@@ -10,6 +10,12 @@
     border-color: rgba(0,0,0,0.2);
 }
 
+.facebook-btn:focus{
+    background-color: #30487b;
+    color: #fff;
+    border-color: rgba(0,0,0,0.2);
+}
+
 .img-signin{
     max-height: 500px;
     max-width: 1200px;
@@ -41,6 +47,11 @@
     margin: auto;
 }
 
+.carousel-control:hover{
+    background-color:#bdc3c7;
+    opacity: 0.5;
+}
+
 .jumbotron{
     max-width: inherit;
     max-height: inherit;
@@ -57,7 +68,11 @@
     display: inline-block;
     vertical-align: center;
     margin: auto;
+<<<<<<< HEAD
+    left:45%;
+=======
     left: 45%;
+>>>>>>> b2bc2b8ac5027db6a4d0935742d603bad4998423
     top:40%;
 }
 

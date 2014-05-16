@@ -88,6 +88,10 @@
 
       #loader{
         margin: 15px;
+      }  
+
+      #birthday-loader{
+        margin: 15px;
       }      
 
       #notification-inactive{
@@ -173,6 +177,28 @@
       
       .modal{
         z-index: 9999;
+      }
+
+      body.loading {
+          overflow: hidden;   
+      }
+
+      body.loading #basicModal {
+          display: block;
+      }
+
+      #basicModal{
+        padding: auto;
+        height:     100%;
+        width:      100%;
+        background: rgba( 0, 0, 0, .8 ) 
+                url('/images/new-loader.GIF') 
+                50% 50% 
+                no-repeat;
+      }
+
+      #basicModal .modal-dialog{
+          vertical-align: center;      
       }
 
        .img-gift
