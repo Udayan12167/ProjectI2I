@@ -12,7 +12,7 @@
                   
                            <%= image_tag(fimage(n.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
                           <a class="feed-username" href=""><%= link_to n.name , root_url  %></a>
-                           <p class="feed-posttext"><%= n.content%> at <%= n.created_at %></p>
+                           <p class="feed-posttext"><%= n.content%> at <%= n.created_at.in_time_zone %></p>
                            <%= link_to "read",  {:controller => "wishlists", :action => "read" , :created => n.created_at ,:u => n.user_id },:class => "btn btn-large btn-success" %>
                       </div>
                     </a>

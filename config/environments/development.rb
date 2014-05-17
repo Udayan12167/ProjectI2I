@@ -6,6 +6,9 @@ Facebooksignin::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  config.time_zone = 'New Delhi'
+  config.active_record.default_timezone = :local
+
   # Do not eager load code on boot.
   config.eager_load = false
 
