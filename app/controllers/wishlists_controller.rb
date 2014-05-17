@@ -38,11 +38,11 @@ class WishlistsController < ApplicationController
     @wishid = params[:wishid]
     @ids = Array.new
     @ids = params[:values]
-    # @wishid = params[:wishid]
-    # @userid = parans[:userid]
+    @wishid = params[:wishid]
+    @userid = params[:userid]
     @ids.each do |i|
       user = User.find_by_uid(i)
-      Notification.create(:owner_id => current_user.uid ,:user_id => user.id , :content => "invited you to pool in wishlist item  belonging to",:name => current_user.name, :content_id => 1)
+      Notification.create(:owner_id => current_user.uid ,:user_id => user.id , :content => "invited you to pool in wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}",:name => current_user.name, :content_id => 1)
     end
     redirect_to root_url
   end
