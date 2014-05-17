@@ -16,7 +16,11 @@ $(document).ajaxStart( function(){
 
 
 $('#basicModal').on('shown.bs.modal', function () {
-	console.log("basic modal showing");
-	$("#modal-cont").html("");
+	console.log('basicModal shown');
 	
+})
+
+$('#basicModal').on('hidden.bs.modal', function () {
+	$("#modal-cont").html("");
+	console.log('basicModal hidden');
 })
