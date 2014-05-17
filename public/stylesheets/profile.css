@@ -43,6 +43,10 @@
         padding-top: 10px;
       }
 
+      .dropdown-menu.dropdown-notif{
+        width:50%;
+      }
+
       .notification-container{
         position: relative;
         border:0px;
@@ -51,10 +55,12 @@
         border-bottom-color: #DADFE1;
         padding: 5px;
         margin: 0px;
+        color: #666;
       }
 
       .notification-container:hover{
         background-color: #f8f8f8;
+        text-decoration: none;
       }
 
       .notification-link{
