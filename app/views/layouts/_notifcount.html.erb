@@ -1,0 +1,7 @@
+<% notifcount=0 %>
+<% current_user.notification.each do |t| %>
+<% if t.content_id == 1 %>
+<% notifcount=notifcount+1 %>
+<% end%>
+<% end%>
+<%= notifcount %>
