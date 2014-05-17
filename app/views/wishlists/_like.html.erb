@@ -1,5 +1,5 @@
 <% user = User.find_by_id(@user_id.id) %>
-
+<% puts user.name%>
  <% user.wishlist.each do |t|%>
             <% if t.id==@object.to_i %>
 			
