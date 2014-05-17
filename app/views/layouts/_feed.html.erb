@@ -10,9 +10,9 @@
             <%= image_tag(fimage(activity.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
             <div style="display:inline-block; vertical-align: top;">
             <% if ((Time.now - activity.created_at).to_i)/3600*24 > 1 %>
-            <p class="feed-time">at <%= activity.created_at %></p>
+            <p class="feed-time"><%= activity.created_at %></p>
             <%else%>
-            <p class="feed-time">at <%= activity.relative_time(activity.created_at) %></p>
+            <p class="feed-time"><%= activity.relative_time(activity.created_at) %></p>
             <%end%>
             <a class="feed-username" href=""><%= link_to activity.name , root_url  %></a>
             <p class="feed-posttext"> <%= link_to activity.content, root_url %> </p>
@@ -21,7 +21,7 @@
             <%t = Wishlist.all.find_by_id(id) %>
             <% if t != nil %>
               <%user = User.find_by_id(activity.user_id) %>
-              <li class="col-md-6">
+              <li class="col-md-6" style="list-style-type: none;">
               <div class="thumbnail" style="padding: 0">
                 <div style="padding:4px;">
                   <div class="gift-info">  
