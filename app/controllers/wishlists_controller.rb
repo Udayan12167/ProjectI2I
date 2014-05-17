@@ -4,12 +4,18 @@ class WishlistsController < ApplicationController
     @wishlist = Wishlist.all
   end
   def create
+    @userid = params[:userid]
+    if @userid != nil
+      @username = User.find_by_id(@userid).name
+    end
     @wishlist = current_user.wishlist.build(wishlist_params)
     @wishlist.user = current_user
     @wishlist.save
     friendship=Friendship.all
     friendship.each do |t|
-      if t.user_id==current_user.id
+      if t.user_id==current_user.id && @username != nil
+         Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist #{@wishlist.id} via #{@username}",:name => current_user.name, :content_id => 1)
+      elsif t.user_id==current_user.id
         Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist #{@wishlist.id}",:name => current_user.name, :content_id => 1)
       end
       if params[:flag] != nil 

@@ -36,7 +36,7 @@
               <%= link_to '<span class="glyphicon glyphicon-trash" title="Remove Gift Item"></span>'.html_safe, {controller:"wishlists", action:"remove" , my_param: "#{t.id}" } %>
             <%end%>
             <% if user != current_user %>
-              <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price},:remote => true } %>
+              <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price}, :userid => t.user_id ,:remote => true } %>
               <%end%>
           </div>
         </li>

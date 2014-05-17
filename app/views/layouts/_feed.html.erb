@@ -36,7 +36,7 @@
               </div>
               <div class="add_delete_button">
                 <% if user == current_user %>
-                  <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price},:remote => true } %>
+                  <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price}, :userid => t.user_id ,:remote => true } %>
                 <%end%>
               </div>
               </li>
