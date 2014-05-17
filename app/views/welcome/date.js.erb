@@ -15,7 +15,8 @@ $(document).ajaxStart( function(){
 })
 
 
-$('#basicModal').on('hidden.bs.modal', function () {
+$('#basicModal').on('shown.bs.modal', function () {
+	console.log("basic modal showing");
 	$("#modal-cont").html("");
 	
 })
