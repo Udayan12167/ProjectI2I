@@ -1,6 +1,19 @@
 
 $("#modal-cont").html("<%= escape_javascript(render :partial => 'welcome/date')%>")
 
+jQuery.ajaxPrefilter(function( options ) {
+    options.global = true;
+});
+
+// $(document).on({
+//     ajaxStart: function() { console.log('Start'); $body.addClass("loading");    },
+//     ajaxComplete: function() { console.log('Stop'); $body.removeClass("loading"); }    
+// });
+
+$(document).ajaxStart( function(){
+   console.log('Start');
+})
+
 
 $('#basicModal').on('hidden.bs.modal', function () {
 	$("#modal-cont").html("");

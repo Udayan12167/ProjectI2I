@@ -1,15 +1,20 @@
+
 function display(tab){
       //console.log((tab.getAttribute('id')));
       feed=document.getElementById('feed');
       wishlist=document.getElementById('wishlist');
       friends=document.getElementById('friends');
-      feed.style.display = 'none';
-      wishlist.style.display = 'none';
-      friends.style.display='none';
+      // feed.style.display = 'none';
+      // wishlist.style.display = 'none';
+      // friends.style.display='none';
+       $("#feed").fadeOut();
+       $("#wishlist").fadeOut();
+       $("#friends").fadeOut();
       reset_tab('feed-btn');
       reset_tab('wishlist-btn');
       reset_tab('friends-btn');
-      document.getElementById(tab.getAttribute('id')).style.display='block';
+      
+      $(document.getElementById(tab.getAttribute('id'))).fadeIn();
       document.getElementById(tab.getAttribute('id')+'-btn').style.backgroundColor= '#2ecc71';
       document.getElementById(tab.getAttribute('id')+'-btn').style.fontWeight='bold';
       document.getElementById(tab.getAttribute('id')+'-btn').style.color='white';

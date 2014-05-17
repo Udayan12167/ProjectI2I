@@ -1,4 +1,20 @@
 
+$body = $("body");
+
+jQuery.ajaxPrefilter(function( options ) {
+    options.global = true;
+});
+
+// $(document).on({
+//     ajaxStart: function() { console.log('Start'); $body.addClass("loading");    },
+//     ajaxComplete: function() { console.log('Stop'); $body.removeClass("loading"); }    
+// });
+
+$(document).ajaxStart( function(){
+   console.log('Start');
+})
+
+
 $('html').click(function(event)
 {
   if(event.target.id == 'notif-dropdown' && ($('#notification-active').attr('id')=='notification-active'))
@@ -18,9 +34,6 @@ $('html').click(function(event)
   }
 });
 
-$body = $("body");
-
-
 
 $('#addwish-btn').click(function(){
             $("#addwish-panel").slideToggle();
@@ -33,6 +46,11 @@ $('#addwish-btn').click(function(){
             $("#infinite-scrolling").hide();
             //$("#friends-panel").toggle();
           });
+
+ $('.invitation-btn').click(function(){
+      console.log('jclick');
+      //$(this).animate({color:"#27ae60"})
+ });
 
 $('.thumbnail:even').popover({
           container: 'body',
@@ -64,15 +82,9 @@ $('.eventnode').load(
 function triggerModal(obj) {
    
     $('#basicModal').modal();
-    
 }
 
-$body = $("body");
 
-$(document).on({
-    ajaxStart: function() { $body.addClass("loading");    },
-     ajaxStop: function() { $body.removeClass("loading"); }    
-});
 
 $('img').on('load',function(){
   call_resize_image()

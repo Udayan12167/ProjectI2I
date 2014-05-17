@@ -4,11 +4,10 @@
 <% if n.user_id == current_user.id && n.content_id == 1%>
           
           <a href= "#" class="notification-link">
+          
                       <div class="notification-container">
 
-
-                        
-                
+                          
                   
                            <%= image_tag(fimage(n.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
                           <a class="feed-username" href=""><%= link_to n.name , root_url  %></a>

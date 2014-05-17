@@ -9,10 +9,12 @@
                 <h4 class="media-heading">
                 <%= hash["name"]%>
                 </h4>
-                <p><%= hash["birthday"]%></p>
-                <%= link_to "Invite",{:controller => "facebook_api",:action => "notify",:uid => hash["id"]} ,:class => "btn btn-large btn-success",:remote => true%>
+                <p><%= hash["birthday"]%></p> 
             </div>
         </div>
+            
+                <%= link_to "",{:controller => "facebook_api",:action => "notify",:uid => hash["id"]} ,:class => "invitation-btn glyphicon glyphicon-envelope",:remote => true%>
+
         </div>
     <%end%>
 
