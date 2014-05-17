@@ -1,20 +1,4 @@
 
-$body = $("body");
-
-jQuery.ajaxPrefilter(function( options ) {
-    options.global = true;
-});
-
-// $(document).on({
-//     ajaxStart: function() { console.log('Start'); $body.addClass("loading");    },
-//     ajaxComplete: function() { console.log('Stop'); $body.removeClass("loading"); }    
-// });
-
-$(document).ajaxStart( function(){
-   console.log('Start');
-})
-
-
 $('html').click(function(event)
 {
   if(event.target.id == 'notif-dropdown' && ($('#notification-active').attr('id')=='notification-active'))
@@ -35,6 +19,7 @@ $('html').click(function(event)
 });
 
 
+
 $('#addwish-btn').click(function(){
             $("#addwish-panel").slideToggle();
           });
@@ -47,10 +32,19 @@ $('#addwish-btn').click(function(){
             //$("#friends-panel").toggle();
           });
 
- $('.invitation-btn').click(function(){
-      console.log('jclick');
-      //$(this).animate({color:"#27ae60"})
- });
+
+ $('.col-md-6').hover(function () 
+        {
+            $(this).find('.like_button').slideDown("fast");
+            $(this).find('.add_delete_button').slideDown("fast");
+        },
+        function ()
+        {
+            $(this).find('.like_button').slideUp("fast");
+            $(this).find('.add_delete_button').slideUp("fast");
+        }
+    );
+
 
 $('.thumbnail:even').popover({
           container: 'body',

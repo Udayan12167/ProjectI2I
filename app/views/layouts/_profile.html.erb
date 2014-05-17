@@ -256,9 +256,19 @@
     
     <script>  
       $(document).ready(function() {
-        $(document).bind('ajax:success', function() {
-          console.log('works')
-      });
+
+        $.ajaxSetup({
+        'beforeSend' : function() {
+            console.log('ajazset');
+            $('pleasewaitelement').show();
+        },
+      'complete'   : function() {
+              $('pleasewaitelement').hide();
+        }
+    });
+        $(".like_button").hide();
+        $(".add_delete_button").hide();
+
         $('[data-toggle=offcanvas]').click(function() {
           $("#local").val($(this).data('id'));
           $('.row-offcanvas').toggleClass('active');

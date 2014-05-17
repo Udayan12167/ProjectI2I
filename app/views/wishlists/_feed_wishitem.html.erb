@@ -2,7 +2,7 @@
             <div class="feed-text">
                 <%= image_tag(fimage(activity.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
                 <div style="display:inline-block; vertical-align: top;">
-                    <p class="feed-time">at <%= activity.created_at %></p>
+                    <p class="feed-time">at <%= time_ago_in_words(activity.created_at, include_seconds: true) %></p>
                     <a class="feed-username" href=""><%= link_to activity.name , root_url  %></a>
                     <p class="feed-posttext"> <%=activity.content %> </p>
                       
@@ -24,19 +24,21 @@
                                         <i class="icon icon-map-marker"></i>
                                     </p>
                                 </div>  
-                            </div>      
+                            </div>
+                            <div class="like_button">     
                             <% div_id="refresh_#{t.id}" %>
                             <div id="<%=div_id %>">
                                 <% if t.liked_by?(current_user).to_s == "false" %>
-                                    <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, {controller:"wishlists", action:"vote" , wish_param: "#{t.id}" ,my_params: activity.user_id} ,id: "sign_out", :remote => true %>
+                                    <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, {controller:"wishlists", action:"vote" , wish_param: "#{t.id}" ,my_params: "#{t.user_id}"} ,id: "sign_out", :remote => true %>
                                 <%end%>
                  
                                 <% if t.liked_by?(current_user).to_s == "true" %>
-                                    <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, {controller:"wishlists", action:"unvote" , wish_param: "#{t.id}",  my_params: activity.user_id} ,id: "sign_out", :remote => true%>
+                                    <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, {controller:"wishlists", action:"unvote" , wish_param: "#{t.id}",  my_params: "#{t.user_id}"} ,id: "sign_out", :remote => true%>
                                 <%end%>
                
                                 <%= t.likers(User).count %>
                             </div>
+                        </div>
                         </div>              
                     </li>
                 <%end%>
