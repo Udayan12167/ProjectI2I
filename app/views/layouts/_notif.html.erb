@@ -3,19 +3,19 @@
 <% notifs.each do |n| %>
 <% if n.user_id == current_user.id && n.content_id == 1%>
           
-          <a href= "#" class="notification-link">
+          <%= link_to ({:controller => "wishlists", :action => "read" , :created => n.created_at ,:u => n.user_id }) do %>
                       <div class="notification-container">
 
 
-                        
+                  
                 
                   
                            <%= image_tag(fimage(n.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
-                          <a class="feed-username" href=""><%= link_to n.name , root_url  %></a>
-                           <p class="feed-posttext"><%= n.content%> at <%= n.created_at.in_time_zone %></p>
-                           <%= link_to "read",  {:controller => "wishlists", :action => "read" , :created => n.created_at ,:u => n.user_id },:class => "btn btn-large btn-success" %>
+                          <p class="feed-username"><%= n.name %></p>
+                           <p class="feed-posttext"><%= n.content%> at <%= time_ago_in_words(n.created_at.in_time_zone) %></p>
+                           
                       </div>
-                    </a>
+                    <%end%>
                  <%end%>
                  <%end%>
                 
