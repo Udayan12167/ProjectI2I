@@ -2,7 +2,13 @@
     <div class="feed-text">
         <%= image_tag(fimage(activity.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
         <div style="display:inline-block; vertical-align: top;">
-            <p class="feed-time">at <%= time_ago_in_words(activity.created_at, include_seconds: true) %></p>
+            <p class="feed-time">
+             <% if ((Time.now - activity.created_at).to_i)/3600*24 > 1 %>
+            <p class="feed-time">at <%= activity.created_at %></p>
+            <%else%>
+            <p class="feed-time">at <%= activity.relative_time(activity.created_at) %></p>
+            <%end%>
+         </p>
             <a class="feed-username" href=""><%= link_to activity.name , root_url  %></a>
             <p class="feed-posttext"> <%=activity.content %> </p>
         </div>
@@ -40,7 +46,13 @@
                     <% if user == current_user %>
                         <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price},:remote => true } %>
                     <%end%>
-                </div>              
+                </div>  
+                <% if t.claimed != 1 and t.claimer != current_user %>
+               <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
+               <%elsif t.claimer== current_user.id%> 
+                <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
+                 <%else%> claimed by <%= User.find_by_id(t.claimer).name %>  
+                 <%end%>        
             </li>
         <%end%>
         <span class="glyphicon glyphicon-heart feed-icon"></span>
