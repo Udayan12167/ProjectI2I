@@ -14,3 +14,8 @@ $('.col-md-6').hover(function ()
             $(this).find('.add_delete_button').slideUp("fast");
         }
     );
+
+$('#basicModal').on('hidden.bs.modal', function () {
+    $("#modal-contProfile").html("");
+    console.log('basicModal hidden');
+})

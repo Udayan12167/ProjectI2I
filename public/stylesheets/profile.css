@@ -14,11 +14,21 @@
       .feed-icon{
         float: right;
         margin: 10px;
-      }
+       }
 
       .list-group-item.claim-item{
         background-color: transparent;
+        padding: 5px;
         /*border-style: none;*/
+      }
+
+      #recent-claims{
+        color: #555;
+      }
+
+      #recent-claims:hover{
+        text-decoration: none;
+        background-color: #f8f8f8;
       }
 
       .list-group-item.pool-item{
@@ -136,6 +146,7 @@
         border-style: solid;
         border-color: #DADFE1;
         margin: 3px;
+        vertical-align: top;
       }
 
       .feed-text{
@@ -395,6 +406,14 @@
         color: #ffffff;
       }
 
+      .img-claim-thumbnail{
+        position: relative;
+        height:25px;
+        width: 25px;
+        float: right;
+        top:-1px;
+      }
+
       .img-event{
         height:25px;
         width: 25px;
@@ -507,12 +526,20 @@
         color: #f1c40f;
       }
 
+      .glyphicon-magnet{
+         color:#D64541
+      }
+
       .glyphicon-heart{
         color: #f17288;
       }
 
       .glyphicon-user{
         color: #52B3D9;
+      }
+
+      .glyphicon-flag{
+        color: #34495E
       }
 
       .event-btn{

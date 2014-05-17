@@ -47,6 +47,10 @@ class WishlistsController < ApplicationController
     redirect_to root_url
   end
 
+  def claimview
+    @itemm = @friends
+    #render 'wishlists/claim'
+  end
   def claimed
     @wishid = params[:wishid]
     @userid = params[:userid]
