@@ -51,6 +51,12 @@ class WishlistsController < ApplicationController
     @itemm = @friends
     #render 'wishlists/claim'
   end
+
+  def poolview
+    @itemm = @friends
+    #render 'wishlists/claim'
+  end
+
   def claimed
     @wishid = params[:wishid]
     @userid = params[:userid]

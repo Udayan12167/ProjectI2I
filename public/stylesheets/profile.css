@@ -63,6 +63,14 @@
         padding-top: 10px;
       }
 
+      .jumbotron.pool {
+        position:absolute;
+        left: 16.5%;
+        width: 60%;
+        top: 70px;
+        padding-top: 10px;
+      }
+
       #profile-info{
         position: relative;
       }
@@ -660,6 +668,27 @@
       height: 100%;
       padding-left: 10px;
 		}			
+
+    #pool-sidebar{
+      position: fixed;
+      width: 25%;
+      background-color: transparent;
+      right: 0px;
+      top: 100px;
+      height: 100%;
+      padding: 10px;
+    }     
+
+    #members-sidebar{
+      position: fixed;
+      width: 19%;
+      background-color: #ffffff;
+      top: 105px;
+      height: 100%;
+      overflow:scroll;
+      padding: 1px;
+    }
+    
 		
 			/*       * Off Canvas       * --------------------------------------------------       */
       @media screen and(max-width: 768px) {

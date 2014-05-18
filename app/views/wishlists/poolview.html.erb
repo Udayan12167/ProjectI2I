@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+
+<html title>
+  
+  <head>
+    <title>Off Canvas Nav</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <%= stylesheet_link_tag 'profile.css' %>
+    <%= javascript_include_tag 'friend.js' %>
+    
+  </head>
+  
+  <body title>
+    <div class="container" id="search-container" >
+     <form style="width:inherit">
+      <input id="searchbar" type="search" name="fname" placeholder="Search for Friends or Gifts"  ><br><!--search bar friends -->
+    </form>
+    </div><!-- Search Bar -->
+    <div class="navbar navbar-fixed-top navbar-default" role="navigation" title>
+      <div class="container" title>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>       
+      <%= link_to image_tag('FriendFundrLogo.png',:id => "brand-logo",:class => "pull-left",:alt =>"Logo"),root_url %>
+        </div>       
+    <div class="collapse navbar-collapse">
+          <ul id="menu-bar" class="nav navbar-nav">
+             <li class="dropdown" title="Notification">
+             <a href="#" data-toggle="dropdown" id="notif-dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification-inactive",:class => "menu-icon") %><span id="notificaton-count" class="notification-count badge">
+                <%= render 'layouts/notifcount' %>
+                <!--<%= Notification.all.count %> -->
+                  </span></a>
+              <ul class="dropdown-menu pull-right">
+
+                  <%= render 'layouts/notif' %>
+                    
+
+                  </ul>
+             </li>
+
+            <li class="active" title = "Home">
+              <%= link_to image_tag('home_button.png'), root_url, id: "home",:class => "menu-icon"%>
+            </li>
+            <li title = "About Us">
+              <a href="#about"><%= image_tag('highlight_info.png',:class=> "menu-icon") %> </a>
+            </li>
+            <li title = "Sign Out">
+              <%= link_to image_tag('highlight_sign_out.png'), signout_path, id: "highlight_sign_out",:class => "menu-icon"%>
+            </li>
+          </ul>
+        </div>
+        <!-- /.nav-collapse -->
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.navbar -->
+            <% days = Array.new %>
+             <% @itemm.each do |t| %>
+                <% if t["birthday"] != nil %>
+                <% str = t["birthday"].to_s %>
+                <% if str.length > 7  %>
+                 <% date = Date.strptime(str,'%m/%d/') %>
+                <%end%>
+                <% if str.length < 7 %>
+                  <% str << '/2000' %>
+                  <%date = Date.strptime(str,'%m/%d/%Y') %>
+                  <% time = Time.parse(date.to_s) %>
+                 <% time = time.change(:year => 2014) %>
+                 <% date= Date.parse(time.to_s) %>
+                <%end%>
+                <%end%>
+                <p>
+                  <% days.push(date) %>
+                  
+                </p>
+            <%end%> 
+    <div class="timeline-bar">
+      <div class="timeline-line">
+        <%= image_tag('Start_node.png',:id => "startnode") %>
+        <%birthdays = Array.new %>
+        <% days.zip(@itemm).each do |d,i| %>
+        <% if d!= nil %> 
+        <% if d - Date.today < 31  && d - Date.today > 0%>
+          <%birthdays << i %>
+          
+        <%end%>
+        <%end%>
+        <%end %>
+        <% days.zip(@itemm).each do |d,i| %>
+        <% if d!= nil %> 
+        <% if d - Date.today < 31  && d - Date.today > 0%>
+
+        <div class="eventnode" data-toggle="tooltip" data-placement="top" >
+           
+            <%= d.to_s %>
+              <%= link_to  image_tag( fimage(i["id"]),class: "img-event img-circle"),{controller: "welcome",action: "date", date: d.to_s,person: birthdays}, "data-toggle" => "modal", "data-target" =>"tooltip","data-id" => "ayush", onClick:"triggerModal(this)",:remote => true %>
+        </div>
+        <%end%>
+        <%end%>
+        <%end%>
+      </div>
+    </div>
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- <img id="birthday-loader" src="/images/new-loader.GIF" alt="Loading..." title="Loading..." /> -->
+        <div class="modal-content" id="modal-cont">
+        </div>
+      </div>
+    </div>
+    <div class="row row-offcanvas row-offcanvas-right" title>
+      <div class="col-sm-3 col-md-12" title>
+        <div class="well sidebar-nav pull-left well-sm" id="members-sidebar" title>
+          <div class="container">
+            <p class="text-center"><b>Pool Members</b></p>
+          </div>
+            <%= render 'facebook_api/friends' %> 
+          <ul class="nav"></ul>
+        </div>
+      </div>
+    </div><!-- left-sidebar -->
+    <div class="row row-offcanvas row-offcanvas-right" title>
+      <div class="col-sm-3 col-md-12" title>
+        <div class="well sidebar-nav pull-left well-sm" id="pool-sidebar" title>
+          <div class="wishlist-container">
+                  
+                    <div class="thumbnail" style="padding: 0">
+                      <div style="padding:4px;">
+                        <div class="gift-info">  
+                          <%= image_tag('flash.jpg',class: "img-gift",alt:"300x200") %>        
+                          
+                          <h4>gift id</h4>
+                         <p>Gift for price ****</p>
+                            wishlist index
+                        </div> 
+                      </div>      
+                  </div>
+                  
+          </div>
+
+        </div>
+      </div>
+    </div><!-- right-sidebar -->
+   <div class="container main">
+            <!-- tab btns -->
+            
+        
+            <div class="pool jumbotron">
+              <div class="progress">
+                <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                45% 
+              </div>
+            </div>
+            <h3>Pool Group Discussion</h3>
+            
+          </div><!-- centre -->
+      
+       
+    <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+    
+    <script>  
+      $(document).ready(function() {
+        $(".like_button").hide();
+        $(".add_delete_button").hide();
+        $('[data-toggle=offcanvas]').click(function() {
+          $("#local").val($(this).data('id'));
+          $('.row-offcanvas').toggleClass('active');
+        });
+      });
+    </script>
+    <%= javascript_include_tag 'friend_jq.js' %>
+    
+  </body>
+
+</html>
