@@ -78,7 +78,7 @@ class WishlistsController < ApplicationController
     elsif @reject == 1
       Notification.create(:owner_id => current_user.uid ,:user_id => @userid , :content => "rejected your pool request for gift #{@wishid} belonging to #{User.find_by_id(Wishlist.find_by_id(@wishid).user_id).name}",:name => current_user.name, :content_id => 1)
     end
-    # redirect_to root_url
+    redirect_to root_url
   end
 
 
