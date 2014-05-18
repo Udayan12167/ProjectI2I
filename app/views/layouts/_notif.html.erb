@@ -12,7 +12,7 @@
                   
                            <%= image_tag(fimage(n.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
                           <p class="feed-username"><%= n.name %></p>
-                           <p class="feed-posttext"><%= n.content%> at <%= time_ago_in_words(n.created_at.in_time_zone) %></p>
+                           <p class="feed-posttext"><%= n.content%> at <%= n.relative_time(n.created_at) %></p>
                            
                       </div>
                     <%end%>
