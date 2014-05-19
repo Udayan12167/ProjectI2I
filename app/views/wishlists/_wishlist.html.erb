@@ -5,16 +5,6 @@
   <% wish.each do |t|%>
   <% if t.user_id == temp %>
     <li class="col-md-6">
-      
-      <% if user != current_user %>
-      <button id="pool-request">pool</button>
-      <% if t.claimed != 1 and t.claimer != current_user %>
-      <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
-      <%elsif t.claimer== current_user.id%> 
-      <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
-      <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
-      <%end%>
-      <%end%>
       <div class="thumbnail" style="padding: 0">
         <div style="padding:4px;">
           <div class="gift-info">  
@@ -49,6 +39,18 @@
               <%end%>
           </div>      
           </div>
+          <div class="claim_button">
+          <% if user != current_user %>
+            <button id="pool-request" class="btn btn-large btn-success">Pool</button>
+              <% if t.claimed != 1 and t.claimer != current_user %>
+                <%= link_to "Claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out", :class=> "btn btn-large btn-success" %>
+              <%elsif t.claimer== current_user.id%> 
+                <%= link_to "Unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out", :class=> "btn btn-large btn-success" %>
+              <%else%> Claimed by <%= User.find_by_id(t.claimer).name %>
+            <%end%>
+          <%end%>
+        </div>
+      
         </li>
       <%end%>
 

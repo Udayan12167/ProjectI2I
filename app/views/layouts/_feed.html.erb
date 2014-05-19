@@ -62,14 +62,16 @@
                   <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price}, :userid => t.user_id ,:remote => true } %>
                 <%end%>
               </div>
+              <div class="claim_button">
               <% if activity.content[current_user.name] != current_user.name %>
                <% if t.claimed != 1 and t.claimer != current_user %>
-               <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
+               <%= link_to "Claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out", :class=> "btn btn-large btn-success" %>
                <%elsif t.claimer== current_user.id%> 
-              <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
-              <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
+              <%= link_to "Unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out", :class=> "btn btn-large btn-success" %>
+              <%else%> Claimed by <%= User.find_by_id(t.claimer).name %>
               <%end%>
               <%end%>
+            </div>
               </li>
               <%end%>
               <span class="glyphicon glyphicon-star feed-icon"></span>
