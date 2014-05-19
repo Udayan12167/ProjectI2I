@@ -49,9 +49,10 @@
                 </div>  
                 <% if t.claimed != 1 and t.claimer != current_user %>
                <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
-               <%else%> 
-                 <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
-              <%end%>            
+               <%elsif t.claimer== current_user.id%> 
+                <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
+                 <%else%> claimed by <%= User.find_by_id(t.claimer).name %>  
+                 <%end%>        
             </li>
         <%end%>
         <span class="glyphicon glyphicon-heart feed-icon"></span>
