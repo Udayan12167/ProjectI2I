@@ -82,23 +82,23 @@
     <div class="timeline-bar">
       <div class="timeline-line">
         <%= image_tag('Start_node.png',:id => "startnode") %>
+        <%birthdays = Array.new %>
         <% days.zip(itemm).each do |d,i| %>
-        <% if d != nil %>
-        <% if d - Date.today < 30  && d - Date.today > 1%>
-        <div class="eventnode" data-toggle="tooltip" data-placement="top" >
-          <a href="#" data-toggle="modal" data-id = "ayush" data-target="#basicModal" onClick="triggerModal(this)">
-            <% itemm.each do |i| %>
-            <% if i["birthday"] != nil %>
-              <% if  (d.to_s[5,8].scan(/\d+/).first == i["birthday"][0,5].scan(/\d+/).first) == 'true' %>
-                <% temp12 = i %>
-                <%break%>
-                <%end%>
-              <%end%>
-              <%end%>
-            <%= image_tag( fimage(i["id"]),class: "img-event img-circle") %>
-            <%= d.to_s %>
+        <% if d!= nil %> 
+        <% if d - Date.today < 31  && d - Date.today > 0%>
+          <%birthdays << i %>
+          
+        <%end%>
+        <%end%>
+        <%end %>
+        <% days.zip(itemm).each do |d,i| %>
+        <% if d!= nil %> 
+        <% if d - Date.today < 31  && d - Date.today > 0%>
 
-          </a>
+        <div class="eventnode" data-toggle="tooltip" data-placement="top" >
+           
+            <%= d.to_s %>
+              <%= link_to  image_tag( fimage(i["id"]),class: "img-event img-circle"),{controller: "welcome",action: "date", date: d.to_s,person: birthdays}, "data-toggle" => "modal", "data-target" =>"tooltip","data-id" => "ayush", onClick:"triggerModal(this)",:remote => true %>
         </div>
         <%end%>
         <%end%>
@@ -107,21 +107,11 @@
     </div>
     <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body" >
-                <h3>Modal Head</h3>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+        <!-- <img id="birthday-loader" src="/images/new-loader.GIF" alt="Loading..." title="Loading..." /> -->
+        <div class="modal-content" id="modal-cont">
         </div>
+      </div>
     </div>
-  </div>
-</div>
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
         <div class="well sidebar-nav pull-left well-sm" id="profile-sidebar" title>
