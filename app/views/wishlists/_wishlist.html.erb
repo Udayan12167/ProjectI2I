@@ -52,9 +52,9 @@
         </div>
       
         </li>
-      <%end%>
+      
 
-    <%end%> 
+    
 
             <% friends_list = friends %>
             <% users=User.all %>
@@ -79,6 +79,8 @@
                 <h4 class="media-heading">
                 <%= check_box_tag("values[]", hash["id"]) %>
                 <%= label_tag("v[]", image_tag(fimage(hash["id"]),:class => "img-event img-circle")) %>
+                <%= hidden_field_tag(:userid, "#{user.id}") %>
+                <%= hidden_field_tag(:wishid, "#{t.id}") %>
                 </h4>
                  
             </div>
@@ -93,3 +95,5 @@
         </div>
 </div>
 </div>
+<%end%> 
+<%end%>

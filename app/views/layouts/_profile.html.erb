@@ -178,22 +178,21 @@
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
         <div class="well sidebar-nav pull-left well-sm" id="trends-sidebar" title>
-          <ul class="list-group">
-            <p class="text-center">Trends/Categories</p>
-            <li class="list-group-item">First Item</li>
-            <li class="list-group-item">Second Item</li>
-            <li class="list-group-item">Third Item</li>
-            <li class="list-group-item">First Item</li>
-            <li class="list-group-item">Second Item</li>
-            <li class="list-group-item">Third Item</li>
-          </ul>
+          <p style="font-weight:bold">Birthdays Today <span class="glyphicon glyphicon-asterisk" style="float:right; color:#F7CA18"></span></p>
+          <div style="text-align:center">
           <% days.zip(itemm).each do |d,i| %>
+             
                 <% if d!= nil %> 
                  <% if d - Date.today < 1  && d - Date.today >= 0%>
-                 <%= image_tag(fimage(i["id"])) %> <%= i["name"] %> <%= i["birthday"] %>
+                  <div class="birthday-container" data-toggle="tooltip" data-placement="top">
+                   <%= image_tag(fimage(i["id"]),class: "img-birthday") %> 
+                   <p id="bday-username"><%= i["name"] %><p> 
+                 </div>
                  <%end%>
                  <%end%>
+              
                  <%end%>
+           </div>         
         </div>
       </div>
 

@@ -73,6 +73,10 @@ $('.eventnode').load(
 	call_set_eventnode()
 )
 
+$('.birthday-container').load(
+  set_bdaygrid()
+)
+
 // $('.img-gift').load(
 //     call_resize_image()
 //   )
