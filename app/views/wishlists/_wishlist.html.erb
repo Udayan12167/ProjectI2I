@@ -5,14 +5,7 @@
   <% wish.each do |t|%>
   <% if t.user_id == temp %>
     <li class="col-md-6">
-      <% if user != current_user %>
-      <% if t.claimed != 1 and t.claimer != current_user %>
-      <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
-      <%elsif t.claimer== current_user.id%> 
-      <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
-      <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
-      <%end%>
-      <%end%>
+      
       <div class="thumbnail" style="padding: 0">
         <div style="padding:4px;">
           <div class="gift-info">  
@@ -47,6 +40,14 @@
               <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price}, :userid => t.user_id ,:remote => true } %>
               <%end%>
           </div>
+          <% if user != current_user %>
+          <% if t.claimed != 1 and t.claimer != current_user %>
+          <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out"%>
+          <%elsif t.claimer== current_user.id%> 
+          <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
+          <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
+          <%end%>
+        <%end%>
         </li>
       <%end%>
 
