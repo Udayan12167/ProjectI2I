@@ -300,7 +300,7 @@
          position: absolute;
          right: 25px;
          display: block;
-         opacity: 0;
+         /*opacity: 0;*/
          cursor: pointer;
          z-index: 1;
        }
@@ -313,7 +313,7 @@
         text-align: center;
         position: relative;
         vertical-align: middle;
-        opacity: 1;
+        /*opacity: 1;*/
 
       }
 
@@ -324,10 +324,10 @@
        bottom: 0;
       }
 
-      .thumbnail:hover
+      /*.thumbnail:hover
       {
          opacity: 0.5;
-      }
+      }*/
 
       .col-md-6
       {
@@ -431,16 +431,6 @@
         color: #e74c3c;
        }
 
-      /*.add_button
-      {
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin-top: 8px;
-        margin-right: 20px;
-        z-index: 1;
-      }
-*/
       .add_delete_button:hover .glyphicon-floppy-save
       {
         color: #0C6;

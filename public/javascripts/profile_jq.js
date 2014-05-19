@@ -37,7 +37,7 @@ $('#pool-request').click(function(){
             $('#poolModal').modal();
             });
 
- $('.col-md-6').hover(function () 
+ $('.thumbnail').hover(function () 
         {
             $(this).find('.like_button').slideDown("fast");
             $(this).find('.add_delete_button').slideDown("fast");

@@ -25,7 +25,6 @@
               <i class="icon icon-map-marker"></i>
             
           </div> 
-          </div>      
           </div>
           <div class="like_button">
               <% div_id="refresh1_#{t.id}" %>
@@ -47,6 +46,7 @@
             <% if user != current_user %>
               <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price}, :userid => t.user_id ,:remote => true } %>
               <%end%>
+          </div>      
           </div>
         </li>
       <%end%>
