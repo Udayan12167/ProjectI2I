@@ -51,7 +51,9 @@ class WishlistsController < ApplicationController
       @del.content_id = 0
       @del.save!
     end
-    redirect_to root_url
+    respond_to do |format|
+      format.js
+    end
   end
 
   def vote

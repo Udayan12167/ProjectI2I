@@ -32,13 +32,7 @@
           <ul id="menu-bar" class="nav navbar-nav">
              <li class="dropdown" title="Notification">
              <a href="#" data-toggle="dropdown" id="notif-dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification-inactive",:class => "menu-icon") %><span id="notificaton-count" class="notification-count badge">
-                <% notifcount=0 %>
-                <% Notification.all.each do |t| %>
-                <% if (t.user_id==current_user.id) %>
-                <% notifcount=notifcount+1 %>
-                <% end%>
-                <% end%>
-                <%= notifcount %>
+                <%= render 'layouts/notifcount' %>
                 <!--<%= Notification.all.count %> -->
                   </span></a>
               <ul class="dropdown-menu pull-right">
