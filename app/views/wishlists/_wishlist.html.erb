@@ -5,8 +5,9 @@
   <% wish.each do |t|%>
   <% if t.user_id == temp %>
     <li class="col-md-6">
-      <button id="pool-request">pool</button>
+      
       <% if user != current_user %>
+      <button id="pool-request">pool</button>
       <% if t.claimed != 1 and t.claimer != current_user %>
       <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
       <%elsif t.claimer== current_user.id%> 
@@ -53,26 +54,40 @@
 
     <%end%> 
 
+            <% friends_list = friends %>
+            <% users=User.all %>
+            <% uuid=[] %>
+            <% users.each do |t| %>
+            <% uuid << t["uid"] %>
+            <% end %>
+
                <div class="modal fade" id="poolModal" tabindex="-1" role="dialog" aria-labelledby="poolModal" aria-hidden="true">
     <div class="modal-dialog">
         <!-- <img id="birthday-loader" src="/images/new-loader.GIF" alt="Loading..." title="Loading..." /> -->
+        <% i =  %>
         <div class="modal-content" id="modal-cont">
+            <%= form_tag( controller: "wishlists", action: "pool",  method: "get") do %>
+            <% friends_list.each do |hash| %>
+            <% if hash["id"].in? uuid %>
+            <% if hash["id"] != user.uid %>
             <div class="friends-container">  
             <div class="friends-media">
-            <a class="pull-left" href="#">
-                image thumbnail
-            </a>
+            
             <div class="friends-media-body">
                 <h4 class="media-heading">
-                username
+                <%= check_box_tag("values[]", hash["id"]) %>
+                <%= label_tag("v[]", image_tag(fimage(hash["id"]),:class => "img-event img-circle")) %>
                 </h4>
                  
             </div>
         </div>
 
         </div>
-            
-          
+         <%end%>  
+         <%end%> 
+         <%end%>
+         <%= submit_tag("Pool") %>
+         <%end%>
         </div>
 </div>
 </div>
