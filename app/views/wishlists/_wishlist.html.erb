@@ -5,7 +5,7 @@
   <% wish.each do |t|%>
   <% if t.user_id == temp %>
     <li class="col-md-6">
-      <%= link_to "pool" ,root_url, id: "sign_out" %>
+      <button id="pool-request">pool</button>
       <% if user != current_user %>
       <% if t.claimed != 1 and t.claimer != current_user %>
       <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
@@ -52,4 +52,27 @@
       <%end%>
 
     <%end%> 
-</ul>
+
+               <div class="modal fade" id="poolModal" tabindex="-1" role="dialog" aria-labelledby="poolModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- <img id="birthday-loader" src="/images/new-loader.GIF" alt="Loading..." title="Loading..." /> -->
+        <div class="modal-content" id="modal-cont">
+            <div class="friends-container">  
+            <div class="friends-media">
+            <a class="pull-left" href="#">
+                image thumbnail
+            </a>
+            <div class="friends-media-body">
+                <h4 class="media-heading">
+                username
+                </h4>
+                 
+            </div>
+        </div>
+
+        </div>
+            
+          
+        </div>
+</div>
+</div>

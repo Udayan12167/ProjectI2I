@@ -32,6 +32,10 @@ $('#addwish-btn').click(function(){
             //$("#friends-panel").toggle();
           });
 
+$('#pool-request').click(function(){
+            console.log("pool modal open");
+            $('#poolModal').modal();
+            });
 
  $('.col-md-6').hover(function () 
         {
