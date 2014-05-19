@@ -9,12 +9,12 @@
         <div style="padding:4px;">
           <div class="gift-info">  
             <%= image_tag('flash.jpg',class: "img-gift",alt:"300x200") %>        
-            <h4>BC</h4>
+            <h4></h4>
             <h4><%=t.id%></h4>
-            <p>My project description
+           <p> <%= t.link %> for price <%= t.price %></p>
               <%= user.wishlist.index(t) %>
               <i class="icon icon-map-marker"></i>
-            </p>
+            
           </div> 
           </div>      
           </div>
