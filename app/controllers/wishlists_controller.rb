@@ -33,6 +33,52 @@ class WishlistsController < ApplicationController
   def destroy
   end
 
+
+  def claimed
+    @wishid = params[:wishid]
+    @userid = params[:userid]
+    @claimer = params[:claimer]
+    if @wishid != nil && @claimer != nil && @userid != nil
+      user = User.find_by_id(@userid)
+      if user != nil
+        user.wishlist.each do |t|
+          if t.id = @wishid
+            t.claimed = 1;
+            t.claimer = @claimer
+            t.save!
+            Notification.create(:owner_id => current_user.uid ,:user_id => @userid , :content => "claimed wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}",:name => current_user.name, :content_id => 1)
+          end
+        end
+      end
+    end
+    redirect_to root_url
+  end
+
+  def unclaimed
+    @wishid = params[:wishid]
+    @userid = params[:userid]
+    @claimer = params[:claimer]
+    if @wishid != nil && @claimer != nil && @userid != nil
+      user = User.find_by_id(@userid)
+      if user != nil
+        user.wishlist.each do |t|
+          if t.id = @wishid
+            t.claimed = nil;
+            t.claimer = nil
+            t.save!
+            current_user.notification.each do |n|
+             temp =  Notification.find_by_content("claimed wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}")
+             if temp != nil
+              Notification.delete(temp)
+            end
+          end
+          end
+        end
+      end
+    end
+    redirect_to root_url
+  end
+
   def remove
     @object = params[:my_param]
     current_user.wishlist.each do |t|

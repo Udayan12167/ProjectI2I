@@ -5,6 +5,13 @@
   <% wish.each do |t|%>
   <% if t.user_id == temp %>
     <li class="col-md-6">
+      <% if user != current_user %>
+      <% if t.claimed != 1 and t.claimer != current_user %>
+      <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
+      <%else%> 
+      <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
+      <%end%>
+      <%end%>
       <div class="thumbnail" style="padding: 0">
         <div style="padding:4px;">
           <div class="gift-info">  
@@ -41,5 +48,6 @@
           </div>
         </li>
       <%end%>
+
     <%end%> 
 </ul>
