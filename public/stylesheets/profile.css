@@ -223,7 +223,8 @@
       }
 
       #basicModal .modal-dialog{ 
-        padding-top: 20%;   
+
+        padding-top: 22%;   
         width: 30%; 
         text-align: center;
       }
