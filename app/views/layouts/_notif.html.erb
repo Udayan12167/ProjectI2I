@@ -2,25 +2,28 @@
 
 <% notifs.each do |n| %>
 <% if n.user_id == current_user.id && n.content_id == 1%>
+
           <%= link_to ({:controller => "wishlists", :action => "read" , :created => n.created_at ,:u => n.user_id }), "data-toggle" => "modal", "data-target" =>"tooltip", onClick:"triggerModal(this)",:remote => true do %>
                       <div class="notification-container">
+
 
 
                   
                 
 
                   
-                           <%= image_tag(fimage(n.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
-                          <p class="feed-username"><%= n.name %></p>
-                           <p class="feed-posttext"><%= n.content%> at 
+                           <%= image_tag(fimage(n.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp", :style=>"vertical-align: top")%>
+                           <div style="display: inline-block">
+                          <p class="feed-username" style="margin-bottom:0px"><%= n.name %></p>
+                           <p class="feed-posttext"><%= n.content%> </p>
                            <% if ((Time.now - n.created_at).to_i)/3600*24 > 1 %>
-                            <p class="feed-time">at <%= n.created_at %></p>
+                            <p class="feed-time"> <%= n.created_at %></p>
                             <%else%>
-                           <p class="feed-time">at <%= n.relative_time(n.created_at) %></p>
+                           <p class="feed-time"> <%= n.relative_time(n.created_at) %></p>
                            <%end%>
                          
-                       </p>
-                           
+                       
+                          </div> 
                       </div>
                     <%end%>
                  <%end%>

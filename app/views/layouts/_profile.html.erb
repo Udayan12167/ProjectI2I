@@ -34,7 +34,7 @@
                 <%= render 'layouts/notifcount' %>
                 <!--<%= Notification.all.count %> -->
                   </span></a>
-              <ul class="dropdown-menu pull-right">
+              <ul class="dropdown-notif dropdown-menu pull-right">
 
                   <%= render 'layouts/notif' %>
                     
@@ -142,18 +142,35 @@
 </div>
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
-        <div class="well sidebar-nav pull-left well-sm" id="profile-sidebar" title>
-          <div class="container">
-            <p class="text-center"><b><%= current_user.name %></b></p>
+        <div class="well sidebar-nav pull-left well-sm" id="profile-left-sidebar" title>
+        <div id="profile-info">
+         
+          <div class="profile-dp-container">
+            <%= image_tag(current_user.largeimage, :class => "display-pic img-thumbnail")%>
           </div>
-          <div class="dp-container">
-            <%= image_tag(current_user.largeimage, :class => "display-pic")%>
+           <div class="container" style="display: inline-block">
+            <p><b><%= current_user.name %></b></p>
           </div>
-          <div class="btn-group btn-group-justified">
-            <a class="btn btn-default" href="#">Gifts</a><a class="btn btn-default" href="https://www.facebook.com/">Events</a>
+        </div>
+          <div class="list-group" id="profile-list">
+            <a href="#" class="list-group-item recent" id="recent-claims" data-toggle="tooltip" data-placement="top" title="see all claims">Claimed Gifts <span class="glyphicon glyphicon-gift" style="float:right; color:#913D88"></span></a>
+              <div class="list-group" >
+                <a href="#" class="claim-item list-group-item">recent claim 1</a>
+                <a href="#" class="claim-item list-group-item">recent claim 2</a>
+                <a href="#" class="claim-item list-group-item">recent claim 3</a>
+                
+                
+              </div>
+            
+            <a href="#" class="list-group-item recent" id="recent-pools" title="see all pools">Gift Pools <span class="glyphicon glyphicon-flag" style="float:right; color:#E87E04"></span></a>
+              <div class="list-group" >
+                <a href="#" class="pool-item list-group-item">recent pool 1</a>
+                <a href="#" class="pool-item list-group-item">recent pool 2</a>
+                <a href="#" class="pool-item list-group-item">recent pool 3</a>
+               
+              </div>
 
           </div>
-          <ul class="nav"></ul>
         </div>
       </div>
     </div><!-- left-sidebar -->

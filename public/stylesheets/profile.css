@@ -6,7 +6,7 @@
       }
       footer {
         position: fixed;
-        top: 600px;
+        top:100%;
         padding-left: 15px;
         padding-right: 15px;
       }
@@ -14,6 +14,16 @@
       .feed-icon{
         float: right;
         margin: 10px;
+      }
+
+      .list-group-item.claim-item{
+        background-color: transparent;
+        /*border-style: none;*/
+      }
+
+      .list-group-item.pool-item{
+        background-color: transparent;
+        /*border-style: none;*/
       }
 
       a:hover{
@@ -43,6 +53,14 @@
         padding-top: 10px;
       }
 
+      #profile-info{
+        position: relative;
+      }
+
+      .dropdown-menu.dropdown-notif{
+        width:300px;
+      }
+
       .notification-container{
         position: relative;
         border:0px;
@@ -51,10 +69,12 @@
         border-bottom-color: #DADFE1;
         padding: 5px;
         margin: 0px;
+        color: #666;
       }
 
       .notification-container:hover{
         background-color: #f8f8f8;
+        text-decoration: none;
       }
 
       .notification-link{
@@ -167,6 +187,12 @@
       .btn.tab{
         font-size: 12px;
       }
+
+      .profile-dp-container{
+        width: 25%;
+        display: inline-block;
+      }
+
       .dp-container {
         width:100%;
       }
@@ -523,6 +549,11 @@
       text-align:center;
     }
 
+    #profile-list{
+      position: relative;
+      margin-top: 10px;
+    }
+
 	  #profile-sidebar{
 		  position: fixed;
       width: 19%;
@@ -531,6 +562,16 @@
       height: 100%;
       padding-left: 10px;
 		}
+
+     #profile-left-sidebar{
+      position: fixed;
+      width: 19%;
+      background-color: #ecf0f1;
+      top: 100px;
+      height: 100%;
+      padding-left: 10px;
+    }
+    
 		
 		#search-container{
 			z-index:9900; 
