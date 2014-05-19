@@ -1,4 +1,26 @@
 <!DOCTYPE html>
+<% days = Array.new %>
+            <% temp_friends = Array.new %>
+             <% itemm.each do |t| %>
+                <% if t["birthday"] != nil %>
+                <% str = t["birthday"].to_s %>
+                <% if str.length > 7  %>
+                 <% date = Date.strptime(str,'%m/%d/') %>
+                <%end%>
+                <% if str.length < 7 %>
+                  <% str << '/2000' %>
+                  <%date = Date.strptime(str,'%m/%d/%Y') %>
+                  <% time = Time.parse(date.to_s) %>
+                 <% time = time.change(:year => 2014) %>
+                 <% date= Date.parse(time.to_s) %>
+                <%end%>
+                <%end%>
+                <p>
+                  <% days.push(date) %>
+
+                  
+                </p>
+            <%end%> 
 
 <html title>
   
@@ -58,28 +80,7 @@
       <!-- /.container -->
     </div>
     <!-- /.navbar -->
-            <% days = Array.new %>
-            <% temp_friends = Array.new %>
-             <% itemm.each do |t| %>
-                <% if t["birthday"] != nil %>
-                <% str = t["birthday"].to_s %>
-                <% if str.length > 7  %>
-                 <% date = Date.strptime(str,'%m/%d/') %>
-                <%end%>
-                <% if str.length < 7 %>
-                  <% str << '/2000' %>
-                  <%date = Date.strptime(str,'%m/%d/%Y') %>
-                  <% time = Time.parse(date.to_s) %>
-                 <% time = time.change(:year => 2014) %>
-                 <% date= Date.parse(time.to_s) %>
-                <%end%>
-                <%end%>
-                <p>
-                  <% days.push(date) %>
-
-                  
-                </p>
-            <%end%> 
+            
 
     <div class="timeline-bar">
       <div class="timeline-line">
@@ -186,9 +187,18 @@
             <li class="list-group-item">Second Item</li>
             <li class="list-group-item">Third Item</li>
           </ul>
+          <% days.zip(itemm).each do |d,i| %>
+                <% if d!= nil %> 
+                 <% if d - Date.today < 1  && d - Date.today >= 0%>
+                 <%= image_tag(fimage(i["id"])) %> <%= i["name"] %> <%= i["birthday"] %>
+                 <%end%>
+                 <%end%>
+                 <%end%>
         </div>
       </div>
+
     </div><!-- right-sidebar -->
+
     <div class="container main">
             <div class="tabs btn-group btn-group-justified">
               <a id="feed-btn" class="tab btn btn-default" onclick="display(feed)">Feed</a><a id="wishlist-btn" class="tab btn btn-default" onclick="display(wishlist)">Wishlist</a><a id="friends-btn" class="tab btn btn-default" onclick="display(friends)">Friends</a>            </div>
