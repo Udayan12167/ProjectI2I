@@ -5,6 +5,7 @@
   <% wish.each do |t|%>
   <% if t.user_id == temp %>
     <li class="col-md-6">
+      <%= link_to "pool" ,root_url, id: "sign_out" %>
       <% if user != current_user %>
       <% if t.claimed != 1 and t.claimer != current_user %>
       <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
