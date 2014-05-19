@@ -81,3 +81,15 @@ function resize_image(x){
 
  }
  
+ function set_bdaygrid(){
+      var a = document.getElementsByClassName('birthday-container');
+      if (a.length<2) {
+            document.getElementById('bday-username').style.fontSize="13px"
+             console.log(a[0].innerText);
+      };
+      for (var index = 0; index < a.length; ++index) {
+           
+             a[index].title=new String(a[index].innerText);
+      }
+}
+ 
