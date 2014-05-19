@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516095734) do
+ActiveRecord::Schema.define(version: 20140519072309) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -109,6 +109,8 @@ ActiveRecord::Schema.define(version: 20140516095734) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "claimed"
+    t.integer  "claimer"
   end
 
   add_index "wishlists", ["user_id", "created_at"], name: "index_wishlists_on_user_id_and_created_at", using: :btree
