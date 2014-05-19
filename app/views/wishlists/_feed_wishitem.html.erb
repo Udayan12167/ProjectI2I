@@ -6,7 +6,7 @@
              <% if ((Time.now - activity.created_at).to_i)/3600*24 > 1 %>
             <p class="feed-time">at <%= activity.created_at %></p>
             <%else%>
-            <p class="feed-time">at <%= activity.relative_time(activity.created_at) %></p>
+            <p class="feed-time"> <%= activity.relative_time(activity.created_at) %></p>
             <%end%>
          </p>
             <a class="feed-username" href=""><%= link_to activity.name , root_url  %></a>
@@ -50,7 +50,7 @@
                 <% if t.claimed != 1 and t.claimer != current_user %>
                <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
                <%elsif t.claimer== current_user.id%> 
-                <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
+                <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
                  <%else%> claimed by <%= User.find_by_id(t.claimer).name %>  
                  <%end%>        
             </li>
