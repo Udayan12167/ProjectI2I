@@ -1,8 +1,6 @@
-
 <div class="modal-body" id="birthday-list">
     <h3>Birthdays on <%= @date %> </h3>
-    
-    <% @id.each do |i| %>
+      <% @id.each do |i| %>
     	<% str = i["birthday"].to_s %>
                 <% if str.length > 7  %>
                  <% date = Date.strptime(str,'%m/%d/') %>

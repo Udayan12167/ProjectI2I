@@ -188,17 +188,18 @@
       }
 
       #basicModal{
-        padding: auto;
         height:     100%;
         width:      100%;
-        background: rgba( 0, 0, 0, .8 ) 
+        background: rgba( 51, 51, 51, .8 ) 
                 url('/images/new-loader.GIF') 
                 50% 50% 
                 no-repeat;
       }
 
-      #basicModal .modal-dialog{
-          vertical-align: center;      
+      #basicModal .modal-dialog{ 
+        padding-top: 15%;   
+        width: 30%; 
+        text-align: center;
       }
 
        .img-gift
@@ -214,11 +215,24 @@
         margin: 5px;
      }
 
+      .invitation-btn{
+        position: relative;
+        float: right;
+        top: -30px;
+        vertical-align: middle;
+        color: #666;
+      }
+
+      .invitation-btn:hover{
+        color: #27ae60;
+        text-decoration: none;
+      }
 
       .friends-container{
         display:inline-block;
         background-color: #ffffff;
         vertical-align: top;
+        height: 76px;
         padding: 5px;
         border-radius: 5px;
         border: 1px;
@@ -245,6 +259,25 @@
         line-height: normal;
         text-align: left;
       }
+
+
+      .friends-media-body .media-heading{
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+     .delete-icon
+       {
+         height: 20px;
+         width: 20px;
+         margin-top: 10px;
+         position: absolute;
+         right: 25px;
+         display: block;
+         opacity: 0;
+         cursor: pointer;
+         z-index: 1;
+       }
 
       .thumbnail
       {
@@ -491,10 +524,12 @@
     }
 
 	  #profile-sidebar{
-		  position:fixed; 
-		  width:19.5%; 
-		  left:2.5%; 
-		  top: 190px; 
+		  position: fixed;
+      width: 19%;
+      background-color: #ffffff;
+      top: 100px;
+      height: 100%;
+      padding-left: 10px;
 		}
 		
 		#search-container{
@@ -522,10 +557,13 @@
     }
   
 		#trends-sidebar{
-			position:fixed; 
-			width:18%; 
-			left:80%; 
-			top: 190px;
+			position: fixed;
+      width: 19%;
+      background-color: #ffffff;
+      right: 0px;
+      top: 100px;
+      height: 100%;
+      padding-left: 10px;
 		}			
 		
 			/*       * Off Canvas       * --------------------------------------------------       */

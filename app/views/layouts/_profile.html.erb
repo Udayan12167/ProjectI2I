@@ -185,6 +185,7 @@
             <div id="wishlist" style="display:none">
               <%= link_to "share", "/activities/post", id: "sign_out",:class => "btn btn-large btn-success" %>
               <a id="addwish-btn"class="btn btn-default">Add Gifts to List</a>
+               
                <div id="addwish-panel">
                 <% user = User.find_by_id(current_user.id) %>
                 <%= render 'wishlists/wishlist_form' %>
@@ -249,6 +250,7 @@
     
     <script>  
       $(document).ready(function() {
+
         $.ajaxSetup({
         'beforeSend' : function() {
             console.log('ajazset');
@@ -260,6 +262,7 @@
     });
         $(".like_button").hide();
         $(".add_delete_button").hide();
+
         $('[data-toggle=offcanvas]').click(function() {
           $("#local").val($(this).data('id'));
           $('.row-offcanvas').toggleClass('active');

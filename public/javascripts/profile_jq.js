@@ -1,3 +1,4 @@
+
 $('html').click(function(event)
 {
   if(event.target.id == 'notif-dropdown' && ($('#notification-active').attr('id')=='notification-active'))
@@ -17,7 +18,7 @@ $('html').click(function(event)
   }
 });
 
-$body = $("body");
+
 
 $('#addwish-btn').click(function(){
             $("#addwish-panel").slideToggle();
@@ -31,6 +32,7 @@ $('#addwish-btn').click(function(){
             //$("#friends-panel").toggle();
           });
 
+
  $('.col-md-6').hover(function () 
         {
             $(this).find('.like_button').slideDown("fast");
@@ -42,6 +44,7 @@ $('#addwish-btn').click(function(){
             $(this).find('.add_delete_button').slideUp("fast");
         }
     );
+
 
 $('.thumbnail:even').popover({
           container: 'body',
@@ -73,15 +76,9 @@ $('.eventnode').load(
 function triggerModal(obj) {
    
     $('#basicModal').modal();
-    
 }
 
-$body = $("body");
 
-$(document).on({
-    ajaxStart: function() { $body.addClass("loading");    },
-     ajaxStop: function() { $body.removeClass("loading"); }    
-});
 
 $('img').on('load',function(){
   call_resize_image()

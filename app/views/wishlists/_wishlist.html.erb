@@ -9,12 +9,12 @@
         <div style="padding:4px;">
           <div class="gift-info">  
             <%= image_tag('flash.jpg',class: "img-gift",alt:"300x200") %>        
-            <h4>BC</h4>
+            <h4></h4>
             <h4><%=t.id%></h4>
-            <p>My project description
+           <p> <%= t.link %> for price <%= t.price %></p>
               <%= user.wishlist.index(t) %>
               <i class="icon icon-map-marker"></i>
-            </p>
+            
           </div> 
           </div>      
           </div>
@@ -36,7 +36,7 @@
               <%= link_to '<span class="glyphicon glyphicon-trash" title="Remove Gift Item"></span>'.html_safe, {controller:"wishlists", action:"remove" , my_param: "#{t.id}" } %>
             <%end%>
             <% if user != current_user %>
-              <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price},:remote => true } %>
+              <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price}, :userid => t.user_id ,:remote => true } %>
               <%end%>
           </div>
         </li>
