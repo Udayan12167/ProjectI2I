@@ -5,52 +5,9 @@
     <% if activity.user_id != current_user.id %>
         <%next%>
     <%elsif activity.content["added"] == "added" %>
-        <div class="feed-container">
-          <div class="feed-text">
-            <%= image_tag(fimage(activity.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
-            <div style="display:inline-block; vertical-align: top;">
-            <% if ((Time.now - activity.created_at).to_i)/3600*24 > 1 %>
-            <p class="feed-time">at <%= activity.created_at %></p>
-            <%else%>
-            <p class="feed-time">at <%= activity.relative_time(activity.created_at) %></p>
-            <%end%>
-            <a class="feed-username" href=""><%= link_to activity.name , root_url  %></a>
-            <p class="feed-posttext"> <%= link_to activity.content, root_url %> </p>
-          </div>
-            <%id = activity.content.scan(/\d+/).first %>
-            <%t = Wishlist.all.find_by_id(id) %>
-            <% if t != nil %>
-              <%user = User.find_by_id(activity.user_id) %>
-              <li class="col-md-6">
 
-              <div class="thumbnail" style="padding: 0">
-                <div style="padding:4px;">
-                  <div class="gift-info">  
-                    <%= image_tag('flash.jpg',class: "img-gift",alt:"300x200") %>        
-                    <h4></h4>
-            <h4><%=t.id%></h4>
-           <p> <%= t.link %> for price <%= t.price %></p>
-              <%= user.wishlist.index(t) %>
-              <i class="icon icon-map-marker"></i>
-                  </div> 
-                </div>      
-              </div>
-              <div class="add_delete_button">
-                <% if user == current_user %>
-                  <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price}, :userid => t.user_id ,:remote => true } %>
-                <%end%>
-              </div>
-              <% if t.claimed != 1 and t.claimer != current_user %>
-               <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
-               <%else%> 
-                 <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
-              <%end%>
-              
-              </li>
-              <%end%>
-              <span class="glyphicon glyphicon-star feed-icon"></span>
-            </div>
-          </div>
+        <%= render 'wishlists/feed_wishitem',:activity => activity %>
+
           <%elsif activity.content["liked"] == "liked" %>
             <%= render 'wishlists/feed_wishitem' ,:activity => activity%>
             <%elsif activity.content["joined"] == "joined" %>
