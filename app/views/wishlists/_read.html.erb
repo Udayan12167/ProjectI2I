@@ -1,13 +1,3 @@
 <div class="modal-body" id="birthday-list">
-	<div class="notification-container">
-
-
-                  
-                
-                  
-                           <%= image_tag(fimage(@del.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
-                          <p class="feed-username"><%= @del.name %></p>
-                           <p class="feed-posttext"><%= @del.content%> at <%= time_ago_in_words(@del.created_at.in_time_zone) %></p>
-                           
-                      </div>
+	<%= render 'wishlists/feed_wishitem',:activity => @del %>
 </div>
