@@ -74,7 +74,7 @@
         <!-- <img id="birthday-loader" src="/images/new-loader.GIF" alt="Loading..." title="Loading..." /> -->
         <% i =  %>
         <div class="modal-content" id="modal-cont">
-            <%= form_tag( controller: "wishlists", action: "pool",  method: "get") do %>
+            <%= form_tag( controller: "wishlists", action: "requestpool",  method: "get") do %>
             <% friends_list.each do |hash| %>
             <% if hash["id"].in? uuid %>
             <% if hash["id"] != user.uid %>
