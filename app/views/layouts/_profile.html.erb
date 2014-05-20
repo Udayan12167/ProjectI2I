@@ -163,7 +163,7 @@
                 <% if count < 3 %>
                  <%if w.claimer == current_user.id %>
                   <a href="#" class="claim-item list-group-item">Claim: Wislist item <%= w.id %>
-                  belonging to <%= User.find_by_id(w.user_id).name %></a>
+                  belonging to <%= User.find_by_id(w.user_id).name %> <%= image_tag(fimage(User.find_by_id(w.user_id).uid), class: "img-event img-circle") %></a>
                   <% count = count + 1 %>
                   <%end %>
                 <%end%>
