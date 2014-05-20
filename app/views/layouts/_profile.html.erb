@@ -1,4 +1,26 @@
 <!DOCTYPE html>
+<% days = Array.new %>
+            <% temp_friends = Array.new %>
+             <% itemm.each do |t| %>
+                <% if t["birthday"] != nil %>
+                <% str = t["birthday"].to_s %>
+                <% if str.length > 7  %>
+                 <% date = Date.strptime(str,'%m/%d/') %>
+                <%end%>
+                <% if str.length < 7 %>
+                  <% str << '/2000' %>
+                  <%date = Date.strptime(str,'%m/%d/%Y') %>
+                  <% time = Time.parse(date.to_s) %>
+                 <% time = time.change(:year => 2014) %>
+                 <% date= Date.parse(time.to_s) %>
+                <%end%>
+                <%end%>
+                <p>
+                  <% days.push(date) %>
+
+                  
+                </p>
+            <%end%> 
 
 <html title>
   
@@ -58,28 +80,7 @@
       <!-- /.container -->
     </div>
     <!-- /.navbar -->
-            <% days = Array.new %>
-            <% temp_friends = Array.new %>
-             <% itemm.each do |t| %>
-                <% if t["birthday"] != nil %>
-                <% str = t["birthday"].to_s %>
-                <% if str.length > 7  %>
-                 <% date = Date.strptime(str,'%m/%d/') %>
-                <%end%>
-                <% if str.length < 7 %>
-                  <% str << '/2000' %>
-                  <%date = Date.strptime(str,'%m/%d/%Y') %>
-                  <% time = Time.parse(date.to_s) %>
-                 <% time = time.change(:year => 2014) %>
-                 <% date= Date.parse(time.to_s) %>
-                <%end%>
-                <%end%>
-                <p>
-                  <% days.push(date) %>
-
-                  
-                </p>
-            <%end%> 
+            
 
     <div class="timeline-bar">
       <div class="timeline-line">
@@ -162,7 +163,7 @@
                 
               </div>
             
-            <a href="#" class="list-group-item recent" id="recent-pools" title="see all pools">Gift Pools <span class="glyphicon glyphicon-flag" style="float:right; color:#E87E04"></span></a>
+            <a href="#" class="list-group-item recent" id="recent-pools" title="see all pools">Gift Pools <span class="glyphicon glyphicon-magnet" style="float:right; color:#CF000F"></span></a>
               <div class="list-group" >
                 <a href="#" class="pool-item list-group-item">recent pool 1</a>
                 <a href="#" class="pool-item list-group-item">recent pool 2</a>
@@ -177,18 +178,26 @@
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
         <div class="well sidebar-nav pull-left well-sm" id="trends-sidebar" title>
-          <ul class="list-group">
-            <p class="text-center">Trends/Categories</p>
-            <li class="list-group-item">First Item</li>
-            <li class="list-group-item">Second Item</li>
-            <li class="list-group-item">Third Item</li>
-            <li class="list-group-item">First Item</li>
-            <li class="list-group-item">Second Item</li>
-            <li class="list-group-item">Third Item</li>
-          </ul>
+          <p style="font-weight:bold">Birthdays Today <span class="glyphicon glyphicon-asterisk" style="float:right; color:#F7CA18"></span></p>
+          <div style="text-align:center">
+          <% days.zip(itemm).each do |d,i| %>
+             
+                <% if d!= nil %> 
+                 <% if d - Date.today < 1  && d - Date.today >= 0%>
+                  <div class="birthday-container" data-toggle="tooltip" data-placement="top">
+                   <%= image_tag(fimage(i["id"]),class: "img-birthday") %> 
+                   <p id="bday-username"><%= i["name"] %><p> 
+                 </div>
+                 <%end%>
+                 <%end%>
+              
+                 <%end%>
+           </div>         
         </div>
       </div>
+
     </div><!-- right-sidebar -->
+
     <div class="container main">
             <div class="tabs btn-group btn-group-justified">
               <a id="feed-btn" class="tab btn btn-default" onclick="display(feed)">Feed</a><a id="wishlist-btn" class="tab btn btn-default" onclick="display(wishlist)">Wishlist</a><a id="friends-btn" class="tab btn btn-default" onclick="display(friends)">Friends</a>            </div>
@@ -216,7 +225,7 @@
                     <% current_user.wishlist.count %>
                       <ul class="thumbnails list-unstyled">
                     
-                    <%= render 'wishlists/wishlist' , :remote => true , :my_params => current_user.id %>
+                    <%= render 'wishlists/wishlist' , :remote => true , :my_params => current_user.id , :friends => itemm%>
 
                     </ul>
                     
@@ -252,13 +261,16 @@
              <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <!-- <img id="birthday-loader" src="/images/new-loader.GIF" alt="Loading..." title="Loading..." /> -->
-        <div class="modal-content" id="modal-cont">
+        <div class="modal-content" id="modal-contProfile">
             
             
           
         </div>
     </div>
-          </div><!-- centre -->
+          </div>
+
+          
+          <!-- centre -->
       
        
     <footer>

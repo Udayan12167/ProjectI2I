@@ -32,6 +32,10 @@ $('#addwish-btn').click(function(){
             //$("#friends-panel").toggle();
           });
 
+$('#pool-request').click(function(){
+            console.log("pool modal open");
+            $('#poolModal').modal();
+            });
 
  $('.col-md-6').hover(function () 
         {
@@ -69,6 +73,10 @@ $('.eventnode').load(
 	call_set_eventnode()
 )
 
+$('.birthday-container').load(
+  set_bdaygrid()
+)
+
 // $('.img-gift').load(
 //     call_resize_image()
 //   )
@@ -77,7 +85,6 @@ function triggerModal(obj) {
    
     $('#basicModal').modal();
 }
-
 
 
 $('img').on('load',function(){

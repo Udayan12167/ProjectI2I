@@ -371,6 +371,18 @@
       top:-15px;
       }
 
+      .birthday-container{
+        font-size: 0px;
+        display: inline-block;
+        margin: 5px;
+      }
+
+      #bday-username{
+        display:inline-block; 
+        font-size:0px;
+        margin-left:5px;
+      }
+
       .eventnode{
         position: absolute;
         top: -10px;
@@ -381,6 +393,15 @@
       .img-event{
         height:25px;
         width: 25px;
+        /*box-shadow: 3px 3px 3px #888888;*/
+        border: 1px;
+        border-style: solid;
+        border-color: #DADFE1;
+      }
+
+      .img-birthday{
+        height:50px;
+        width: 50px;
         /*box-shadow: 3px 3px 3px #888888;*/
         border: 1px;
         border-style: solid;
