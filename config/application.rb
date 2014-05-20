@@ -8,6 +8,7 @@ Bundler.require(:default, Rails.env)
  
 module Facebooksignin
   class Application < Rails::Application
+    YOUR_GLOBAL_VAR = "ayush"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

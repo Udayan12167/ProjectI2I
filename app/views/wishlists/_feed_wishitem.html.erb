@@ -54,7 +54,7 @@
                  <%else%> claimed by <%= User.find_by_id(t.claimer).name %>  
                  <%end%>        
             </li>
-            <% if activity.content["invite"] == "invite" %>
+            <% if activity.content["invited"] == "invited" %>
                 <%= form_tag( controller: "wishlists", action: "responsepool",  method: "get") do %>
                     <%= radio_button_tag("accept", "1") %>
                     <%= label_tag("v1", "Accept Pool invite") %>
