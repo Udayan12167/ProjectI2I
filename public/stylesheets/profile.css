@@ -225,8 +225,13 @@
       #basicModal .modal-dialog{ 
 
         padding-top: 22%;   
-        width: 30%; 
+        width: 60%; 
         text-align: center;
+      }
+
+       #basicModal .modal-body{ 
+
+        padding-bottom: 20px;   
       }
 
        .img-gift
