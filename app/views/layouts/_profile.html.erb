@@ -156,18 +156,21 @@
           <div class="list-group" id="profile-list">
             <a href="#" class="list-group-item recent" id="recent-claims" data-toggle="tooltip" data-placement="top" title="see all claims">Claimed Gifts <span class="glyphicon glyphicon-gift" style="float:right; color:#913D88"></span></a>
               <div class="list-group" >
+                <% wish = Array.new %>
+                <% wish = Wishlists.order("created_at desc").all
+                <%= 3.times do %>
+                <% wish.each do |w| %>
+                 
                 <a href="#" class="claim-item list-group-item">recent claim 1</a>
-                <a href="#" class="claim-item list-group-item">recent claim 2</a>
-                <a href="#" class="claim-item list-group-item">recent claim 3</a>
-                
+                <%end%>
                 
               </div>
             
             <a href="#" class="list-group-item recent" id="recent-pools" title="see all pools">Gift Pools <span class="glyphicon glyphicon-magnet" style="float:right; color:#CF000F"></span></a>
               <div class="list-group" >
-                <a href="#" class="pool-item list-group-item">recent pool 1</a>
-                <a href="#" class="pool-item list-group-item">recent pool 2</a>
-                <a href="#" class="pool-item list-group-item">recent pool 3</a>
+                <%= 3.times do %>
+                  <a href="#" class="pool-item list-group-item">recent pool 1</a>
+                  <%end%>
                
               </div>
 
