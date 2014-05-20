@@ -157,11 +157,16 @@
             <a href="#" class="list-group-item recent" id="recent-claims" data-toggle="tooltip" data-placement="top" title="see all claims">Claimed Gifts <span class="glyphicon glyphicon-gift" style="float:right; color:#913D88"></span></a>
               <div class="list-group" >
                 <% wish = Array.new %>
-                <% wish = Wishlists.order("created_at desc").all
-                <%= 3.times do %>
+                <% wish = Wishlist.order("created_at desc").all %>
+                <% count = 0 %>
                 <% wish.each do |w| %>
-                 
-                <a href="#" class="claim-item list-group-item">recent claim 1</a>
+                <% if count < 3 %>
+                 <%if w.claimer == current_user.id %>
+                  <a href="#" class="claim-item list-group-item">Claim: Wislist item <%= w.id %>
+                  belonging to <%= User.find_by_id(w.user_id).name %></a>
+                  <% count = count + 1 %>
+                  <%end %>
+                <%end%>
                 <%end%>
                 
               </div>
