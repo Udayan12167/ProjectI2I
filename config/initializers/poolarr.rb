@@ -1,1 +1,0 @@
-poolarr = Hash.new

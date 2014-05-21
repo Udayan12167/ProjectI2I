@@ -119,7 +119,7 @@
             <p class="text-center"><b>Pool Members</b></p>
           </div>
             <% @members.each do |m| %> 
-              <% user = User.find_by_id(m).uid %>
+              <% user = User.find_by_id(m.to_i).uid %>
               <%= image_tag(fimage(user)) %>
             <%end%>
           <ul class="nav"></ul>

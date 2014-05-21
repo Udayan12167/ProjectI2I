@@ -55,11 +55,12 @@
              <a href="#" data-toggle="dropdown" id="pool-dropdown" class="dropdown-toggle"><i class="glyphicon glyphicon-magnet" id="magnet-dropdown"></i><span id="poolreq-count" class="poolreq-count badge">
                     <% notifcount=0 %>
                     <% current_user.notification.each do |t| %>
-                    <% if t.content_id == 1 && t.content["invited"] == "invited"%>
+                    <% if t.content_id == 1 && t.content["invited"] %>
                     <% notifcount=notifcount+1 %>
                     <% end%>
                     <% end%>
                     <%= notifcount %>
+
                   </span></a>
               <ul class="dropdown-poolreq dropdown-menu pull-right" id="Poolreq-List">
                 <%= render 'layouts/poolnotif' %>
@@ -192,15 +193,19 @@
             
             <div class="list-group-item recent" id="recent-pools" title="see all pools">Gift Pools <span class="glyphicon glyphicon-magnet" style="float:right;"></span></div>
               <div class="list-group" >
-                <% $POOL_ARRAY.each do |key,value|%>
-                  <%= link_to ({controller: "wishlists" , action: "poolview", :members => value}) do %>
-                   <% if value.index(current_user.id) != nil %>
+                <% Wishlist.all.each do |w|%>
+                <% if w.poolers != nil %>
+                  <%= link_to ({controller: "wishlists" , action: "poolview" , :members => w.poolers.scan(/\d+/) }) do %>
+                  
+                   <% if w.poolers.scan(/\d+/).index(current_user.id.to_s) != nil %>
                       <div class="pool-item list-group-item">
-                        Pool member:wishlist item <%= key %>
+                        Pool member:wishlist item <%= w.id %>
                       </div>
                   <%end%>
                   <%end%>
                 <%end%>
+                <%end%>
+                
                
               </div>
 
