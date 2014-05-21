@@ -67,6 +67,8 @@ class WishlistsController < ApplicationController
     #render 'wishlists/claim'
   end
 
+
+
   def responsepool
     @loc = Facebooksignin::Application::YOUR_GLOBAL_VAR
     @i = @@poolarr
@@ -173,6 +175,14 @@ class WishlistsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def readAll
+    current_user.notification.all.each do |n|
+      n.content_id = 0
+      n.save!
+    end
+  redirect_to root_url
   end
 
   def vote

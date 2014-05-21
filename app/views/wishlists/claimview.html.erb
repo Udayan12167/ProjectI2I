@@ -173,12 +173,52 @@
                 </div>
               </div>
             </div>
+            <ul class="thumbnails list-unstyled">
+  <% wish = Wishlist.all %>
+  <% wish.each do |t|%>
+  <% if t.claimer == current_user.id %>
+    <li class="col-md-6">
+      
+      
+      <button id="pool-request" data-toggle = "modal" data-target = "#poolModal">pool</button>
+      <div class="thumbnail" style="padding: 0">
+        <div style="padding:4px;">
+          <div class="gift-info">  
+            <%= image_tag('flash.jpg',class: "img-gift",alt:"300x200") %>        
+            <h4></h4>
+            <h4><%=t.id%></h4>
+           <p> <%= t.link %> for price <%= t.price %></p>
+              <% %>
+              <i class="icon icon-map-marker"></i>
+            
+          </div> 
+          </div>      
+          </div>
+          
+          <% if t.user_id != current_user %>
+          <% if t.claimed != 1 and t.claimer != current_user %>
+          <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out"%>
+          <%elsif t.claimer== current_user.id%> 
+          <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
+          <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
+          <%end%>
+        <%end%>
+        </li>
+      
+
+    
+
+
+               
+<%end%> 
+<%end%>
+
             <!-- Wishlist -->
             <div id="friends" style="display:none">
             <a ><%= link_to "Invite Friends", "/welcome/index", :remote => true,:class =>"btn btn-default" ,:id => "invite-btn",:page => 1%></a>
                 <!-- <div id="invite-panel">
                 
-
+              
 
                 
                 
@@ -196,7 +236,7 @@
             </div>
           </div><!-- centre -->
       
-       
+      
     <footer>
         <p>&copy; Company 2013</p>
       </footer>
