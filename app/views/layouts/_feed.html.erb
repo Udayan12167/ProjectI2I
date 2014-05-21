@@ -67,7 +67,7 @@
                <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
                <%elsif t.claimer== current_user.id%> 
               <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
-              <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
+              <%elsif current_user.wishlist.find_by_id(t.id) == nil %> claimed by <%= User.find_by_id(t.claimer).name %>
               <%end%>
               <%end%>
               </li>
