@@ -108,8 +108,12 @@
         background-color: #27ae60;
       }
 
+      .badge.poolreq-count{
+        background-color: #c0392b;
+      }
+
       .dropdown-menu{ 
-        width: 430px;      
+        width: 300px;      
         height: auto;
         max-height: 500px;
         overflow: auto;
@@ -536,6 +540,16 @@
 
       .glyphicon-magnet{
          color:#D64541
+      }
+
+      #magnet-dropdown{
+        -webkit-filter: grayscale(1);
+        font-size: 18px;
+      }
+
+      #magnet-dropdown:hover{
+        -webkit-filter:none;
+        color: #2ecc71;
       }
 
       .glyphicon-heart{
