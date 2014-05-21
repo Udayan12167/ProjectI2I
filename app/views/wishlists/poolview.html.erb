@@ -118,7 +118,10 @@
           <div class="container">
             <p class="text-center"><b>Pool Members</b></p>
           </div>
-            <%= render 'facebook_api/friends' %> 
+            <% @members.each do |m| %> 
+              <% user = User.find_by_id(m).uid %>
+              <%= image_tag(fimage(user)) %>
+            <%end%>
           <ul class="nav"></ul>
         </div>
       </div>
