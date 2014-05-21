@@ -38,6 +38,7 @@ class WishlistsController < ApplicationController
 
 
   def requestpool
+    @loc = Facebooksignin::Application::YOUR_GLOBAL_VAR
     @wishid = params[:wishid]
     @ids = Array.new
     @ids = params[:values]
@@ -49,7 +50,7 @@ class WishlistsController < ApplicationController
     end
     $arr = Array.new
     $arr.push(current_user.id)
-    @@poolarr[@wishid] = $arr
+    $POOL_ARRAY[@wishid] = $arr
     redirect_to root_url
   end
 
@@ -60,6 +61,7 @@ class WishlistsController < ApplicationController
   end
 
   def poolview
+    @members = params[:members]
     @itemm = @friends
     #render 'wishlists/claim'
   end
@@ -71,12 +73,20 @@ class WishlistsController < ApplicationController
     @reject = params[:reject]
     @wishid = params[:wishid]
     @userid = params[:userid]
+    @notifid = params[:notifid]
+    @del = Notification.find_by_id(@notifid)
     if @accept.to_i == 1
       Notification.create(:owner_id => current_user.uid ,:user_id => User.find_by_uid(@userid).id , :content => "accepted your pool request for gift #{@wishid} belonging to #{User.find_by_id(Wishlist.find_by_id(@wishid).user_id).name}",:name => current_user.name, :content_id => 1)
-      $arr.push(User.find_by_uid(@userid).id)
-      @@poolarr[@wishid] = $arr
+      if $arr.index(current_user.id) == nil
+        $arr.push(current_user.id)
+      end
+      $POOL_ARRAY[@wishid] = $arr
     elsif @reject == 1
       Notification.create(:owner_id => current_user.uid ,:user_id => @userid , :content => "rejected your pool request for gift #{@wishid} belonging to #{User.find_by_id(Wishlist.find_by_id(@wishid).user_id).name}",:name => current_user.name, :content_id => 1)
+    end
+    if @del != nil
+      @del.content_id = 0;
+      @del.save!
     end
     redirect_to root_url
   end
@@ -91,7 +101,7 @@ class WishlistsController < ApplicationController
       user = User.find_by_id(@userid)
       if user != nil
         user.wishlist.each do |t|
-          if t.id = @wishid
+          if t.id.to_i == @wishid.to_i
             t.claimed = 1;
             t.claimer = @claimer
             t.save!
@@ -111,7 +121,7 @@ class WishlistsController < ApplicationController
       user = User.find_by_id(@userid)
       if user != nil
         user.wishlist.each do |t|
-          if t.id = @wishid
+          if t.id.to_i == @wishid.to_i
             t.claimed = nil;
             t.claimer = nil
             t.save!
@@ -141,7 +151,12 @@ class WishlistsController < ApplicationController
     @wishlist =current_user.wishlist.build
   end
 
-
+  def poolnotif
+    @c = params[:created]
+    @u = params[:u]
+    @notifid = params[:notifid]
+    @del = Notification.find_by_user_id_and_created_at(@u,@c)
+  end
 
   def read
     
