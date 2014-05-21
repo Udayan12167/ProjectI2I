@@ -91,7 +91,7 @@ class WishlistsController < ApplicationController
       user = User.find_by_id(@userid)
       if user != nil
         user.wishlist.each do |t|
-          if t.id = @wishid
+          if t.id.to_i == @wishid.to_i
             t.claimed = 1;
             t.claimer = @claimer
             t.save!
@@ -111,7 +111,7 @@ class WishlistsController < ApplicationController
       user = User.find_by_id(@userid)
       if user != nil
         user.wishlist.each do |t|
-          if t.id = @wishid
+          if t.id.to_i == @wishid.to_i
             t.claimed = nil;
             t.claimer = nil
             t.save!

@@ -68,7 +68,8 @@
                <%= link_to "Claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out", :class=> "btn btn-large btn-success" %>
                <%elsif t.claimer== current_user.id%> 
               <%= link_to "Unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out", :class=> "btn btn-large btn-success" %>
-              <%else%> Claimed by <%= User.find_by_id(t.claimer).name %>
+              <%else%> 
+                <%= User.find_by_id(t.claimer).name %> claimed this gift.
               <%end%>
               <%end%>
             </div>

@@ -447,7 +447,7 @@
         bottom: 0;
         margin-bottom: 10px;
         margin-left: 8px;
-        color: gray;
+        color: #ffffff;
       }
 
       .like_button:hover
@@ -479,6 +479,7 @@
        .glyphicon-trash
       {
         font-size: 18px; 
+        color: gray;
       }
 
        .add_delete_button:hover .glyphicon-trash
@@ -491,29 +492,22 @@
         color: #0C6;
       }
 
-      .glyphicon
-      {
-        color: gray;
-      }
-
       .glyphicon-floppy-save
       {
+        color: gray;
        font-size: 18px; 
       }
 
       .glyphicon-thumbs-up
       {
+        color: #ffffff;
         font-size: 18px;
       }
 
       .glyphicon-thumbs-down
       {
+        color: #ffffff;
         font-size: 18px;
-      }
-
-      .glyphicon-plus
-      {
-        font-size: 15px;
       }
 
       .glyphicon-plus:hover

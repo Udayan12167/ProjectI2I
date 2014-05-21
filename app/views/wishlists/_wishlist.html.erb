@@ -5,6 +5,16 @@
   <% wish.each do |t|%>
   <% if t.user_id == temp %>
     <li class="col-md-6">
+      
+      <% if user != current_user %>
+      <button id="pool-request" data-toggle = "modal" data-target = "#poolModal">pool</button>
+      <% if t.claimed != 1 and t.claimer != current_user %>
+      <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
+      <%elsif t.claimer== current_user.id%> 
+      <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
+      <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
+      <%end%>
+      <%end%>
       <div class="thumbnail" style="padding: 0">
         <div style="padding:4px;">
           <div class="gift-info">  
@@ -16,6 +26,7 @@
               <i class="icon icon-map-marker"></i>
             
           </div> 
+          </div>      
           </div>
           <div class="like_button">
               <% div_id="refresh1_#{t.id}" %>
@@ -37,9 +48,8 @@
             <% if user != current_user %>
               <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price}, :userid => t.user_id ,:remote => true } %>
               <%end%>
-          </div>      
           </div>
-        <% if user != current_user %>
+          <% if user != current_user %>
           <% if t.claimed != 1 and t.claimer != current_user %>
           <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out"%>
           <%elsif t.claimer== current_user.id%> 
@@ -77,6 +87,7 @@
                 <%= label_tag("v[]", image_tag(fimage(hash["id"]),:class => "img-event img-circle")) %>
                 <%= hidden_field_tag(:userid, "#{user.id}") %>
                 <%= hidden_field_tag(:wishid, "#{t.id}") %>
+                <%= hidden_field_tag(:notifif, "#{t.id}") %>
                 </h4>
                  
             </div>
