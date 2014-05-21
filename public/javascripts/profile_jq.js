@@ -19,10 +19,17 @@ $('html').click(function(event)
 });
 
 
+$(document).ajaxStart( function(){
+   console.log('Start');
+})
+
+$( document ).ajaxStop(function() {
+  console.log('Stop');
+});
 
 $('#addwish-btn').click(function(){
-            $("#addwish-panel").slideToggle();
-          });
+   $("#addwish-panel").slideToggle();
+    });
 
 
  $('#invite-btn').click(function(){
