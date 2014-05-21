@@ -1,6 +1,6 @@
 <% notifcount=0 %>
 <% current_user.notification.each do |t| %>
-<% if t.content_id == 1 %>
+<% if t.content_id == 1 && t.content["invited"] != "invited"%>
 <% notifcount=notifcount+1 %>
 <% end%>
 <% end%>

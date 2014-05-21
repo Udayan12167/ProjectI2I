@@ -34,7 +34,7 @@ $('#addwish-btn').click(function(){
 
 $('#pool-request').click(function(){
             console.log("pool modal open");
-            $('#poolModal').modal();
+            // $('#poolModal').modal();
             });
 
  $('.col-md-6').hover(function () 

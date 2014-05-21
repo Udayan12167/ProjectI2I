@@ -53,31 +53,18 @@
           <ul id="menu-bar" class="nav navbar-nav">
               <li class="dropdown" title="Pool Requests">
              <a href="#" data-toggle="dropdown" id="pool-dropdown" class="dropdown-toggle"><i class="glyphicon glyphicon-magnet" id="magnet-dropdown"></i><span id="poolreq-count" class="poolreq-count badge">
-                    0
+                    <% notifcount=0 %>
+                    <% current_user.notification.each do |t| %>
+                    <% if t.content_id == 1 && t.content["invited"] == "invited"%>
+                    <% notifcount=notifcount+1 %>
+                    <% end%>
+                    <% end%>
+                    <%= notifcount %>
                   </span></a>
               <ul class="dropdown-poolreq dropdown-menu pull-right" id="Poolreq-List">
-
-                  <div class="notification-container">
-
-
+                <%= render 'layouts/poolnotif' %>
 
                   
-                
-
-                  
-                           <%= image_tag('emma.png', :class => "feed-thumbnail" , :title => "thumbnail-dp", :style=>"vertical-align: top")%>
-                           <div style="display: inline-block">
-                          <p class="feed-username" style="margin-bottom:0px">UserName</p>
-                          
-                           <p class="feed-posttext">invited you to pool a gift for XYZ </p>
-                           
-                           
-                           
-                            <p class="feed-time"> time</p>
-                          
-                         
-                       
-                          </div> 
                     
 
                   </ul>
