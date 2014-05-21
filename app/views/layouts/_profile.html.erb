@@ -174,9 +174,13 @@
             
             <div class="list-group-item recent" id="recent-pools" title="see all pools">Gift Pools <span class="glyphicon glyphicon-magnet" style="float:right;"></span></div>
               <div class="list-group" >
-                <%= 3.times do %>
-                  <%= link_to ({controller: "wishlists" , action: "poolview"}) do %>
-                  <div class="pool-item list-group-item">recent pool 1</div>
+                <% $POOL_ARRAY.each do |key,value|%>
+                  <%= link_to ({controller: "wishlists" , action: "poolview", :members => value}) do %>
+                   <% if value.index(current_user.id) != nil %>
+                      <div class="pool-item list-group-item">
+                        Pool member:wishlist item <%= key %>
+                      </div>
+                  <%end%>
                   <%end%>
                 <%end%>
                

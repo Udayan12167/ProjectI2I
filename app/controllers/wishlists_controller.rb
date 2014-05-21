@@ -38,6 +38,7 @@ class WishlistsController < ApplicationController
 
 
   def requestpool
+    @loc = Facebooksignin::Application::YOUR_GLOBAL_VAR
     @wishid = params[:wishid]
     @ids = Array.new
     @ids = params[:values]
@@ -49,7 +50,7 @@ class WishlistsController < ApplicationController
     end
     $arr = Array.new
     $arr.push(current_user.id)
-    @@poolarr[@wishid] = $arr
+    $POOL_ARRAY[@wishid] = $arr
     redirect_to root_url
   end
 
@@ -60,6 +61,7 @@ class WishlistsController < ApplicationController
   end
 
   def poolview
+    @members = params[:members]
     @itemm = @friends
     #render 'wishlists/claim'
   end
@@ -73,12 +75,13 @@ class WishlistsController < ApplicationController
     @userid = params[:userid]
     if @accept.to_i == 1
       Notification.create(:owner_id => current_user.uid ,:user_id => User.find_by_uid(@userid).id , :content => "accepted your pool request for gift #{@wishid} belonging to #{User.find_by_id(Wishlist.find_by_id(@wishid).user_id).name}",:name => current_user.name, :content_id => 1)
-      $arr.push(User.find_by_uid(@userid).id)
-      @@poolarr[@wishid] = $arr
+      if $arr.index(current_user.id) == nil
+        $arr.push(current_user.id)
+      end
+      $POOL_ARRAY[@wishid] = $arr
     elsif @reject == 1
       Notification.create(:owner_id => current_user.uid ,:user_id => @userid , :content => "rejected your pool request for gift #{@wishid} belonging to #{User.find_by_id(Wishlist.find_by_id(@wishid).user_id).name}",:name => current_user.name, :content_id => 1)
     end
-    redirect_to root_url
   end
 
 
