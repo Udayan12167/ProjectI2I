@@ -53,7 +53,7 @@ class WelcomeController < ApplicationController
     @date=params[:date]
     @id=params[:person]
     respond_to do |format|
-      format.js
+      format.js {render :js =>"/assets/javascripts/date.js.erb"}
     end
   end
  
