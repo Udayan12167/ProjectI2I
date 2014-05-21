@@ -14,11 +14,21 @@
       .feed-icon{
         float: right;
         margin: 10px;
-      }
+       }
 
       .list-group-item.claim-item{
         background-color: transparent;
+        padding: 5px;
         /*border-style: none;*/
+      }
+
+      #recent-claims{
+        color: #555;
+      }
+
+      #recent-claims:hover{
+        text-decoration: none;
+        background-color: #f8f8f8;
       }
 
       .list-group-item.pool-item{
@@ -48,6 +58,14 @@
       .jumbotron {
         position:absolute;
         left: 21.5%;
+        width: 60%;
+        top: 70px;
+        padding-top: 10px;
+      }
+
+      .jumbotron.pool {
+        position:absolute;
+        left: 16.5%;
         width: 60%;
         top: 70px;
         padding-top: 10px;
@@ -136,6 +154,7 @@
         border-style: solid;
         border-color: #DADFE1;
         margin: 3px;
+        vertical-align: top;
       }
 
       .feed-text{
@@ -223,9 +242,15 @@
       }
 
       #basicModal .modal-dialog{ 
+
         padding-top: 22%;   
-        width: 30%; 
+        width: 60%; 
         text-align: center;
+      }
+
+       #basicModal .modal-body{ 
+
+        padding-bottom: 20px;   
       }
 
        .img-gift
@@ -389,6 +414,14 @@
         color: #ffffff;
       }
 
+      .img-claim-thumbnail{
+        position: relative;
+        height:25px;
+        width: 25px;
+        float: right;
+        top:-1px;
+      }
+
       .img-event{
         height:25px;
         width: 25px;
@@ -492,12 +525,20 @@
         color: #f1c40f;
       }
 
+      .glyphicon-magnet{
+         color:#D64541
+      }
+
       .glyphicon-heart{
         color: #f17288;
       }
 
       .glyphicon-user{
         color: #52B3D9;
+      }
+
+      .glyphicon-flag{
+        color: #34495E
       }
 
       .event-btn{
@@ -618,6 +659,27 @@
       height: 100%;
       padding-left: 10px;
 		}			
+
+    #pool-sidebar{
+      position: fixed;
+      width: 25%;
+      background-color: transparent;
+      right: 0px;
+      top: 100px;
+      height: 100%;
+      padding: 10px;
+    }     
+
+    #members-sidebar{
+      position: fixed;
+      width: 19%;
+      background-color: #ffffff;
+      top: 105px;
+      height: 100%;
+      overflow:scroll;
+      padding: 1px;
+    }
+    
 		
 			/*       * Off Canvas       * --------------------------------------------------       */
       @media screen and(max-width: 768px) {

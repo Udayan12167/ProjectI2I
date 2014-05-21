@@ -13,6 +13,16 @@ class NotificationsController < ApplicationController
   end
 
   
+  @@pool_array = Hash.new
+  @@pool_array ||=
+  # def self.init
+  #   @@pool_array = Hash.new
+  #   @@pool_array ||=
+  # end
+
+  def add(key,value)
+      @@pool_array[key] == value
+  end 
 
   
 

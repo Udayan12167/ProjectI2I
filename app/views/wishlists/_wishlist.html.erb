@@ -39,18 +39,14 @@
               <%end%>
           </div>      
           </div>
-          <div class="claim_button">
-          <% if user != current_user %>
-            <button id="pool-request" class="btn btn-large btn-success">Pool</button>
-              <% if t.claimed != 1 and t.claimer != current_user %>
-                <%= link_to "Claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out", :class=> "btn btn-large btn-success" %>
-              <%elsif t.claimer== current_user.id%> 
-                <%= link_to "Unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out", :class=> "btn btn-large btn-success" %>
-              <%else%> Claimed by <%= User.find_by_id(t.claimer).name %>
-            <%end%>
+        <% if user != current_user %>
+          <% if t.claimed != 1 and t.claimer != current_user %>
+          <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out"%>
+          <%elsif t.claimer== current_user.id%> 
+          <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
+          <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
           <%end%>
-        </div>
-      
+        <%end%>
         </li>
       
 
@@ -68,7 +64,7 @@
         <!-- <img id="birthday-loader" src="/images/new-loader.GIF" alt="Loading..." title="Loading..." /> -->
         <% i =  %>
         <div class="modal-content" id="modal-cont">
-            <%= form_tag( controller: "wishlists", action: "pool",  method: "get") do %>
+            <%= form_tag( controller: "wishlists", action: "requestpool",  method: "get") do %>
             <% friends_list.each do |hash| %>
             <% if hash["id"].in? uuid %>
             <% if hash["id"] != user.uid %>

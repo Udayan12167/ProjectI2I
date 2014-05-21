@@ -15,7 +15,12 @@
                            <%= image_tag(fimage(n.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp", :style=>"vertical-align: top")%>
                            <div style="display: inline-block">
                           <p class="feed-username" style="margin-bottom:0px"><%= n.name %></p>
+                          <% if n.content["invite"] == "invite" %>
                            <p class="feed-posttext"><%= n.content%> </p>
+                           <p>click to accept/reject</p>
+                           <%else%>
+                           <p class="feed-posttext"><%= n.content%> </p>
+                           <%end%>
                            <% if ((Time.now - n.created_at).to_i)/3600*24 > 1 %>
                             <p class="feed-time"> <%= n.created_at %></p>
                             <%else%>

@@ -21,6 +21,14 @@ class FacebookApiController < ApplicationController
       
     end
   end
+  def likes
+    @likes=Array.new
+    if session["fb_access_token"].present?
+      graph= Koala::Facebook::GraphAPI.new(session["fb_access_token"])
+      @likes=graph.get_connections("me","likes")
+    end
+    puts @likes
+  end
   def fimage(id)
   	"http://graph.facebook.com/#{id}/picture?type=large"
   end

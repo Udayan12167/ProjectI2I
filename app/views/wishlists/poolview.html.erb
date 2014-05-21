@@ -1,4 +1,4 @@
-<% user = User.find_by_id(object) %>
+
 <!DOCTYPE html>
 
 <html title>
@@ -11,7 +11,7 @@
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <%= stylesheet_link_tag 'profile.css' %>
     <%= javascript_include_tag 'friend.js' %>
-	  
+    
   </head>
   
   <body title>
@@ -26,9 +26,9 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
           </button>       
-			<%= link_to image_tag('FriendFundrLogo.png',:id => "brand-logo",:class => "pull-left",:alt =>"Logo"),root_url %>
+      <%= link_to image_tag('FriendFundrLogo.png',:id => "brand-logo",:class => "pull-left",:alt =>"Logo"),root_url %>
         </div>       
-		<div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse">
           <ul id="menu-bar" class="nav navbar-nav">
              <li class="dropdown" title="Notification">
              <a href="#" data-toggle="dropdown" id="notif-dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification-inactive",:class => "menu-icon") %><span id="notificaton-count" class="notification-count badge">
@@ -60,7 +60,7 @@
     </div>
     <!-- /.navbar -->
             <% days = Array.new %>
-             <% itemm.each do |t| %>
+             <% @itemm.each do |t| %>
                 <% if t["birthday"] != nil %>
                 <% str = t["birthday"].to_s %>
                 <% if str.length > 7  %>
@@ -83,7 +83,7 @@
       <div class="timeline-line">
         <%= image_tag('Start_node.png',:id => "startnode") %>
         <%birthdays = Array.new %>
-        <% days.zip(itemm).each do |d,i| %>
+        <% days.zip(@itemm).each do |d,i| %>
         <% if d!= nil %> 
         <% if d - Date.today < 31  && d - Date.today > 0%>
           <%birthdays << i %>
@@ -91,7 +91,7 @@
         <%end%>
         <%end%>
         <%end %>
-        <% days.zip(itemm).each do |d,i| %>
+        <% days.zip(@itemm).each do |d,i| %>
         <% if d!= nil %> 
         <% if d - Date.today < 31  && d - Date.today > 0%>
 
@@ -114,81 +114,49 @@
     </div>
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
-        <div class="well sidebar-nav pull-left well-sm" id="profile-sidebar" title>
+        <div class="well sidebar-nav pull-left well-sm" id="members-sidebar" title>
           <div class="container">
-            <p class="text-center"><b><%= user.name %></b></p>
+            <p class="text-center"><b>Pool Members</b></p>
           </div>
-          <div class="dp-container">
-          	
-            <%= image_tag(user.largeimage, :class => "display-pic")%>
-          </div>
-          <div class="btn-group btn-group-justified">
-            <a class="btn btn-default" href="#">Gifts</a><a class="btn btn-default" href="https://www.facebook.com/">Events</a>
-          </div>
+            <%= render 'facebook_api/friends' %> 
           <ul class="nav"></ul>
         </div>
       </div>
     </div><!-- left-sidebar -->
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
-        <div class="well sidebar-nav pull-left well-sm" id="trends-sidebar" title>
-          <ul class="list-group">
-            <p class="text-center">Trends/Categories</p>
-            <li class="list-group-item">First Item</li>
-            <li class="list-group-item">Second Item</li>
-            <li class="list-group-item">Third Item</li>
-            <li class="list-group-item">First Item</li>
-            <li class="list-group-item">Second Item</li>
-            <li class="list-group-item">Third Item</li>
-          </ul>
+        <div class="well sidebar-nav pull-left well-sm" id="pool-sidebar" title>
+          <div class="wishlist-container">
+                  
+                    <div class="thumbnail" style="padding: 0">
+                      <div style="padding:4px;">
+                        <div class="gift-info">  
+                          <%= image_tag('flash.jpg',class: "img-gift",alt:"300x200") %>        
+                          
+                          <h4>gift id</h4>
+                         <p>Gift for price ****</p>
+                            wishlist index
+                        </div> 
+                      </div>      
+                  </div>
+                  
+          </div>
+
         </div>
       </div>
     </div><!-- right-sidebar -->
    <div class="container main">
             <!-- tab btns -->
-            <div class="jumbotron">
             
-            <!-- Feed -->
-            <div id="wishlist" style="display:block">
-              
-              
-              <div id="wishtext">
-                <div class="wishlist-container">
-                  <div class="row",id="refresh">
-                  
-
-                      
-                    <ul class="thumbnails list-unstyled">
-                    <%= render 'wishlists/wishlist' , :remote => true , :my_params => object.to_i %>
-
-                    </ul>
-                    
-                    
-                  </div>
-                </div>
+        
+            <div class="pool jumbotron">
+              <div class="progress">
+                <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                45% 
               </div>
             </div>
-            <!-- Wishlist -->
-            <div id="friends" style="display:none">
-            <a ><%= link_to "Invite Friends", "/welcome/index", :remote => true,:class =>"btn btn-default" ,:id => "invite-btn",:page => 1%></a>
-                <!-- <div id="invite-panel">
-                
-
-
-                
-                
-              <div id="friends-panel">
-                <%= render 'facebook_api/friends' %>           
-              </div>
-            </div>
-            <!-- Friends -->
-
-            <!-- <div id="invite" style="display:none">
-              <%#<%= render 'facebook/invite' %>
-            </div>
-             -->
+            <h3>Pool Group Discussion</h3>
             
-            </div>
           </div><!-- centre -->
       
        

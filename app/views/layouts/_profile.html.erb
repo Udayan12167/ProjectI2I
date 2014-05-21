@@ -56,7 +56,7 @@
                 <%= render 'layouts/notifcount' %>
                 <!--<%= Notification.all.count %> -->
                   </span></a>
-              <ul class="dropdown-notif dropdown-menu pull-right">
+              <ul class="dropdown-notif dropdown-menu pull-right" id="Notif-List">
 
                   <%= render 'layouts/notif' %>
                     
@@ -154,20 +154,31 @@
           </div>
         </div>
           <div class="list-group" id="profile-list">
-            <a href="#" class="list-group-item recent" id="recent-claims" data-toggle="tooltip" data-placement="top" title="see all claims">Claimed Gifts <span class="glyphicon glyphicon-gift" style="float:right; color:#913D88"></span></a>
+            <%= link_to ({controller: "wishlists" , action: "claimview"}) do %>
+            <div class="list-group-item recent" id="recent-claims" data-toggle="tooltip" data-placement="top" title="see all claims"> Recently Claimed Gifts <span class="glyphicon glyphicon-flag" style="float:right;"></span></div>
+              <%end%>
               <div class="list-group" >
-                <a href="#" class="claim-item list-group-item">recent claim 1</a>
-                <a href="#" class="claim-item list-group-item">recent claim 2</a>
-                <a href="#" class="claim-item list-group-item">recent claim 3</a>
-                
+                <% wish = Array.new %>
+                <% wish = Wishlist.order("created_at desc").all %>
+                <% count = 0 %>
+                <% wish.each do |w| %>
+                <% if count < 3 %>
+                 <%if w.claimer == current_user.id %>
+                  <li class="claim-item list-group-item">Gift for <%= User.find_by_id(w.user_id).name %> <%= image_tag(fimage(User.find_by_id(w.user_id).uid), class: "img-claim-thumbnail img-circle") %></li>
+                  <% count = count + 1 %>
+                  <%end %>
+                <%end%>
+                <%end%>
                 
               </div>
             
-            <a href="#" class="list-group-item recent" id="recent-pools" title="see all pools">Gift Pools <span class="glyphicon glyphicon-magnet" style="float:right; color:#CF000F"></span></a>
+            <div class="list-group-item recent" id="recent-pools" title="see all pools">Gift Pools <span class="glyphicon glyphicon-magnet" style="float:right;"></span></div>
               <div class="list-group" >
-                <a href="#" class="pool-item list-group-item">recent pool 1</a>
-                <a href="#" class="pool-item list-group-item">recent pool 2</a>
-                <a href="#" class="pool-item list-group-item">recent pool 3</a>
+                <%= 3.times do %>
+                  <%= link_to ({controller: "wishlists" , action: "poolview"}) do %>
+                  <div class="pool-item list-group-item">recent pool 1</div>
+                  <%end%>
+                <%end%>
                
               </div>
 
@@ -178,7 +189,7 @@
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
         <div class="well sidebar-nav pull-left well-sm" id="trends-sidebar" title>
-          <p style="font-weight:bold">Birthdays Today <span class="glyphicon glyphicon-asterisk" style="float:right; color:#F7CA18"></span></p>
+          <p style="font-weight:bold">Birthdays Today <span class="glyphicon glyphicon-gift" style="float:right; color:#2ecc71"></span></p>
           <div style="text-align:center">
           <% days.zip(itemm).each do |d,i| %>
              
@@ -261,7 +272,7 @@
              <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <!-- <img id="birthday-loader" src="/images/new-loader.GIF" alt="Loading..." title="Loading..." /> -->
-        <div class="modal-content" id="modal-cont">
+        <div class="modal-content" id="modal-contProfile">
             
             
           

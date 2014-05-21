@@ -87,7 +87,6 @@ function triggerModal(obj) {
 }
 
 
-
 $('img').on('load',function(){
   call_resize_image()
 });

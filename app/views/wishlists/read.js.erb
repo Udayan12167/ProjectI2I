@@ -1,2 +1,22 @@
-$("#modal-cont").html("<%= escape_javascript(render :partial => 'wishlists/read')%>")
-$("#notificaton-count").html("<%= escape_javascript(render :partial => 'layouts/notifcount')%>")
+$("#Notif-List").html("<%= j(render :partial => 'layouts/notif')%>")
+$("#modal-contProfile").html("<%= j(render :partial => 'wishlists/read')%>")
+$("#notificaton-count").html("<%= j(render :partial => 'layouts/notifcount')%>")
+$('img').on('load',function(){
+  call_resize_image()
+});
+$('.col-md-6').hover(function () 
+        {
+            $(this).find('.like_button').slideDown("fast");
+            $(this).find('.add_delete_button').slideDown("fast");
+        },
+        function ()
+        {
+            $(this).find('.like_button').slideUp("fast");
+            $(this).find('.add_delete_button').slideUp("fast");
+        }
+    );
+
+$('#basicModal').on('hidden.bs.modal', function () {
+    $("#modal-contProfile").html("");
+    console.log('basicModal hidden');
+})

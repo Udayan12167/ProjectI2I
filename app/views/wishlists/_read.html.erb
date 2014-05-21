@@ -1,13 +1,75 @@
 <div class="modal-body" id="birthday-list">
-	<div class="notification-container">
+	<div class="feed-container">
+    <div class="feed-text">
+        <%= image_tag(fimage(@del.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
+        <div style="display:inline-block; vertical-align: top;">
+            <p class="feed-time">
+             <% if ((Time.now - @del.created_at).to_i)/3600*24 > 1 %>
+            <p class="feed-time">at <%= @del.created_at %></p>
+            <%else%>
+            <p class="feed-time"> <%= @del.relative_time(@del.created_at) %></p>
+            <%end%>
+         </p>
+            <a class="feed-username" href=""><%= link_to @del.name , root_url  %></a>
+            <p class="feed-posttext"> <%=@del.content %> </p>
+        </div>
+        <%id1= @del.content.scan(/\d+/).first %>
+        <%t = Wishlist.all.find_by_id(id1) %>
+        <%user = User.find_by_id(@del.user_id) %>
+        <% if t != nil %>
+            <li class="col-md-6">
+                <div class="thumbnail" style="padding: 0">
+                    <div style="padding:4px;">
+                        <div class="gift-info">  
+                            <%= image_tag('flash.jpg',class: "img-gift",alt:"300x200") %>        
+                                <h4>BC</h4>
+                                <h4><%=t.id%></h4>
+                                <p>My project description
+                                    <%= user.wishlist.index(t) %>
+                                    <i class="icon icon-map-marker"></i>
+                                </p>
+                        </div>  
+                    </div>
+                    <div class="like_button">     
+                        <% div_id="refreshnotif_#{t.id}" %>
+                        <div id="<%=div_id %>">
+                            <% if t.liked_by?(current_user).to_s == "false" %>
+                                <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, {controller:"wishlists", action:"vote" , wish_param: "#{t.id}" ,my_params: "#{t.user_id}"} ,id: "sign_out", :remote => true %>
+                            <%end%>
+                            <% if t.liked_by?(current_user).to_s == "true" %>
+                                <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, {controller:"wishlists", action:"unvote" , wish_param: "#{t.id}",  my_params: "#{t.user_id}"} ,id: "sign_out", :remote => true%>
+                            <%end%>
+                            <%= t.likers(User).count %>
+                        </div>
+                    </div>
+                </div>
+                <div class="add_delete_button">
+                    <% if user == current_user %>
+                        <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price},:remote => true } %>
+                    <%end%>
+                </div>  
+                <% if t.claimed != 1 and t.claimer != current_user %>
+               <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
+               <%elsif t.claimer== current_user.id%> 
+                <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
+                 <%else%> claimed by <%= User.find_by_id(t.claimer).name %>  
+                 <%end%>        
+            </li>
+            <% if @del.content["invited"] == "invited" %>
+                <%= form_tag( controller: "wishlists", action: "responsepool",  method: "get") do %>
+                    <%= radio_button_tag("accept", "1") %>
+                    <%= label_tag("v1", "Accept Pool invite") %>
+                    <%= radio_button_tag("reject", "1") %>
+                    <%= label_tag("v2", "Reject Pool invite" )%>
+                    <%= hidden_field_tag(:userid, "#{@del.owner_id}") %>
+                     <%= hidden_field_tag(:wishid, "#{t.id}") %>
+                    <%= submit_tag("Pool") %>
+                <%end%>
+            <%end%>
+        <%end%>
+        <span class="glyphicon glyphicon-heart feed-icon"></span>
+    </div>
+</div>
 
 
-                  
-                
-                  
-                           <%= image_tag(fimage(@del.owner_id), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
-                          <p class="feed-username"><%= @del.name %></p>
-                           <p class="feed-posttext"><%= @del.content%> at <%= time_ago_in_words(@del.created_at.in_time_zone) %></p>
-                           
-                      </div>
 </div>

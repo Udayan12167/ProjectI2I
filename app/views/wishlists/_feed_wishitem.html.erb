@@ -56,6 +56,17 @@
                  <%end%>        
              </div>
             </li>
+            <% if activity.content["invited"] == "invited" %>
+                <%= form_tag( controller: "wishlists", action: "responsepool",  method: "get") do %>
+                    <%= radio_button_tag("accept", "1") %>
+                    <%= label_tag("v1", "Accept Pool invite") %>
+                    <%= radio_button_tag("reject", "1") %>
+                    <%= label_tag("v2", "Reject Pool invite" )%>
+                    <%= hidden_field_tag(:userid, "#{activity.owner_id}") %>
+                     <%= hidden_field_tag(:wishid, "#{t.id}") %>
+                    <%= submit_tag("Pool") %>
+                <%end%>
+            <%end%>
         <%end%>
         <span class="glyphicon glyphicon-heart feed-icon"></span>
     </div>
