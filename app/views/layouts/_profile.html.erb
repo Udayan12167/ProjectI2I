@@ -195,9 +195,10 @@
               <div class="list-group" >
                 <% Wishlist.all.each do |w|%>
                 <% if w.poolers != nil %>
-                  <%= link_to ({controller: "wishlists" , action: "poolview" , :members => w.poolers.scan(/\d+/) }) do %>
+                <% ar = w.poolers.scan(/\d+/) %>
+                  <%= link_to ({controller: "wishlists" , action: "poolview" , :members => ar[1,ar.length - 1] }) do %>
                   
-                   <% if w.poolers.scan(/\d+/).index(current_user.id.to_s) != nil %>
+                   <% if ar[1,ar.length-1].index(current_user.id.to_s) != nil %>
                       <div class="pool-item list-group-item">
                         Pool member:wishlist item <%= w.id %>
                       </div>

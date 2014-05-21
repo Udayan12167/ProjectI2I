@@ -49,7 +49,7 @@ class WishlistsController < ApplicationController
       Notification.create(:owner_id => current_user.uid ,:user_id => user.id , :content => "invited you to pool in wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}",:name => current_user.name, :content_id => 1)
     end
     w = Wishlist.find_by_id(@wishid)
-    w.poolers = ""
+    w.poolers = "#{@wishid}"
     w.poolers << " #{current_user.id}"
     w.save!
     redirect_to root_url
@@ -81,7 +81,8 @@ class WishlistsController < ApplicationController
     if @accept.to_i == 1
       Notification.create(:owner_id => current_user.uid ,:user_id => User.find_by_uid(@userid).id , :content => "accepted your pool request for gift #{@wishid} belonging to #{User.find_by_id(Wishlist.find_by_id(@wishid).user_id).name}",:name => current_user.name, :content_id => 1)
       w = Wishlist.find_by_id(@wishid)
-      if w.poolers.scan(/\d+/).index(current_user.id.to_s) != nil 
+      ar = w.poolers.scan(/\d+/)
+      if ar[1,ar.lenght-1].index(current_user.id.to_s) == nil 
        w.poolers << " #{current_user.id}"
        w.save!
     end

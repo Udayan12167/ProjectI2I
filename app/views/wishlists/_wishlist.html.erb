@@ -41,7 +41,7 @@
             </div>
           </div>
           <% if user != current_user %>
-            <button id="pool-request" class="btn btn-large btn-danger" title="Invite for Pool">Pool</button>
+            <button id="pool-request"  data-toggle = "modal" data-target = "#poolModal" class="btn btn-large btn-danger" title="Invite for Pool">Pool</button>
               <% if t.claimed != 1 and t.claimer != current_user %>
                 <%= link_to "Claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out", :class=>"btn btn-large btn-success" %>
               <%elsif t.claimer== current_user.id%> 
