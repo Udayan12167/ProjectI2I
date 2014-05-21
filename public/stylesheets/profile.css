@@ -527,6 +527,11 @@
          color:#D64541
       }
 
+      #pool-dropdown:hover i
+      {
+        color: #2ecc71;
+      }
+
       #magnet-dropdown{
         -webkit-filter: grayscale(1);
         font-size: 18px;
@@ -536,6 +541,13 @@
         -webkit-filter:none;
         color: #2ecc71;
       }
+
+       #magnet-dropdown-active
+       {
+        -webkit-filter:none;
+        font-size: 18px;
+        color: #2ecc71;
+      }      
 
       .glyphicon-heart{
         color: #f17288;

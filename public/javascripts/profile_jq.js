@@ -1,6 +1,19 @@
 
 $('html').click(function(event)
 {
+  if(event.target.id == 'pool-dropdown' && ($('#magnet-dropdown-active').attr('id')=='magnet-dropdown-active'))
+  {
+    $('#magnet-dropdown-active').attr('id','magnet-dropdown');
+  }
+  else if(event.target.id == 'pool-dropdown' || event.target.id == 'magnet-dropdown')
+  {
+      $('#magnet-dropdown').attr('id','magnet-dropdown-active');
+  }
+  else
+  {
+    $('#magnet-dropdown-active').attr('id','magnet-dropdown');
+  }
+
   if(event.target.id == 'notif-dropdown' && ($('#notification-active').attr('id')=='notification-active'))
   {
       
