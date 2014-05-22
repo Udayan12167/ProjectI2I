@@ -61,6 +61,7 @@
         width: 60%;
         top: 70px;
         padding-top: 10px;
+        background-color: transparent;
       }
 
       .jumbotron.pool {
@@ -662,6 +663,10 @@
 		#searchbar{
 			position:fixed; 
 			width:inherit;
+      border: gainsboro;
+      border-style: solid;
+      border-width: thin;
+      border-radius: 5px;
 		}
 		
 		#brand-logo{
