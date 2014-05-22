@@ -177,6 +177,7 @@
             <div class="list-group-item recent" id="recent-claims" data-toggle="tooltip" data-placement="top" title="see all claims"> Recently Claimed Gifts <span class="glyphicon glyphicon-flag" style="float:right;"></span></div>
               <%end%>
               <div class="list-group" >
+                <!--#<%= current_user.books %>-->
                 <% wish = Array.new %>
                 <% wish = Wishlist.order("created_at desc").all %>
                 <% count = 0 %>

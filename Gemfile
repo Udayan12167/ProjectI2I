@@ -11,7 +11,10 @@ gem 'socialization'
 gem 'kaminari'
 
 gem 'thin'
-
+gem 'open-uri'
+gem 'json'
+gem 'uri'
+gem 'net/http'
 
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
