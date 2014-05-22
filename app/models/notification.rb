@@ -1,5 +1,5 @@
 class Notification < ActiveRecord::Base
-	belongs_to :user
+	belongs_to :user 
 
 	def relative_time(start_time)
   	diff_seconds = (Time.now - start_time).to_i

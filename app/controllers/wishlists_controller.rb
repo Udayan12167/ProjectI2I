@@ -49,9 +49,10 @@ class WishlistsController < ApplicationController
       Notification.create(:owner_id => current_user.uid ,:user_id => user.id , :content => "invited you to pool in wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}",:name => current_user.name, :content_id => 1)
     end
     w = Wishlist.find_by_id(@wishid)
-    w.poolers = "#{@wishid}"
+    w.poolers = ""
     w.poolers << " #{current_user.id}"
     w.save!
+    PoolGroup.create(:wishlist_id => w.id, :poolers => w.poolers)
     redirect_to root_url
   end
 
@@ -61,11 +62,7 @@ class WishlistsController < ApplicationController
     #render 'wishlists/claim'
   end
 
-  def poolview
-    @members = params[:members]
-    @itemm = @friends
-    #render 'wishlists/claim'
-  end
+  
 
 
 
@@ -82,9 +79,11 @@ class WishlistsController < ApplicationController
       Notification.create(:owner_id => current_user.uid ,:user_id => User.find_by_uid(@userid).id , :content => "accepted your pool request for gift #{@wishid} belonging to #{User.find_by_id(Wishlist.find_by_id(@wishid).user_id).name}",:name => current_user.name, :content_id => 1)
       w = Wishlist.find_by_id(@wishid)
       ar = w.poolers.scan(/\d+/)
-      if ar[1,ar.lenght-1].index(current_user.id.to_s) == nil 
+      if ar.index(current_user.id.to_s) == nil 
        w.poolers << " #{current_user.id}"
        w.save!
+       w.pool_group.poolers = w.poolers
+       w.pool_group.save!
     end
       
     elsif @reject == 1
