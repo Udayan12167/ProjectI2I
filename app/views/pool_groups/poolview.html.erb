@@ -17,7 +17,7 @@
   <body title>
     <div class="container" id="search-container" >
      <form style="width:inherit">
-      <input id="searchbar" type="search" name="fname" placeholder="Search for Friends or Gifts"  ><br><!--search bar friends -->
+      <input id="searchbar" type="search" name="fname" placeholder=" Friends or Gifts"  ><br><!--search bar friends -->
     </form>
     </div><!-- Search Bar -->
     <div class="navbar navbar-fixed-top navbar-default" role="navigation" title>
@@ -60,7 +60,7 @@
     </div>
     <!-- /.navbar -->
             <% days = Array.new %>
-             <% @itemm.each do |t| %>
+             <% @friends.each do |t| %>
                 <% if t["birthday"] != nil %>
                 <% str = t["birthday"].to_s %>
                 <% if str.length > 7  %>
@@ -83,7 +83,7 @@
       <div class="timeline-line">
         <%= image_tag('Start_node.png',:id => "startnode") %>
         <%birthdays = Array.new %>
-        <% days.zip(@itemm).each do |d,i| %>
+        <% days.zip(@friends).each do |d,i| %>
         <% if d!= nil %> 
         <% if d - Date.today < 31  && d - Date.today > 0%>
           <%birthdays << i %>
@@ -91,7 +91,7 @@
         <%end%>
         <%end%>
         <%end %>
-        <% days.zip(@itemm).each do |d,i| %>
+        <% days.zip(@friends).each do |d,i| %>
         <% if d!= nil %> 
         <% if d - Date.today < 31  && d - Date.today > 0%>
 
@@ -118,6 +118,7 @@
           <div class="container">
             <p class="text-center"><b>Pool Members</b></p>
           </div>
+          <% @members = @members.to_s.scan(/\d+/) %>
             <% @members.each do |m| %> 
               <% user = User.find_by_id(m.to_i).uid %>
               <%= image_tag(fimage(user)) %>
@@ -159,6 +160,19 @@
               </div>
             </div>
             <h3>Pool Group Discussion</h3>
+            <% w = Wishlist.find_by_id(@wishid) %>
+            <% w.pool_group.each do |d| %>
+              <%= User.find_by_id(d.user_id).name %> <%= d.content %> <br>
+              <%end%>
+            
+            <%= form_tag(:controller => "pool_groups" , :action => "chat", method: "get") do %>
+            
+            <%= text_field_tag(:q) %>
+            <%= hidden_field_tag(:wishid, "#{@wishid}") %>
+            <%= hidden_field_tag(:members, "#{@members}") %>
+
+            <%= submit_tag("post") %>
+          <% end %>
             
           </div><!-- centre -->
       

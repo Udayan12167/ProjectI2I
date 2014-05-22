@@ -1,4 +1,5 @@
 class Wishlist < ActiveRecord::Base
+	has_many :pool_group
 	serialize :poolers
 	include PublicActivity::Model
 	tracked owner: ->(controller,model) { controller && controller.current_user}
