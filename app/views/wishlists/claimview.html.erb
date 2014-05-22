@@ -175,8 +175,10 @@
             </div>
             <ul class="thumbnails list-unstyled">
   <% wish = Wishlist.all %>
+  <% flag = 0 %>
   <% wish.each do |t|%>
   <% if t.claimer == current_user.id %>
+    <% flag = 1 %>
     <li class="col-md-6">
       
       
@@ -203,8 +205,10 @@
           <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
           <%end%>
         <%end%>
+        
         </li>
       
+        <% if flag == 0 %> No Items to be displayed <%end%>
 
     
 

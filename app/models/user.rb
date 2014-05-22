@@ -31,4 +31,7 @@ class User < ActiveRecord::Base
   def largeimage
     "http://graph.facebook.com/#{self.uid}/picture?height=300&width=300"
   end
+  def coverimage
+    "http://graph.facebook.com/#{self.uid}?fields=cover"
+  end
 end
