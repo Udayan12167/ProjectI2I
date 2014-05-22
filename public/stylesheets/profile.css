@@ -529,7 +529,8 @@
 
       #pool-dropdown:hover i
       {
-        color: #2ecc71;
+        -webkit-filter: none;
+        color: #d35400;
       }
 
       #magnet-dropdown{
@@ -539,14 +540,14 @@
 
       #magnet-dropdown:hover{
         -webkit-filter:none;
-        color: #2ecc71;
+        color: #d35400;
       }
 
        #magnet-dropdown-active
        {
         -webkit-filter:none;
         font-size: 18px;
-        color: #2ecc71;
+        color: #d35400;
       }      
 
       .glyphicon-heart{
