@@ -48,9 +48,10 @@ class WishlistsController < ApplicationController
       user = User.find_by_uid(i)
       Notification.create(:owner_id => current_user.uid ,:user_id => user.id , :content => "invited you to pool in wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}",:name => current_user.name, :content_id => 1)
     end
-    $arr = Array.new
-    $arr.push(current_user.id)
-    $POOL_ARRAY[@wishid] = $arr
+    w = Wishlist.find_by_id(@wishid)
+    w.poolers = "#{@wishid}"
+    w.poolers << " #{current_user.id}"
+    w.save!
     redirect_to root_url
   end
 
@@ -66,6 +67,8 @@ class WishlistsController < ApplicationController
     #render 'wishlists/claim'
   end
 
+
+
   def responsepool
     @loc = Facebooksignin::Application::YOUR_GLOBAL_VAR
     @i = @@poolarr
@@ -77,10 +80,13 @@ class WishlistsController < ApplicationController
     @del = Notification.find_by_id(@notifid)
     if @accept.to_i == 1
       Notification.create(:owner_id => current_user.uid ,:user_id => User.find_by_uid(@userid).id , :content => "accepted your pool request for gift #{@wishid} belonging to #{User.find_by_id(Wishlist.find_by_id(@wishid).user_id).name}",:name => current_user.name, :content_id => 1)
-      if $arr.index(current_user.id) == nil
-        $arr.push(current_user.id)
-      end
-      $POOL_ARRAY[@wishid] = $arr
+      w = Wishlist.find_by_id(@wishid)
+      ar = w.poolers.scan(/\d+/)
+      if ar[1,ar.lenght-1].index(current_user.id.to_s) == nil 
+       w.poolers << " #{current_user.id}"
+       w.save!
+    end
+      
     elsif @reject == 1
       Notification.create(:owner_id => current_user.uid ,:user_id => @userid , :content => "rejected your pool request for gift #{@wishid} belonging to #{User.find_by_id(Wishlist.find_by_id(@wishid).user_id).name}",:name => current_user.name, :content_id => 1)
     end
@@ -88,7 +94,7 @@ class WishlistsController < ApplicationController
       @del.content_id = 0;
       @del.save!
     end
-    redirect_to root_url
+    
   end
 
 
@@ -170,6 +176,14 @@ class WishlistsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def readAll
+    current_user.notification.all.each do |n|
+      n.content_id = 0
+      n.save!
+    end
+  redirect_to root_url
   end
 
   def vote

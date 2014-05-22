@@ -329,7 +329,7 @@
          position: absolute;
          right: 25px;
          display: block;
-         opacity: 0;
+         /*opacity: 0;*/
          cursor: pointer;
          z-index: 1;
        }
@@ -342,7 +342,7 @@
         text-align: center;
         position: relative;
         vertical-align: middle;
-        opacity: 1;
+        /*opacity: 1;*/
 
       }
 
@@ -353,10 +353,10 @@
        bottom: 0;
       }
 
-      .thumbnail:hover
+      /*.thumbnail:hover
       {
          opacity: 0.5;
-      }
+      }*/
 
       .col-md-6
       {
@@ -451,7 +451,7 @@
         bottom: 0;
         margin-bottom: 10px;
         margin-left: 8px;
-        color: gray;
+        color: #ffffff;
       }
 
       .like_button:hover
@@ -471,6 +471,7 @@
 
      .add_delete_button
        {
+        z-index: 1;
         position: absolute;
         top: 0;
         right: 0;
@@ -482,6 +483,7 @@
        .glyphicon-trash
       {
         font-size: 18px; 
+        color: gray;
       }
 
        .add_delete_button:hover .glyphicon-trash
@@ -489,44 +491,27 @@
         color: #e74c3c;
        }
 
-      /*.add_button
-      {
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin-top: 8px;
-        margin-right: 20px;
-        z-index: 1;
-      }
-*/
       .add_delete_button:hover .glyphicon-floppy-save
       {
         color: #0C6;
       }
 
-      .glyphicon
-      {
-        color: gray;
-      }
-
       .glyphicon-floppy-save
       {
+        color: gray;
        font-size: 18px; 
       }
 
       .glyphicon-thumbs-up
       {
+        color: #ffffff;
         font-size: 18px;
       }
 
       .glyphicon-thumbs-down
       {
+        color: #ffffff;
         font-size: 18px;
-      }
-
-      .glyphicon-plus
-      {
-        font-size: 15px;
       }
 
       .glyphicon-plus:hover
@@ -542,6 +527,11 @@
          color:#D64541
       }
 
+      #pool-dropdown:hover i
+      {
+        color: #2ecc71;
+      }
+
       #magnet-dropdown{
         -webkit-filter: grayscale(1);
         font-size: 18px;
@@ -552,9 +542,14 @@
         color: #2ecc71;
       }
 
-     .green{
-          color: #2ecc71;      
-     }
+
+       #magnet-dropdown-active
+       {
+        -webkit-filter:none;
+        font-size: 18px;
+        color: #2ecc71;
+      }      
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
       .glyphicon-heart{
         color: #f17288;
       }

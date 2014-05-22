@@ -5,16 +5,6 @@
   <% wish.each do |t|%>
   <% if t.user_id == temp %>
     <li class="col-md-6">
-      
-      <% if user != current_user %>
-      <button id="pool-request" data-toggle = "modal" data-target = "#poolModal">pool</button>
-      <% if t.claimed != 1 and t.claimer != current_user %>
-      <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
-      <%elsif t.claimer== current_user.id%> 
-      <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
-      <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
-      <%end%>
-      <%end%>
       <div class="thumbnail" style="padding: 0">
         <div style="padding:4px;">
           <div class="gift-info">  
@@ -27,20 +17,6 @@
             
           </div> 
           </div>      
-          </div>
-          <div class="like_button">
-              <% div_id="refresh1_#{t.id}" %>
-              <div id="<%=div_id %>">
-              
-              <% if t.liked_by?(current_user).to_s == "false" %>
-                <%= link_to '<span class="glyphicon glyphicon-thumbs-up" title="Like"></span>'.html_safe, {controller:"wishlists", action:"vote" , wish_param: "#{t.id}" ,my_params: my_params} ,id: "sign_out", :remote => true %>
-              <%end%>
-              <% if t.liked_by?(current_user).to_s == "true" %>
-              <%= link_to '<span class="glyphicon glyphicon-thumbs-down" title="Unlike"></span>'.html_safe, {controller:"wishlists", action:"unvote" , wish_param: "#{t.id}",  my_params: my_params} ,id: "sign_out", :remote => true%>
-              <%end%>
-              <%= t.likers(User).count %>
-            </div>
-          </div>
           <div class="add_delete_button">
             <%if user == current_user %>
               <%= link_to '<span class="glyphicon glyphicon-trash" title="Remove Gift Item"></span>'.html_safe, {controller:"wishlists", action:"remove" , my_param: "#{t.id}" } %>
@@ -49,15 +25,33 @@
               <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price}, :userid => t.user_id ,:remote => true } %>
               <%end%>
           </div>
+          </div>
+          
+          <div class="gift-buttons">
+            <div class="btn btn-large btn-primary">
+              <% div_id="refresh1_#{t.id}" %>
+              <div id="<%=div_id %>">
+              <% if t.liked_by?(current_user).to_s == "false" %>
+                <%= link_to '<span class="glyphicon glyphicon-thumbs-up" title="Like"> Like</span>'.html_safe, {controller:"wishlists", action:"vote" , wish_param: "#{t.id}" ,my_params: my_params} ,id: "sign_out", :remote => true %>
+              <%end%>
+              <% if t.liked_by?(current_user).to_s == "true" %>
+                <%= link_to '<span class="glyphicon glyphicon-thumbs-up" title="Unlike"> Unlike</span>'.html_safe, {controller:"wishlists", action:"unvote" , wish_param: "#{t.id}",  my_params: my_params} ,id: "sign_out", :remote => true %>
+              <%end%>
+              <%= t.likers(User).count %>
+            </div>
+          </div>
           <% if user != current_user %>
-          <% if t.claimed != 1 and t.claimer != current_user %>
-          <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out"%>
-          <%elsif t.claimer== current_user.id%> 
-          <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
-          <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
+            <button id="pool-request"  data-toggle = "modal" data-target = "#poolModal" class="btn btn-large btn-danger" title="Invite for Pool">Pool</button>
+              <% if t.claimed != 1 and t.claimer != current_user %>
+                <%= link_to "Claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out", :class=>"btn btn-large btn-success" %>
+              <%elsif t.claimer== current_user.id%> 
+                <%= link_to "Unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out", :class=>"btn btn-large btn-success" %>
+              <%else%>
+                <%= User.find_by_id(t.claimer).name %> claimed this gift.
+              <%end%>
           <%end%>
-        <%end%>
-        </li>
+        </div>
+</li>
       
 
     
