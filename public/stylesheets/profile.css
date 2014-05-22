@@ -11,6 +11,10 @@
         padding-right: 15px;
       }
 
+      .ul{
+        list-style-type: none;
+      }
+
       .feed-icon{
         float: right;
         margin: 10px;
@@ -175,7 +179,31 @@
       .feed-posttext{
         display: inline-block;
         margin-bottom: 0;
+        word-wrap: break-word;
       }
+
+      .pool-posttext{
+        max-width: inherit;
+        margin-top: 2px;
+        padding: 5px;
+        font-size: 14px;
+        border-top: gainsboro;
+        border-width: 0px;
+        border-top-width: 1px;
+        border-style: solid;
+        word-wrap: break-word;
+      }
+
+      .feed-divider{
+        margin-top: 3px;
+        margin-bottom: 10px;
+        width: 100%;
+        border-top: gainsboro;
+        border-width: 0px;
+        border-top-width: 1px;
+        border-style: solid;
+      }
+
 
       .feed-time{
         font-size: 10px;
@@ -301,6 +329,24 @@
 		    margin-bottom:0px;
         line-height: normal;
       }
+
+      .member-container{
+        display:inline-block;
+        background-color: #ffffff;
+        vertical-align: middle;
+        height: 76px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px;
+        border-style: solid;
+        border-color: #DADFE1;
+      }
+
+      .member-media{
+        width:220px;
+        margin-bottom:0px;
+        line-height: normal;
+      }
       
       .friends-media-object{
          width:64px; 
@@ -310,7 +356,7 @@
       }
       
       .friends-media-body{
-        padding-top:5px;
+        padding-top:15px;
         font-size:12px;
         line-height: normal;
         text-align: left;
@@ -391,8 +437,8 @@
         position: relative;
         top:23px;
         z-index: 4999;
-        width: 80%;
-        left: 10%;
+        width: 95%;
+        left: 2%;
       }
 
     #startnode{
@@ -414,7 +460,7 @@
 
       .eventnode{
         position: absolute;
-        top: -10px;
+        top: -15px;
         font-size: 0px;
         color: #ffffff;
       }
@@ -428,8 +474,8 @@
       }
 
       .img-event{
-        height:25px;
-        width: 25px;
+        height:35px;
+        width: 35px;
         /*box-shadow: 3px 3px 3px #888888;*/
         border: 1px;
         border-style: solid;
@@ -706,7 +752,7 @@
       background-color: #ffffff;
       top: 105px;
       height: 100%;
-      overflow:scroll;
+      overflow:auto;
       padding: 1px;
     }
     
