@@ -68,18 +68,19 @@
     <div class="modal-dialog">
         <!-- <img id="birthday-loader" src="/images/new-loader.GIF" alt="Loading..." title="Loading..." /> -->
         <% i =  %>
-        <div class="modal-content" id="modal-cont">
+        <div class="modal-content" id="pool-modal-cont">
             <%= form_tag( controller: "wishlists", action: "requestpool",  method: "get") do %>
             <% friends_list.each do |hash| %>
             <% if hash["id"].in? uuid %>
             <% if hash["id"] != user.uid %>
-            <div class="friends-container">  
+            <div class="friends-container" style="padding:0px">  
             <div class="friends-media">
             
-            <div class="friends-media-body">
+            <div class="friends-media-body" style="padding:0px">
                 <h4 class="media-heading">
                 <%= check_box_tag("values[]", hash["id"]) %>
-                <%= label_tag("v[]", image_tag(fimage(hash["id"]),:class => "img-event img-circle")) %>
+                <%= label_tag("v[]", image_tag(fimage(hash["id"]),:class => "friends-media-object")) %>
+                  <div class="friends-media-body" style="display:inline-block;"><%= hash["name"] %></div>
                 <%= hidden_field_tag(:userid, "#{user.id}") %>
                 <%= hidden_field_tag(:wishid, "#{t.id}") %>
                 <%= hidden_field_tag(:notifif, "#{t.id}") %>

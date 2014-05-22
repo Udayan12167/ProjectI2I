@@ -319,13 +319,28 @@
     <script>  
       $(document).ready(function() {
 
+        $(document).ajaxStart( function(){
+           console.log('Start');
+        });
+
+        $( document ).ajaxStop(function() {
+          console.log('Stop');
+        });
+
         $.ajaxSetup({
+          
         'beforeSend' : function() {
-            console.log('ajazset');
-            $('pleasewaitelement').show();
+            console.log('ajaxset');
+            
+        },
+
+        'afterSend' : function() {
+            console.log('ajaxsent');
+           
         },
       'complete'   : function() {
-              $('pleasewaitelement').hide();
+            console.log('ajaxcomplete')
+            
         }
     });
         $(".like_button").hide();
