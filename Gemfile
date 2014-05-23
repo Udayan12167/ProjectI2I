@@ -11,10 +11,12 @@ gem 'socialization'
 gem 'kaminari'
 
 gem 'thin'
-gem 'open-uri'
+
+
 gem 'json'
-gem 'uri'
-gem 'net/http'
+
+
+
 
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
@@ -35,10 +37,9 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'public_activity'
 
 gem 'certified'
-gem 'thin'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', :platform => :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

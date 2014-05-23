@@ -178,7 +178,7 @@
   <% flag = 0 %>
   <% wish.each do |t|%>
   <% if t.claimer == current_user.id %>
-    <% flag = 1 %>
+    
     <li class="col-md-6">
       
       
@@ -205,10 +205,11 @@
           <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
           <%end%>
         <%end%>
-        
+        <%= User.find_by_id(t.user_id).name %>
+        <%= image_tag(User.find_by_id(t.user_id).largeimage) %>
         </li>
       
-        <% if flag == 0 %> No Items to be displayed <%end%>
+        
 
     
 

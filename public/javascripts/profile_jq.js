@@ -32,10 +32,17 @@ $('html').click(function(event)
 });
 
 
+$(document).ajaxStart( function(){
+   console.log('Start');
+})
+
+$( document ).ajaxStop(function() {
+  console.log('Stop');
+});
 
 $('#addwish-btn').click(function(){
-            $("#addwish-panel").slideToggle();
-          });
+   $("#addwish-panel").slideToggle();
+    });
 
 
  $('#invite-btn').click(function(){
@@ -105,3 +112,14 @@ $('img').on('load',function(){
 });
 
 //$('eventnode').tooltip(options)
+ // ADD SLIDEDOWN ANIMATION TO DROPDOWN //
+  $('.dropdown').on('show.bs.dropdown', function(e){
+    $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+  });
+
+  // ADD SLIDEUP ANIMATION TO DROPDOWN //
+  $('.dropdown').on('hide.bs.dropdown', function(e){
+    $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
+  });
+
+ 
