@@ -17,7 +17,7 @@
         <%t = Wishlist.all.find_by_id(id1) %>
         <%user = User.find_by_id(@del.user_id) %>
         <% if t != nil %>
-            <li class="col-md-6">
+            <div class="col-md-6" style="float:none">
                 <div class="thumbnail" style="padding: 0">
                     <div style="padding:4px;">
                         <div class="gift-info">  
@@ -30,31 +30,31 @@
                                 </p>
                         </div>  
                     </div>
-                    <div class="like_button">     
+                </div>
+                <div class="btn btn-large btn-primary">     
                         <% div_id="refreshnotif_#{t.id}" %>
                         <div id="<%=div_id %>">
                             <% if t.liked_by?(current_user).to_s == "false" %>
-                                <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, {controller:"wishlists", action:"vote" , wish_param: "#{t.id}" ,my_params: "#{t.user_id}"} ,id: "sign_out", :remote => true %>
+                                <%= link_to '<span class="glyphicon glyphicon-thumbs-up">Like</span>'.html_safe, {controller:"wishlists", action:"vote" , wish_param: "#{t.id}" ,my_params: "#{t.user_id}"} ,id: "sign_out", :remote => true %>
                             <%end%>
                             <% if t.liked_by?(current_user).to_s == "true" %>
-                                <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, {controller:"wishlists", action:"unvote" , wish_param: "#{t.id}",  my_params: "#{t.user_id}"} ,id: "sign_out", :remote => true%>
+                                <%= link_to '<span class="glyphicon glyphicon-thumbs-up">Unlike</span>'.html_safe, {controller:"wishlists", action:"unvote" , wish_param: "#{t.id}",  my_params: "#{t.user_id}"} ,id: "sign_out", :remote => true%>
                             <%end%>
                             <%= t.likers(User).count %>
                         </div>
                     </div>
-                </div>
                 <div class="add_delete_button">
                     <% if user == current_user %>
                         <%= link_to '<span class="glyphicon glyphicon-floppy-save" title="Add Gift Item"></span>'.html_safe ,{:controller => "wishlists",:action => "create",:wishlist => {:link => t.link ,:price => t.price},:remote => true } %>
                     <%end%>
                 </div>  
                 <% if t.claimed != 1 and t.claimer != current_user %>
-               <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
+               <%= link_to "Claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out",  :class=>"btn btn-large btn-success",:remote => true  %>
                <%elsif t.claimer== current_user.id%> 
-                <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
+                <%= link_to "Unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out", :class=>"btn btn-large btn-succes", :remote => true  %>
                  <%else%> claimed by <%= User.find_by_id(t.claimer).name %>  
                  <%end%>        
-            </li>
+            </div>
             <% if @del.content["invited"] == "invited" %>
                 <%= form_tag( controller: "wishlists", action: "responsepool",  method: "get") do %>
                     <%= radio_button_tag("accept", "1") %>
@@ -67,7 +67,6 @@
                 <%end%>
             <%end%>
         <%end%>
-        <span class="glyphicon glyphicon-heart feed-icon"></span>
     </div>
 </div>
 
