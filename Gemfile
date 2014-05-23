@@ -12,6 +12,12 @@ gem 'kaminari'
 
 gem 'thin'
 
+
+gem 'json'
+
+
+
+
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 

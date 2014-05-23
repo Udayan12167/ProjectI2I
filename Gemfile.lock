@@ -194,6 +194,7 @@ DEPENDENCIES
   fb_graph
   jbuilder (~> 1.2)
   jquery-rails
+  json
   kaminari
   koala
   mysql2

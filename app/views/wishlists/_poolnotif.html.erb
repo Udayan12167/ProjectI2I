@@ -57,10 +57,10 @@
             </li>
             <% if @del.content["invited"] == "invited" %>
                 <%= form_tag( controller: "wishlists", action: "responsepool",  method: "get") do %>
-                    <%= radio_button_tag("accept", "1") %>
+                    <%= radio_button_tag("response", "accept") %>
                     <%= label_tag("v1", "Accept Pool invite") %>
-                    <%= radio_button_tag("reject", "1") %>
-                    <%= label_tag("v2", "Reject Pool invite" )%>
+                    <%= radio_button_tag("response", "reject") %>
+                    <%= label_tag("v1", "Reject Pool invite" )%>
                     <%= hidden_field_tag(:userid, "#{@del.owner_id}") %>
                      <%= hidden_field_tag(:wishid, "#{t.id}") %>
                      <%= hidden_field_tag(:notifid, "#{@notifid}") %>
