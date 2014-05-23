@@ -286,6 +286,24 @@
         padding-bottom: 20px;   
       }
 
+      .input-poolpost{
+        overflow: hidden;
+        display: inline-block;
+        border: gainsboro;
+        border-style: solid;
+        border-width: thin;
+        border-radius: 5px;
+        padding: 0px;
+        padding-left: 2px;
+        padding-right: 2px;
+        font-size: 14px;
+        width: 80%;
+      }
+
+      .post-textarea{
+        display: inline;
+      }
+
        .img-gift
       {
         max-width: 100%;

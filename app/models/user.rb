@@ -34,9 +34,34 @@ class User < ActiveRecord::Base
 
   def books
     graph= Koala::Facebook::GraphAPI.new(self.oauth_token)
-      @friends=graph.get_connections("me","movies")
+      @books=graph.get_connections("me","video.watches")
       # a = JSON.parse(open(URI.escape("http://graph.facebook.com/#{self.uid}/likes?access_token=#{self.oauth_token}")).read)
-      return @friends
+      # a = JSON.parse(@friends)
+      return @books
+  end
+  def television
+    graph= Koala::Facebook::GraphAPI.new(self.oauth_token)
+      @tv=graph.get_connections("me","television")
+      # a = JSON.parse(open(URI.escape("http://graph.facebook.com/#{self.uid}/likes?access_token=#{self.oauth_token}")).read)
+      return @tv
+  end
+  def movies
+    graph= Koala::Facebook::GraphAPI.new(self.oauth_token)
+      @movies=graph.get_connections("me","movies")
+      # a = JSON.parse(open(URI.escape("http://graph.facebook.com/#{self.uid}/likes?access_token=#{self.oauth_token}")).read)
+      return @movies
+  end
+  def music
+    graph= Koala::Facebook::GraphAPI.new(self.oauth_token)
+      @music=graph.get_connections("me","music")
+      # a = JSON.parse(open(URI.escape("http://graph.facebook.com/#{self.uid}/likes?access_token=#{self.oauth_token}")).read)
+      return @music
+  end
+  def games
+    graph= Koala::Facebook::GraphAPI.new(self.oauth_token)
+      @games=graph.get_connections("me","games")
+      # a = JSON.parse(open(URI.escape("http://graph.facebook.com/#{self.uid}/likes?access_token=#{self.oauth_token}")).read)
+      return @games
   end
 
   def coverimage

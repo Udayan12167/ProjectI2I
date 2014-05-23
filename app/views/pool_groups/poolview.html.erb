@@ -190,15 +190,19 @@
               </div>
             </div>
             <h4 class="text-center">Pool Group Discussion</h4>
+            <div style="position:relative">
+            <%= image_tag(current_user.largeimage, :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
             
-            <%= form_tag(:controller => "pool_groups" , :action => "chat", method: "get") do %>
+            <%= form_tag({:controller => "pool_groups" , :action => "chat", method: "get"},{:class=>"post-textarea"}) do %>
             
-              <%= text_field_tag :q,nil ,:class=>"input-poolpost" %>
+              <%= text_area_tag :q,nil,:class=>"input-poolpost" %>
               <%= hidden_field_tag(:wishid, "#{@wishid}") %>
               <%= hidden_field_tag(:members, "#{@members}") %>
 
-              <%= submit_tag("post") %>
+              <%= submit_tag("post",:class=>"btn btn-default") %>
             <% end %>
+            </div>
+            <div class="feed-divider"></div>
             <% w = Wishlist.find_by_id(@wishid) %>
             <% w.pool_group.order("created_at desc").each do |d| %>
               <% if d.content != nil %>

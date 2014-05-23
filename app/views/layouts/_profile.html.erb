@@ -190,10 +190,14 @@
             <%= link_to ({controller: "wishlists" , action: "claimview"}) do %>
             <div class="list-group-item recent" id="recent-claims" data-toggle="tooltip" data-placement="top" title="see all claims"> Recently Claimed Gifts <span class="glyphicon glyphicon-flag" style="float:right;"></span></div>
               <%end%>
+
               <div class="list-group" id="claim-list">
-                <%= render 'layouts/claimview' %>
                 
-              </div>
+                <%= render 'layouts/claimview' %>
+                </div>
+
+
+              
             
             <div class="list-group-item recent" id="recent-pools" title="see all pools">Gift Pools <span class="glyphicon glyphicon-magnet" style="float:right;"></span></div>
               <div class="list-group" >
@@ -214,8 +218,7 @@
                
               </div>
 
-          </div>
-        </div>
+                  </div>
       </div>
     </div><!-- left-sidebar -->
     <div class="row row-offcanvas row-offcanvas-right" title>
@@ -229,12 +232,13 @@
                  <% if d - Date.today < 1  && d - Date.today >= 0%>
                   <div class="birthday-container" data-toggle="tooltip" data-placement="top">
                    <%= image_tag(fimage(i["id"]),class: "img-birthday") %> 
-                   <p id="bday-username"><%= i["name"] %><p> 
+                   <p id="bday-username"><%= i["name"] %><p> <br>
                  </div>
                  <%end%>
                  <%end%>
               
                  <%end%>
+                 
            </div>         
         </div>
       </div>
