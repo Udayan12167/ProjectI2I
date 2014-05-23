@@ -155,14 +155,14 @@
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
 
-        <div class="well sidebar-nav pull-left well-sm" id="trends-sidebar" style="overflow:hidden"title >
+        <div class="well sidebar-nav pull-left well-sm" id="trends-sidebar" style="width:24%;overflow:auto"title >
           
           <canvas id="myChart" width="300" height="300"></canvas>
           <div id="chart-legend">
                 <i class="glyphicon glyphicon-stop" style="color:#F7464A"></i> Books: <i style="margin:0" id="book-count" ><%= user.books.count %></i> likes <br>               
-                <i class="glyphicon glyphicon-stop" style="color:#E2EAE9"></i> Movies: <i style="margin:0" id="movies-count" ><%= user.movies.count %></i> likes <br>              
+                <i class="glyphicon glyphicon-stop" style="color:#E2EAE9"></i> Movies: <i style="margin:0" id="movie-count" ><%= user.movies.count %></i> likes <br>              
                 <i class="glyphicon glyphicon-stop" style="color:#D4CCC5"></i> TV: <i style="margin:0" id="tv-count" ><%= user.television.count %></i> likes <br>             
-                <i class="glyphicon glyphicon-stop" style="color:#949FB1"></i> Games: <i style="margin:0" id="games-count" ><%= user.games.count %></i> likes <br>             
+                <i class="glyphicon glyphicon-stop" style="color:#949FB1"></i> Games: <i style="margin:0" id="game-count" ><%= user.games.count %></i> likes <br>             
                 <i class="glyphicon glyphicon-stop" style="color:#4D5360"></i> Music: <i style="margin:0" id="music-count" ><%= user.music.count %></i> likes 
                 </div>
 
