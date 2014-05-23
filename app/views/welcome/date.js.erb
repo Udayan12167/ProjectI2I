@@ -1,5 +1,5 @@
 
-$("#modal-contProfile").html("<%= escape_javascript(render :partial => 'welcome/date')%>")
+$("#modal-contProfile").html("<%= j(render :partial => 'welcome/date')%>")
 
 jQuery.ajaxPrefilter(function( options ) {
     options.global = true;
@@ -14,6 +14,9 @@ $(document).ajaxStart( function(){
    console.log('Start');
 })
 
+$( document ).ajaxStop(function() {
+  console.log('Stop');
+});
 
 $('#basicModal').on('shown.bs.modal', function () {
 	console.log('basicModal shown');
@@ -24,3 +27,4 @@ $('#basicModal').on('hidden.bs.modal', function () {
 	$("#modal-contProfile").html("");
 	console.log('basicModal hidden');
 })
+

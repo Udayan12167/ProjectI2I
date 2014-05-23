@@ -11,6 +11,10 @@
         padding-right: 15px;
       }
 
+      .ul{
+        list-style-type: none;
+      }
+
       .feed-icon{
         float: right;
         margin: 10px;
@@ -61,6 +65,7 @@
         width: 60%;
         top: 70px;
         padding-top: 10px;
+        background-color: transparent;
       }
 
       .jumbotron.pool {
@@ -108,8 +113,12 @@
         background-color: #27ae60;
       }
 
+      .badge.poolreq-count{
+        background-color: #c0392b;
+      }
+
       .dropdown-menu{ 
-        width: 430px;      
+        width: 300px;      
         height: auto;
         max-height: 500px;
         overflow: auto;
@@ -170,7 +179,31 @@
       .feed-posttext{
         display: inline-block;
         margin-bottom: 0;
+        word-wrap: break-word;
       }
+
+      .pool-posttext{
+        max-width: inherit;
+        margin-top: 2px;
+        padding: 5px;
+        font-size: 14px;
+        border-top: gainsboro;
+        border-width: 0px;
+        border-top-width: 1px;
+        border-style: solid;
+        word-wrap: break-word;
+      }
+
+      .feed-divider{
+        margin-top: 3px;
+        margin-bottom: 10px;
+        width: 100%;
+        border-top: gainsboro;
+        border-width: 0px;
+        border-top-width: 1px;
+        border-style: solid;
+      }
+
 
       .feed-time{
         font-size: 10px;
@@ -296,6 +329,24 @@
 		    margin-bottom:0px;
         line-height: normal;
       }
+
+      .member-container{
+        display:inline-block;
+        background-color: #ffffff;
+        vertical-align: middle;
+        height: 76px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px;
+        border-style: solid;
+        border-color: #DADFE1;
+      }
+
+      .member-media{
+        width:220px;
+        margin-bottom:0px;
+        line-height: normal;
+      }
       
       .friends-media-object{
          width:64px; 
@@ -305,7 +356,7 @@
       }
       
       .friends-media-body{
-        padding-top:5px;
+        padding-top:15px;
         font-size:12px;
         line-height: normal;
         text-align: left;
@@ -325,7 +376,7 @@
          position: absolute;
          right: 25px;
          display: block;
-         opacity: 0;
+         /*opacity: 0;*/
          cursor: pointer;
          z-index: 1;
        }
@@ -338,7 +389,7 @@
         text-align: center;
         position: relative;
         vertical-align: middle;
-        opacity: 1;
+        /*opacity: 1;*/
 
       }
 
@@ -349,10 +400,10 @@
        bottom: 0;
       }
 
-      .thumbnail:hover
+      /*.thumbnail:hover
       {
          opacity: 0.5;
-      }
+      }*/
 
       .col-md-6
       {
@@ -386,8 +437,8 @@
         position: relative;
         top:23px;
         z-index: 4999;
-        width: 80%;
-        left: 10%;
+        width: 95%;
+        left: 2%;
       }
 
     #startnode{
@@ -409,7 +460,7 @@
 
       .eventnode{
         position: absolute;
-        top: -10px;
+        top: -15px;
         font-size: 0px;
         color: #ffffff;
       }
@@ -423,8 +474,8 @@
       }
 
       .img-event{
-        height:25px;
-        width: 25px;
+        height:35px;
+        width: 35px;
         /*box-shadow: 3px 3px 3px #888888;*/
         border: 1px;
         border-style: solid;
@@ -447,7 +498,7 @@
         bottom: 0;
         margin-bottom: 10px;
         margin-left: 8px;
-        color: gray;
+        color: #ffffff;
       }
 
       .like_button:hover
@@ -467,6 +518,7 @@
 
      .add_delete_button
        {
+        z-index: 1;
         position: absolute;
         top: 0;
         right: 0;
@@ -478,6 +530,7 @@
        .glyphicon-trash
       {
         font-size: 18px; 
+        color: gray;
       }
 
        .add_delete_button:hover .glyphicon-trash
@@ -485,44 +538,27 @@
         color: #e74c3c;
        }
 
-      /*.add_button
-      {
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin-top: 8px;
-        margin-right: 20px;
-        z-index: 1;
-      }
-*/
       .add_delete_button:hover .glyphicon-floppy-save
       {
         color: #0C6;
       }
 
-      .glyphicon
-      {
-        color: gray;
-      }
-
       .glyphicon-floppy-save
       {
+        color: gray;
        font-size: 18px; 
       }
 
       .glyphicon-thumbs-up
       {
+        color: #ffffff;
         font-size: 18px;
       }
 
       .glyphicon-thumbs-down
       {
+        color: #ffffff;
         font-size: 18px;
-      }
-
-      .glyphicon-plus
-      {
-        font-size: 15px;
       }
 
       .glyphicon-plus:hover
@@ -538,6 +574,30 @@
          color:#D64541
       }
 
+      #pool-dropdown:hover i
+      {
+        -webkit-filter: none;
+        color: #d35400;
+      }
+
+      #magnet-dropdown{
+        -webkit-filter: grayscale(1);
+        font-size: 18px;
+      }
+
+      #magnet-dropdown:hover{
+        -webkit-filter:none;
+        color: #d35400;
+      }
+
+
+       #magnet-dropdown-active
+       {
+        -webkit-filter:none;
+        font-size: 18px;
+        color: #d35400;
+      }      
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
       .glyphicon-heart{
         color: #f17288;
       }
@@ -611,6 +671,10 @@
       text-align:center;
     }
 
+    #pool-modal-cont {
+      padding: 10px;
+      }
+
     #profile-list{
       position: relative;
       margin-top: 10px;
@@ -646,6 +710,10 @@
 		#searchbar{
 			position:fixed; 
 			width:inherit;
+      border: gainsboro;
+      border-style: solid;
+      border-width: thin;
+      border-radius: 5px;
 		}
 		
 		#brand-logo{
@@ -685,7 +753,7 @@
       background-color: #ffffff;
       top: 105px;
       height: 100%;
-      overflow:scroll;
+      overflow:auto;
       padding: 1px;
     }
     

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 
+  $POOL_ARRAY = Hash.new
   include PublicActivity::StoreController
   def fimage(id)
     "http://graph.facebook.com/#{id}/picture?type=large"

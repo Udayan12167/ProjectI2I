@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519072309) do
+ActiveRecord::Schema.define(version: 20140522074121) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 20140519072309) do
     t.integer  "content_id"
   end
 
+  create_table "pool_groups", force: true do |t|
+    t.string   "poolers"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "wishlist_id"
+    t.integer  "user_id"
+    t.string   "content"
+  end
+
   create_table "sessions", force: true do |t|
     t.string   "session_id", null: false
     t.text     "data"
@@ -111,6 +120,7 @@ ActiveRecord::Schema.define(version: 20140519072309) do
     t.datetime "updated_at"
     t.integer  "claimed"
     t.integer  "claimer"
+    t.string   "poolers"
   end
 
   add_index "wishlists", ["user_id", "created_at"], name: "index_wishlists_on_user_id_and_created_at", using: :btree

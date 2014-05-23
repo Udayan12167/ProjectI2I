@@ -65,6 +65,25 @@
         </div>       
     <div class="collapse navbar-collapse">
           <ul id="menu-bar" class="nav navbar-nav">
+              <li class="dropdown" title="Pool Requests">
+             <a href="#" data-toggle="dropdown" id="pool-dropdown" class="dropdown-toggle"><i class="glyphicon glyphicon-magnet" id="magnet-dropdown"></i><span id="poolreq-count" class="poolreq-count badge">
+                    <% notifcount=0 %>
+                    <% current_user.notification.each do |t| %>
+                    <% if t.content_id == 1 && t.content["invited"] %>
+                    <% notifcount=notifcount+1 %>
+                    <% end%>
+                    <% end%>
+                    <%= notifcount %>
+
+                  </span></a>
+              <ul class="dropdown-poolreq dropdown-menu pull-right" id="Poolreq-List">
+                <%= render 'layouts/poolnotif' %>
+
+                  
+                    
+
+                  </ul>
+             </li>
              <li class="dropdown" title="Notification">
              <a href="#" data-toggle="dropdown" id="notif-dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification-inactive",:class => "menu-icon") %><span id="notificaton-count" class="notification-count badge">
                 <%= render 'layouts/notifcount' %>
@@ -161,7 +180,7 @@
         <div id="profile-info">
          
           <div class="profile-dp-container">
-            <%= image_tag(current_user.largeimage, :class => "display-pic img-thumbnail")%>
+            <%= image_tag(current_user.coverimage, :class => "display-pic img-thumbnail")%>
           </div>
            <div class="container" style="display: inline-block">
             <p><b><%= current_user.name %></b></p>
@@ -188,11 +207,20 @@
             
             <div class="list-group-item recent" id="recent-pools" title="see all pools">Gift Pools <span class="glyphicon glyphicon-magnet" style="float:right;"></span></div>
               <div class="list-group" >
-                <%= 3.times do %>
-                  <%= link_to ({controller: "wishlists" , action: "poolview"}) do %>
-                  <div class="pool-item list-group-item">recent pool 1</div>
+                <% Wishlist.all.each do |w|%>
+                <% if w.poolers != nil %>
+                <% ar = w.poolers.scan(/\d+/) %>
+                  <%= link_to ({controller: "pool_groups" , action: "poolview" ,wishid: w.id, :members => ar}) do %>
+                  
+                   <% if ar.index(current_user.id.to_s) != nil %>
+                      <div class="pool-item list-group-item">
+                        Pool member:wishlist item <%= w.id %>
+                      </div>
+                  <%end%>
                   <%end%>
                 <%end%>
+                <%end%>
+                
                
               </div>
 
@@ -305,13 +333,28 @@
     <script>  
       $(document).ready(function() {
 
+        $(document).ajaxStart( function(){
+           console.log('Start');
+        });
+
+        $( document ).ajaxStop(function() {
+          console.log('Stop');
+        });
+
         $.ajaxSetup({
+          
         'beforeSend' : function() {
-            console.log('ajazset');
-            $('pleasewaitelement').show();
+            console.log('ajaxset');
+            
+        },
+
+        'afterSend' : function() {
+            console.log('ajaxsent');
+           
         },
       'complete'   : function() {
-              $('pleasewaitelement').hide();
+            console.log('ajaxcomplete')
+            
         }
     });
         $(".like_button").hide();
