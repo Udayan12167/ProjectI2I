@@ -76,7 +76,10 @@ helper_method :poolview
      PoolGroup.create(:wishlist_id => w.id, :user_id => current_user.id, :poolers => w.poolers, :content => " #{@content}")
      # PoolGroups.poolview(:wishid => @wishid, :@members => @members, :@itemm => @itemm)
      session[:return_to] ||= request.referer
-     redirect_to session.delete(:return_to)
+     #redirect_to session.delete(:return_to)
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

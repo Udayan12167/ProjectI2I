@@ -1,0 +1,13 @@
+<% w = Wishlist.find_by_id(@wishid) %>
+<% w = w.pool_group.order("created_at desc") %>
+<% d = w[0] %>
+<div class="feed-container">
+                <div class="feed-text">
+                    <%= image_tag(fimage(User.find_by_id(d.user_id).uid), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
+                    <div style="display:inline-block; vertical-align: top;">
+                        <p class="feed-time"><%= d.created_at %> </p>
+                        <a class="feed-username" href=""><%= User.find_by_id(d.user_id).name %></a>
+                    </div>
+                    <p class="pool-posttext"><%= d.content %> </p>
+                  </div>
+                </div>
