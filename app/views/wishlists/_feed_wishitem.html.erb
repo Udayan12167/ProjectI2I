@@ -54,7 +54,8 @@
                             <%= t.likers(User).count %>
                         </div>
                     </div>
-                <div class="claim_button" id="feed-claim-button">
+                    <% claim_id="claim_feed_#{t.id}" %>
+                <div class="claim_button" id="<%= claim_id %>">
                 <% if t.claimed != 1 and t.claimer != current_user %>
                     <%= link_to "Claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out", :class=> "btn btn-large btn-success" ,:remote => true%>
                <%elsif t.claimer== current_user.id%> 
