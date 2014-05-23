@@ -1,4 +1,7 @@
-$('#feed-claim-button').html("<%= escape_javascript(render :partial => "wishlists/claim" )%>");
+<% claim_feed_id="claim_feed_#{@wishid}" %>
+$('#<%= claim_feed_id%>').html("<%= escape_javascript(render :partial => "wishlists/claim" )%>");
+<% claim_notif_id="claimnotif_#{@wishid}" %>
+$('#<%= claim_notif_id%>').html("<%= escape_javascript(render :partial => "wishlists/claim" )%>");
 $('#claim-list').html("<%= escape_javascript(render :partial => "layouts/claimview" )%>");
 <% claim_id="claim_#{@wishid}"%>
 $('#<%=claim_id%>').html("<%= escape_javascript(render :partial => "wishlists/claim_friendview")%>");

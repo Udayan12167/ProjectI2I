@@ -1,4 +1,7 @@
+$('#Link-text').val('');
+$('#Price-text').val('');
 $('#refresh').html("<%= j(render 'wishlists/wishlist' , :my_params => current_user.id) %>");
+$("#addwish-panel").slideToggle();
 $('img').on('load',function(){
   call_resize_image()
 });

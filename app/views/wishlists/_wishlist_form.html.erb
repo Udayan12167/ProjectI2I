@@ -1,12 +1,10 @@
 <% @wishlist=current_user.wishlist.build %>
 <%= form_for(@wishlist,:remote=> true) do |f| %>
 	<div>
-		<%= f.text_area :link,placeholder: "Link of item..." %>
+		<%= f.text_area :link,placeholder: "Link of item...",id: "Link-text" %>
 	</div>
 	<div>
-		<%= f.text_area :price,placeholder: "Price" %>
+		<%= f.text_area :price,placeholder: "Price" ,id:"Price-text"%>
 	</div>
 	<%= f.submit "Post" , class: "btn btn-large btn-primary"%>
 <% end %> 
-
-

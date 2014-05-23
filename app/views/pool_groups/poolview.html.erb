@@ -1,3 +1,5 @@
+<% @members = @members.to_s.scan(/\d+/) %>
+<% if @members.index(current_user.id.to_s) != nil %>
 
 <!DOCTYPE html>
 
@@ -127,7 +129,7 @@
     <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <!-- <img id="birthday-loader" src="/images/new-loader.GIF" alt="Loading..." title="Loading..." /> -->
-        <div class="modal-content" id="modal-cont">
+        <div class="modal-content" id="modal-contProfile">
         </div>
       </div>
     </div>
@@ -189,24 +191,26 @@
                 45% 
               </div>
             </div>
+            <%= link_to "exitpool" , {controller: "wishlists", action: "exitpool", :wishid => @wishid} , :confirm => "Are you sure you want to do that?"%>
             <h4 class="text-center">Pool Group Discussion</h4>
             <div style="position:relative">
             <%= image_tag(current_user.largeimage, :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
             
-            <%= form_tag({:controller => "pool_groups" , :action => "chat", method: "get"},{:class=>"post-textarea"}) do %>
+            <%= form_tag({:controller => "pool_groups" , :action => "chat", method: "get"},:class=>"post-textarea",:remote => true) do %>
             
               <%= text_area_tag :q,nil,:class=>"input-poolpost" %>
               <%= hidden_field_tag(:wishid, "#{@wishid}") %>
               <%= hidden_field_tag(:members, "#{@members}") %>
 
-              <%= submit_tag("post",:class=>"btn btn-default") %>
+              <%= submit_tag("post",:class=>"btn btn-default",:remote => true) %>
             <% end %>
             </div>
             <div class="feed-divider"></div>
             <% w = Wishlist.find_by_id(@wishid) %>
             <% w.pool_group.order("created_at desc").each do |d| %>
               <% if d.content != nil %>
-               
+              <% pool_chat_id="Pool-chat-#{@wishid}" %>
+              <div id="<%= pool_chat_id%>"> 
               <div class="feed-container">
                 <div class="feed-text">
                     <%= image_tag(fimage(User.find_by_id(d.user_id).uid), :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
@@ -217,6 +221,7 @@
                     <p class="pool-posttext"><%= d.content %> </p>
                   </div>
                 </div>
+              </div>
               <%end%>
               <%end%>
             
@@ -243,3 +248,7 @@
   </body>
 
 </html>
+
+<%else%>
+<%= render :file => "#{Rails.root}/public/404.html",  :status => 404 %>
+<%end%>

@@ -8,7 +8,7 @@
             <p class="feed-time"> <%= activity.relative_time(activity.created_at) %></p>
             <%end%>
        
-            <a class="feed-username" href=""><%= link_to activity.name , root_url  %></a>
+            <%= link_to activity.name , { :controller => 'friendview', :action => 'index',my_params: User.find_by_name(activity.name).id} ,:class=>"feed-username" %>
             <p class="feed-posttext"> <%=activity.content %> </p>
         </div>
 
@@ -54,7 +54,8 @@
                             <%= t.likers(User).count %>
                         </div>
                     </div>
-                <div class="claim_button" id="feed-claim-button">
+                    <% claim_id="claim_feed_#{t.id}" %>
+                <div class="claim_button" id="<%= claim_id %>">
                 <% if t.claimed != 1 and t.claimer != current_user %>
                     <%= link_to "Claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out", :class=> "btn btn-large btn-success" ,:remote => true%>
                <%elsif t.claimer== current_user.id%> 

@@ -20,9 +20,7 @@ class WishlistsController < ApplicationController
          Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist #{@wishlist.id} via #{@username}",:name => current_user.name, :content_id => 1)
       elsif t.user_id==current_user.id
         Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist #{@wishlist.id}",:name => current_user.name, :content_id => 1)
-        Pusher["#{t.friend_id}"].trigger('my_event', {
-      message: 'hello world'
-    })
+    
       end
       if params[:flag] != nil 
         redirect_to root_url
@@ -37,6 +35,7 @@ class WishlistsController < ApplicationController
   end
 
   def destroy
+    @wishlist.destroy
   end
 
 
@@ -57,8 +56,8 @@ class WishlistsController < ApplicationController
     w.save!
    PoolGroup.create(:wishlist_id => w.id, :poolers => w.poolers)
    $id = PoolGroup.find_by_wishlist_id_and_poolers(w.id,w.poolers).id
-  session[:return_to] ||= request.referer
-  redirect_to session.delete(:return_to)
+  # session[:return_to] ||= request.referer
+  # redirect_to session.delete(:return_to)
   end
 
 
@@ -104,7 +103,15 @@ class WishlistsController < ApplicationController
     redirect_to session.delete(:return_to)
   end
 
-
+  def exitpool
+    @wishid = params[:wishid]
+    @w = Wishlist.find_by_id(@wishid)
+    @a = @w.poolers.to_s.scan(/\d+/)
+    @a.delete(current_user.id.to_s)
+    @w.poolers = @a.to_s
+    @w.save!
+    redirect_to root_url
+  end
 
   def claimed
     @wishid = params[:wishid]
@@ -118,7 +125,11 @@ class WishlistsController < ApplicationController
             t.claimed = 1;
             t.claimer = @claimer
             t.save!
-            Notification.create(:owner_id => current_user.uid ,:user_id => @userid , :content => "claimed wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}",:name => current_user.name, :content_id => 1)
+            Friendship.all.each do |t|
+              if t.user_id==current_user.id && t.friend_id != User.find_by_id(Wishlist.find_by_id(@wishid).user_id).id
+                 Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "claimed wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}",:name => current_user.name, :content_id => 1)
+              end
+            end
           end
         end
       end
@@ -140,12 +151,13 @@ class WishlistsController < ApplicationController
             t.claimed = nil;
             t.claimer = nil
             t.save!
-            current_user.notification.each do |n|
              temp =  Notification.find_by_content("claimed wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}")
-             if temp != nil
+             while temp!= nil
               Notification.delete(temp)
-            end
-          end
+              temp =  Notification.find_by_content("claimed wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}")
+              end
+
+            
           end
         end
       end
@@ -159,7 +171,18 @@ class WishlistsController < ApplicationController
     @object = params[:my_param]
     current_user.wishlist.each do |t|
       if @object.to_i == t.id.to_i
-        current_user.wishlist.delete(t)
+        t.destroy
+        t.pool_group.destroy
+        Notification.all.each do |n|
+          if n.content.scan(/\d+/).first.to_i == t.id.to_i
+            n.destroy
+          end
+        end
+        Like.all.each do |l|
+          if l.likeable_id == t.id.to_i
+            Like.all.delete(l)
+          end
+        end
       end
     end
     redirect_to root_url

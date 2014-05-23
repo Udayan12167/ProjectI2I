@@ -131,7 +131,7 @@
     <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <!-- <img id="birthday-loader" src="/images/new-loader.GIF" alt="Loading..." title="Loading..." /> -->
-        <div class="modal-content" id="modal-cont">
+        <div class="modal-content" id="modal-contProfile">
         </div>
       </div>
     </div>
@@ -154,6 +154,7 @@
     </div><!-- left-sidebar -->
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
+
         <div class="well sidebar-nav pull-left well-sm" id="trends-sidebar" style="overflow:hidden"title >
           
           <canvas id="myChart" width="300" height="300"></canvas>
@@ -164,6 +165,7 @@
                 <i class="glyphicon glyphicon-stop" style="color:#949FB1"></i> Games: <i style="margin:0" id="games-count" ><%= user.games.count %></i> likes <br>             
                 <i class="glyphicon glyphicon-stop" style="color:#4D5360"></i> Music: <i style="margin:0" id="music-count" ><%= user.music.count %></i> likes 
                 </div>
+
 
         </div>
       </div>
@@ -216,6 +218,16 @@
             </div>
             
           </div><!-- centre -->
+          <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- <img id="birthday-loader" src="/images/new-loader.GIF" alt="Loading..." title="Loading..." /> -->
+        <div class="modal-content" id="modal-contFriendView">
+            
+            
+          
+        </div>
+    </div>
+          </div>
       
        
     <footer>
