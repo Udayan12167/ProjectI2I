@@ -180,8 +180,11 @@
   <% if t.claimer == current_user.id %>
     
     <li class="col-md-6">
-      
-      
+    <div class="feed-text" style="background-color: white;border-radius: 5px;border: gainsboro;border-width: thin;border-style: solid;padding: 2px;">
+      Gift for
+        <%= User.find_by_id(t.user_id).name %>
+        <%= image_tag(User.find_by_id(t.user_id).largeimage,class: "feed-thumbnail",style: "float:right") %>
+        </div>
       <button id="pool-request" data-toggle = "modal" data-target = "#poolModal">pool</button>
       <div class="thumbnail" style="padding: 0">
         <div style="padding:4px;">
@@ -205,8 +208,7 @@
           <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
           <%end%>
         <%end%>
-        <%= User.find_by_id(t.user_id).name %>
-        <%= image_tag(User.find_by_id(t.user_id).largeimage) %>
+        
         </li>
       
         

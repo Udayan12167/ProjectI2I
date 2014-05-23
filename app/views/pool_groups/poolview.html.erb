@@ -189,11 +189,11 @@
                 45% 
               </div>
             </div>
-            <h3>Pool Group Discussion</h3>
+            <h4 class="text-center">Pool Group Discussion</h4>
             
             <%= form_tag(:controller => "pool_groups" , :action => "chat", method: "get") do %>
             
-              <%= text_field_tag(:q) %>
+              <%= text_field_tag :q,nil ,:class=>"input-poolpost" %>
               <%= hidden_field_tag(:wishid, "#{@wishid}") %>
               <%= hidden_field_tag(:members, "#{@members}") %>
 
