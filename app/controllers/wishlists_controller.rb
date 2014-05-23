@@ -35,6 +35,7 @@ class WishlistsController < ApplicationController
   end
 
   def destroy
+    @wishlist.destroy
   end
 
 
@@ -170,7 +171,13 @@ class WishlistsController < ApplicationController
     @object = params[:my_param]
     current_user.wishlist.each do |t|
       if @object.to_i == t.id.to_i
-        current_user.wishlist.delete(t)
+        t.destroy
+        t.pool_group.destroy
+        Notification.all.each do |n|
+          if n.content.scan(/\d+/).first.to_i == t.id.to_i
+            n.destroy
+          end
+        end
       end
     end
     redirect_to root_url

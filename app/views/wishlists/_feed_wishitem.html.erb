@@ -8,7 +8,7 @@
             <p class="feed-time"> <%= activity.relative_time(activity.created_at) %></p>
             <%end%>
        
-            <a class="feed-username" href=""><%= link_to activity.name , root_url  %></a>
+            <%= link_to activity.name , { :controller => 'friendview', :action => 'index',my_params: User.find_by_name(activity.name).id} ,:class=>"feed-username" %>
             <p class="feed-posttext"> <%=activity.content %> </p>
         </div>
 
