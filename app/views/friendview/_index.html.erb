@@ -1,6 +1,6 @@
 <% user = User.find_by_id(object) %>
 <!DOCTYPE html>
-
+<% if Friendship.find_by_user_id_and_friend_id(current_user.id,user.id) != nil %>
 <html title>
   
   <head>
@@ -160,6 +160,27 @@
             <li class="list-group-item">Second Item</li>
             <li class="list-group-item">Third Item</li>
           </ul>
+          total count: <%= user.books.count + user.movies.count + user.music.count + user.television.count + user.games.count %> <br>
+          BOOKS: <%= user.books.count %><br>
+                <% user.books.each do |key,value| %>
+                <%= key %> <br>
+                <%end%>
+                MOVIES: <br>
+                <% user.movies.each do |key,value| %>
+                <%= key["name"] %> <br>
+                <%end%>
+                TV SHOWS:<br>
+                <% user.television.each do |key,value| %>
+                <%= key["name"] %> <br>
+                <%end%>
+                GAMES:<br>
+                <% user.games.each do |key,value| %>
+                <%= key["name"] %> <br>
+                <%end%>
+                MUSIC:<br>
+                <% user.music.each do |key,value| %>
+                <%= key["name"] %> <br>
+                <%end%>
         </div>
       </div>
     </div><!-- right-sidebar -->
@@ -231,3 +252,6 @@
   </body>
 
 </html>
+<%else%>
+<%= render :file => "#{Rails.root}/public/404.html",  :status => 404 %>
+<%end%>

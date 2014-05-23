@@ -16,7 +16,7 @@ gem 'pusher'
 
 gem 'json'
 
-
+gem 'awesome_print'
 
 
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
