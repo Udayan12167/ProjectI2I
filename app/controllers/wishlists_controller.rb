@@ -178,6 +178,11 @@ class WishlistsController < ApplicationController
             n.destroy
           end
         end
+        Like.all.each do |l|
+          if l.likeable_id == t.id.to_i
+            Like.all.delete(l)
+          end
+        end
       end
     end
     redirect_to root_url
