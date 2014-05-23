@@ -191,6 +191,7 @@
                 45% 
               </div>
             </div>
+            <%= link_to "exitpool" , {controller: "wishlists", action: "exitpool", :wishid => @wishid} , :confirm => "Are you sure you want to do that?"%>
             <h4 class="text-center">Pool Group Discussion</h4>
             <div style="position:relative">
             <%= image_tag(current_user.largeimage, :class => "feed-thumbnail" , :title => "thumbnail-dp")%>
