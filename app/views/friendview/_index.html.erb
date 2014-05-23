@@ -163,7 +163,7 @@
           total count: <%= user.books.count + user.movies.count + user.music.count + user.television.count + user.games.count %> <br>
           BOOKS: <%= user.books.count %><br>
                 <% user.books.each do |key,value| %>
-                <%= key %> <br>
+                <%= key["name"] %> <br>
                 <%end%>
                 MOVIES: <br>
                 <% user.movies.each do |key,value| %>

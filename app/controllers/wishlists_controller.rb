@@ -20,9 +20,7 @@ class WishlistsController < ApplicationController
          Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist #{@wishlist.id} via #{@username}",:name => current_user.name, :content_id => 1)
       elsif t.user_id==current_user.id
         Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist #{@wishlist.id}",:name => current_user.name, :content_id => 1)
-        Pusher["#{t.friend_id}"].trigger('my_event', {
-      message: 'hello world'
-    })
+    
       end
       if params[:flag] != nil 
         redirect_to root_url
@@ -118,7 +116,11 @@ class WishlistsController < ApplicationController
             t.claimed = 1;
             t.claimer = @claimer
             t.save!
-            Notification.create(:owner_id => current_user.uid ,:user_id => @userid , :content => "claimed wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}",:name => current_user.name, :content_id => 1)
+            friendship.each do |t|
+              if t.user_id==current_user.id 
+                 Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "claimed wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}",:name => current_user.name, :content_id => 1)
+              end
+            end
           end
         end
       end

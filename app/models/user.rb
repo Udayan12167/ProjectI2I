@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
   def books
     graph= Koala::Facebook::GraphAPI.new(self.oauth_token)
-      @books=graph.get_connections("me","video.watches")
+      @books=graph.get_connections("me","books")
       # a = JSON.parse(open(URI.escape("http://graph.facebook.com/#{self.uid}/likes?access_token=#{self.oauth_token}")).read)
       # a = JSON.parse(@friends)
       return @books
