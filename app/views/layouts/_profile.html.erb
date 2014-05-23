@@ -177,7 +177,7 @@
             <div class="list-group-item recent" id="recent-claims" data-toggle="tooltip" data-placement="top" title="see all claims"> Recently Claimed Gifts <span class="glyphicon glyphicon-flag" style="float:right;"></span></div>
               <%end%>
               <div class="list-group" >
-                <!--#<%= current_user.books %>-->
+                
                 <% wish = Array.new %>
                 <% wish = Wishlist.order("created_at desc").all %>
                 <% count = 0 %>
@@ -226,12 +226,13 @@
                  <% if d - Date.today < 1  && d - Date.today >= 0%>
                   <div class="birthday-container" data-toggle="tooltip" data-placement="top">
                    <%= image_tag(fimage(i["id"]),class: "img-birthday") %> 
-                   <p id="bday-username"><%= i["name"] %><p> 
+                   <p id="bday-username"><%= i["name"] %><p> <br>
                  </div>
                  <%end%>
                  <%end%>
               
                  <%end%>
+                 
            </div>         
         </div>
       </div>

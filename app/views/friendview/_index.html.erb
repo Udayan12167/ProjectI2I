@@ -160,6 +160,27 @@
             <li class="list-group-item">Second Item</li>
             <li class="list-group-item">Third Item</li>
           </ul>
+          total count: <%= user.books.count + user.movies.count + user.music.count + user.television.count + user.games.count %> <br>
+          BOOKS: <%= user.books.count %><br>
+                <% user.books.each do |key,value| %>
+                <%= key %> <br>
+                <%end%>
+                MOVIES: <br>
+                <% user.movies.each do |key,value| %>
+                <%= key["name"] %> <br>
+                <%end%>
+                TV SHOWS:<br>
+                <% user.television.each do |key,value| %>
+                <%= key["name"] %> <br>
+                <%end%>
+                GAMES:<br>
+                <% user.games.each do |key,value| %>
+                <%= key["name"] %> <br>
+                <%end%>
+                MUSIC:<br>
+                <% user.music.each do |key,value| %>
+                <%= key["name"] %> <br>
+                <%end%>
         </div>
       </div>
     </div><!-- right-sidebar -->
