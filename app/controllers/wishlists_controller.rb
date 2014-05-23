@@ -55,8 +55,10 @@ class WishlistsController < ApplicationController
     w.poolers = ""
     w.poolers << " #{current_user.id}"
     w.save!
-    PoolGroup.create(:wishlist_id => w.id, :poolers => w.poolers)
-    redirect_to root_url
+   PoolGroup.create(:wishlist_id => w.id, :poolers => w.poolers)
+   $id = PoolGroup.find_by_wishlist_id_and_poolers(w.id,w.poolers).id
+  session[:return_to] ||= request.referer
+  redirect_to session.delete(:return_to)
   end
 
 
@@ -72,31 +74,34 @@ class WishlistsController < ApplicationController
   def responsepool
     @loc = Facebooksignin::Application::YOUR_GLOBAL_VAR
     @i = @@poolarr
-    @accept = params[:accept]
-    @reject = params[:reject]
+    @accept = params[:response]
+    # @reject = params[:reject]
     @wishid = params[:wishid]
     @userid = params[:userid]
     @notifid = params[:notifid]
     @del = Notification.find_by_id(@notifid)
-    if @accept.to_i == 1
+    if @accept == "accept"
       Notification.create(:owner_id => current_user.uid ,:user_id => User.find_by_uid(@userid).id , :content => "accepted your pool request for gift #{@wishid} belonging to #{User.find_by_id(Wishlist.find_by_id(@wishid).user_id).name}",:name => current_user.name, :content_id => 1)
       w = Wishlist.find_by_id(@wishid)
       ar = w.poolers.scan(/\d+/)
       if ar.index(current_user.id.to_s) == nil 
        w.poolers << " #{current_user.id}"
        w.save!
-       w.pool_group.poolers = w.poolers
-       w.pool_group.save!
-    end
+     end
+       @wpool = PoolGroup.find_by_id($id)
+       @wpool.poolers = w.poolers
+       @wpool.save!
+  
       
-    elsif @reject == 1
+    elsif @accept == "reject"
       Notification.create(:owner_id => current_user.uid ,:user_id => @userid , :content => "rejected your pool request for gift #{@wishid} belonging to #{User.find_by_id(Wishlist.find_by_id(@wishid).user_id).name}",:name => current_user.name, :content_id => 1)
     end
     if @del != nil
       @del.content_id = 0;
       @del.save!
     end
-    
+    session[:return_to] ||= request.referer
+    redirect_to session.delete(:return_to)
   end
 
 
@@ -189,7 +194,8 @@ class WishlistsController < ApplicationController
       n.content_id = 0
       n.save!
     end
-  redirect_to root_url
+  session[:return_to] ||= request.referer
+  redirect_to session.delete(:return_to)
   end
 
   def vote

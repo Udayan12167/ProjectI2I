@@ -200,7 +200,7 @@
               <%= submit_tag("post") %>
             <% end %>
             <% w = Wishlist.find_by_id(@wishid) %>
-            <% w.pool_group.each do |d| %>
+            <% w.pool_group.order("created_at desc").each do |d| %>
               <% if d.content != nil %>
                
               <div class="feed-container">

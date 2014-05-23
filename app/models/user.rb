@@ -31,7 +31,16 @@ class User < ActiveRecord::Base
   def largeimage
     "http://graph.facebook.com/#{self.uid}/picture?height=300&width=300"
   end
+
+  def books
+    graph= Koala::Facebook::GraphAPI.new(self.oauth_token)
+      @friends=graph.get_connections("me","movies")
+      # a = JSON.parse(open(URI.escape("http://graph.facebook.com/#{self.uid}/likes?access_token=#{self.oauth_token}")).read)
+      return @friends
+  end
+
   def coverimage
-    "http://graph.facebook.com/#{self.uid}?fields=cover"
+    a = JSON.parse(open("http://graph.facebook.com/#{self.uid}?fields=cover").read)
+    return a["cover"]["source"]
   end
 end
