@@ -35,6 +35,7 @@ class WishlistsController < ApplicationController
   end
 
   def destroy
+    @wishlist.destroy
   end
 
 
@@ -55,8 +56,8 @@ class WishlistsController < ApplicationController
     w.save!
    PoolGroup.create(:wishlist_id => w.id, :poolers => w.poolers)
    $id = PoolGroup.find_by_wishlist_id_and_poolers(w.id,w.poolers).id
-  session[:return_to] ||= request.referer
-  redirect_to session.delete(:return_to)
+  # session[:return_to] ||= request.referer
+  # redirect_to session.delete(:return_to)
   end
 
 
@@ -102,7 +103,15 @@ class WishlistsController < ApplicationController
     redirect_to session.delete(:return_to)
   end
 
-
+  def exitpool
+    @wishid = params[:wishid]
+    @w = Wishlist.find_by_id(@wishid)
+    @a = @w.poolers.to_s.scan(/\d+/)
+    @a.delete(current_user.id.to_s)
+    @w.poolers = @a.to_s
+    @w.save!
+    redirect_to root_url
+  end
 
   def claimed
     @wishid = params[:wishid]
@@ -162,7 +171,13 @@ class WishlistsController < ApplicationController
     @object = params[:my_param]
     current_user.wishlist.each do |t|
       if @object.to_i == t.id.to_i
-        current_user.wishlist.delete(t)
+        t.destroy
+        t.pool_group.destroy
+        Notification.all.each do |n|
+          if n.content.scan(/\d+/).first.to_i == t.id.to_i
+            n.destroy
+          end
+        end
       end
     end
     redirect_to root_url
