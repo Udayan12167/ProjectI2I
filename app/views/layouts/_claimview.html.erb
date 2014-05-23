@@ -1,0 +1,11 @@
+<% wish = Array.new %>
+  <% wish = Wishlist.order("created_at desc").all %>
+  <% count = 0 %>
+    <% wish.each do |w| %>
+      <% if count < 3 %>
+        <%if w.claimer == current_user.id %>
+          <li class="claim-item list-group-item">Gift for <%= User.find_by_id(w.user_id).name %> <%= image_tag(fimage(User.find_by_id(w.user_id).uid), class: "img-claim-thumbnail img-circle") %></li>
+          <% count = count + 1 %>
+        <%end %>
+      <%end%>
+    <%end%>
