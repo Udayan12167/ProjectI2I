@@ -200,9 +200,6 @@
   <% if t.claimer == current_user.id %>
     
     <li class="col-md-6">
-      
-      
-      <button id="pool-request" data-toggle = "modal" data-target = "#poolModal">pool</button>
       <div class="thumbnail" style="padding: 0">
         <div style="padding:4px;">
           <div class="gift-info">  
@@ -218,10 +215,12 @@
           </div>
           
           <% if t.user_id != current_user %>
-          <% if t.claimed != 1 and t.claimer != current_user %>
-          <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out"%>
+            <% if t.claimed != 1 and t.claimer != current_user %>
+              <%= link_to '<span class="btn btn-large btn-success" id="claim_button" title="Claim this gift">Claim</span>'.html_safe ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out"%>
+              <button id="pool-request" data-toggle = "modal" data-target = "#poolModal" class="btn btn-large btn-danger" title="Claim the Gift to Pool" disabled="">Pool</button>
           <%elsif t.claimer== current_user.id%> 
-          <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
+            <%= link_to '<span class="btn btn-large btn-success" id="unclaim_button" title="Unclaim this gift">Unclaim</span>'.html_safe ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
+            <button id="pool-request"  data-toggle = "modal" data-target = "#poolModal" class="btn btn-large btn-danger" title="Invite for Pool">Pool</button>
           <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
           <%end%>
         <%end%>

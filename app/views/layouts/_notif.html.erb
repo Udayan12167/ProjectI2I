@@ -1,6 +1,6 @@
 <% notifs = Notification.order("created_at desc").all %>
 <% if Notification.all.find_by_content_id(1) != nil %>
-<%= link_to "clearAll" , "wishlists/readAll" %>
+<%= link_to '<span class="btn btn-default" title="Clear All">Clear All</span>'.html_safe , "wishlists/readAll" %>
 <% notifs.each do |n| %>
 <% if n.user_id == current_user.id && n.content_id == 1 && n.content["invited"] != "invited" %>
           
