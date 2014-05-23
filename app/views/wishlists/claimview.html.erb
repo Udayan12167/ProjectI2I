@@ -30,6 +30,26 @@
         </div>       
 		<div class="collapse navbar-collapse">
           <ul id="menu-bar" class="nav navbar-nav">
+            <li class="dropdown" title="Pool Requests">
+             <a href="#" data-toggle="dropdown" id="pool-dropdown" class="dropdown-toggle"><i class="glyphicon glyphicon-magnet" id="magnet-dropdown"></i><span id="poolreq-count" class="poolreq-count badge">
+                    <% notifcount=0 %>
+                    <% current_user.notification.each do |t| %>
+                    <% if t.content_id == 1 && t.content["invited"] %>
+                    <% notifcount=notifcount+1 %>
+                    <% end%>
+                    <% end%>
+                    <%= notifcount %>
+
+                  </span></a>
+              <ul class="dropdown-poolreq dropdown-menu pull-right" id="Poolreq-List">
+                <%= render 'layouts/poolnotif' %>
+
+                  
+                    
+
+                  </ul>
+             </li>
+            
              <li class="dropdown" title="Notification">
              <a href="#" data-toggle="dropdown" id="notif-dropdown" class="dropdown-toggle"><%= image_tag('highlight_notification.png',id: "notification-inactive",:class => "menu-icon") %><span id="notificaton-count" class="notification-count badge">
                 <%= render 'layouts/notifcount' %>
@@ -180,8 +200,11 @@
   <% if t.claimer == current_user.id %>
     
     <li class="col-md-6">
-      
-      
+    <div class="feed-text" style="background-color: white;border-radius: 5px;border: gainsboro;border-width: thin;border-style: solid;padding: 2px;">
+      Gift for
+        <%= User.find_by_id(t.user_id).name %>
+        <%= image_tag(User.find_by_id(t.user_id).largeimage,class: "feed-thumbnail",style: "float:right") %>
+        </div>
       <button id="pool-request" data-toggle = "modal" data-target = "#poolModal">pool</button>
       <div class="thumbnail" style="padding: 0">
         <div style="padding:4px;">
@@ -198,15 +221,16 @@
           </div>
           
           <% if t.user_id != current_user %>
-          <% if t.claimed != 1 and t.claimer != current_user %>
-          <%= link_to "claim" ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out"%>
+            <% if t.claimed != 1 and t.claimer != current_user %>
+              <%= link_to '<span class="btn btn-large btn-success" id="claim_button" title="Claim this gift">Claim</span>'.html_safe ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out"%>
+              <button id="pool-request" data-toggle = "modal" data-target = "#poolModal" class="btn btn-large btn-danger" title="Claim the Gift to Pool" disabled="">Pool</button>
           <%elsif t.claimer== current_user.id%> 
-          <%= link_to "unclaim" ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
+            <%= link_to '<span class="btn btn-large btn-success" id="unclaim_button" title="Unclaim this gift">Unclaim</span>'.html_safe ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: t.user_id} ,id: "sign_out" %>
+            <button id="pool-request"  data-toggle = "modal" data-target = "#poolModal" class="btn btn-large btn-danger" title="Invite for Pool">Pool</button>
           <%else%> claimed by <%= User.find_by_id(t.claimer).name %>
           <%end%>
         <%end%>
-        <%= User.find_by_id(t.user_id).name %>
-        <%= image_tag(User.find_by_id(t.user_id).largeimage) %>
+        
         </li>
       
         

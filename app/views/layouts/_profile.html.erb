@@ -32,6 +32,20 @@
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <%= stylesheet_link_tag 'profile.css' %>
     <%= javascript_include_tag 'profile.js' %>
+    <script src="http://js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // Enable pusher logging - don't include this in production
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+    var pusher = new Pusher('d04fb4c119fd0604edcb');
+    var channel = pusher.subscribe('<%= current_user.id%>');
+    channel.bind('my_event', function(data) {
+      alert(data.message);
+    });
+  </script>
 
   </head>
   
@@ -51,7 +65,7 @@
         </div>       
     <div class="collapse navbar-collapse">
           <ul id="menu-bar" class="nav navbar-nav">
-              <li class="dropdown" title="Pool Requests">
+            <li class="dropdown" title="Pool Requests">
              <a href="#" data-toggle="dropdown" id="pool-dropdown" class="dropdown-toggle"><i class="glyphicon glyphicon-magnet" id="magnet-dropdown"></i><span id="poolreq-count" class="poolreq-count badge">
                     <% notifcount=0 %>
                     <% current_user.notification.each do |t| %>
@@ -166,7 +180,7 @@
         <div id="profile-info">
          
           <div class="profile-dp-container">
-            <%= image_tag(current_user.coverimage, :class => "display-pic img-thumbnail")%>
+            <%= image_tag(current_user.largeimage, :class => "display-pic img-thumbnail")%>
           </div>
            <div class="container" style="display: inline-block">
             <p><b><%= current_user.name %></b></p>
@@ -176,6 +190,7 @@
             <%= link_to ({controller: "wishlists" , action: "claimview"}) do %>
             <div class="list-group-item recent" id="recent-claims" data-toggle="tooltip" data-placement="top" title="see all claims"> Recently Claimed Gifts <span class="glyphicon glyphicon-flag" style="float:right;"></span></div>
               <%end%>
+<<<<<<< HEAD
               <div class="list-group" >
                 
                 <% wish = Array.new %>
@@ -189,6 +204,10 @@
                   <%end %>
                 <%end%>
                 <%end%>
+=======
+              <div class="list-group" id="claim-list">
+                <%= render 'layouts/claimview' %>
+>>>>>>> c19306b29102f3940ad7734dc2128fe53cf3905a
                 
               </div>
             

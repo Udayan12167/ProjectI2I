@@ -20,6 +20,9 @@ class WishlistsController < ApplicationController
          Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist #{@wishlist.id} via #{@username}",:name => current_user.name, :content_id => 1)
       elsif t.user_id==current_user.id
         Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist #{@wishlist.id}",:name => current_user.name, :content_id => 1)
+        Pusher["#{t.friend_id}"].trigger('my_event', {
+      message: 'hello world'
+    })
       end
       if params[:flag] != nil 
         redirect_to root_url
@@ -120,8 +123,9 @@ class WishlistsController < ApplicationController
         end
       end
     end
-    session[:return_to] ||= request.referer
-    redirect_to session.delete(:return_to)
+    respond_to do |format|
+      format.js
+    end 
   end
 
   def unclaimed
@@ -146,8 +150,9 @@ class WishlistsController < ApplicationController
         end
       end
     end
-    session[:return_to] ||= request.referer
-    redirect_to session.delete(:return_to)
+    respond_to do |format|
+      format.js
+    end 
   end
 
   def remove

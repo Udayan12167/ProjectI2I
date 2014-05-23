@@ -41,15 +41,20 @@
             </div>
           </div>
           <% if user != current_user %>
+              <% claim_id="claim_#{t.id}" %>
+              <div id="<%=claim_id%>">
               <% if t.claimed != 1 and t.claimer != current_user %>
-                <button id="pool-request"  data-toggle = "modal" data-target = "#poolModal" class="btn btn-large btn-danger" title="Invite for Pool" disabled>Pool</button>
-                <%= link_to '<span class="btn btn-large btn-success" id="claim_button" title="Claim this gift">Claim</span>'.html_safe ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out" %>
+                
+                <%= link_to '<span class="btn btn-large btn-success" id="claim_button" title="Claim this gift">Claim</span>'.html_safe ,{controller:"wishlists", action:"claimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out",:remote => true%>
+                <button id="pool-request"  data-toggle = "modal" data-target = "#poolModal" class="btn btn-large btn-danger" title="Claim the Gift to Pool" disabled>Pool</button>
               <%elsif t.claimer== current_user.id%> 
+                
+                <%= link_to '<span class="btn btn-large btn-success" id="unclaim_button" title="Unclaim this gift">Unclaim</span>'.html_safe ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out",:remote => true%>
                 <button id="pool-request"  data-toggle = "modal" data-target = "#poolModal" class="btn btn-large btn-danger" title="Invite for Pool">Pool</button>
-                <%= link_to '<span class="btn btn-large btn-success" id="unclaim_button" title="Unclaim this gift">Unclaim</span>'.html_safe ,{controller:"wishlists", action:"unclaimed" , wishid: "#{t.id}" ,claimer: current_user.id, userid: user.id} ,id: "sign_out"%>
               <%else%>
                 <%= User.find_by_id(t.claimer).name %> claimed this gift.
               <%end%>
+            </div>
           <%end%>
         </div>
 </li>
@@ -73,13 +78,13 @@
             <% friends_list.each do |hash| %>
             <% if hash["id"].in? uuid %>
             <% if hash["id"] != user.uid %>
-            <div class="friends-container" style="padding:0px">  
+            <div class="friends-container" style="padding:5px">  
             <div class="friends-media">
             
             <div class="friends-media-body" style="padding:0px">
-                <h4 class="media-heading">
+                <h4 class="media-heading" style="margin:0px">
                 <%= check_box_tag("values[]", hash["id"]) %>
-                <%= label_tag("v[]", image_tag(fimage(hash["id"]),:class => "friends-media-object")) %>
+                <%= label_tag("v[]", image_tag(fimage(hash["id"]),:class => "friends-media-object",:style => "vertical-align:middle")) %>
                   <div class="friends-media-body" style="display:inline-block;"><%= hash["name"] %></div>
                 <%= hidden_field_tag(:userid, "#{user.id}") %>
                 <%= hidden_field_tag(:wishid, "#{t.id}") %>

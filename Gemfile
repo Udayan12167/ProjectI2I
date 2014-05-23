@@ -11,6 +11,7 @@ gem 'socialization'
 gem 'kaminari'
 
 gem 'thin'
+gem 'pusher'
 
 
 gem 'json'
