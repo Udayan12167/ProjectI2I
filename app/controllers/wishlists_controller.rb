@@ -116,8 +116,8 @@ class WishlistsController < ApplicationController
             t.claimed = 1;
             t.claimer = @claimer
             t.save!
-            friendship.each do |t|
-              if t.user_id==current_user.id 
+            Friendship.all.each do |t|
+              if t.user_id==current_user.id && t.friend_id != User.find_by_id(Wishlist.find_by_id(@wishid).user_id).id
                  Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "claimed wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}",:name => current_user.name, :content_id => 1)
               end
             end
@@ -142,12 +142,13 @@ class WishlistsController < ApplicationController
             t.claimed = nil;
             t.claimer = nil
             t.save!
-            current_user.notification.each do |n|
              temp =  Notification.find_by_content("claimed wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}")
-             if temp != nil
+             while temp!= nil
               Notification.delete(temp)
-            end
-          end
+              temp =  Notification.find_by_content("claimed wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}")
+              end
+
+            
           end
         end
       end
