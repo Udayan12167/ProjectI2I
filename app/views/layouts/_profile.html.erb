@@ -190,24 +190,8 @@
             <%= link_to ({controller: "wishlists" , action: "claimview"}) do %>
             <div class="list-group-item recent" id="recent-claims" data-toggle="tooltip" data-placement="top" title="see all claims"> Recently Claimed Gifts <span class="glyphicon glyphicon-flag" style="float:right;"></span></div>
               <%end%>
-<<<<<<< HEAD
               <div class="list-group" id="claim-list">
                 <%= render 'layouts/claimview' %>
-=======
-              <div class="list-group" >
-                <!--#<%= current_user.books %>-->
-                <% wish = Array.new %>
-                <% wish = Wishlist.order("created_at desc").all %>
-                <% count = 0 %>
-                <% wish.each do |w| %>
-                <% if count < 3 %>
-                 <%if w.claimer == current_user.id %>
-                  <li class="claim-item list-group-item">Gift for <%= User.find_by_id(w.user_id).name %> <%= image_tag(fimage(User.find_by_id(w.user_id).uid), class: "img-claim-thumbnail img-circle") %></li>
-                  <% count = count + 1 %>
-                  <%end %>
-                <%end%>
-                <%end%>
->>>>>>> 0d5d6b26902b307d460ab8153fbb768160f80a47
                 
               </div>
             
