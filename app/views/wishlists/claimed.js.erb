@@ -1,0 +1,4 @@
+$('#feed-claim-button').html("<%= escape_javascript(render :partial => "wishlists/claim" )%>");
+$('#claim-list').html("<%= escape_javascript(render :partial => "layouts/claimview" )%>");
+<% claim_id="claim_#{@wishid}"%>
+$('#<%=claim_id%>').html("<%= escape_javascript(render :partial => "wishlists/claim_friendview")%>");
