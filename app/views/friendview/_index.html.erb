@@ -1,6 +1,6 @@
 <% user = User.find_by_id(object) %>
 <!DOCTYPE html>
-
+<% if Friendship.find_by_user_id_and_friend_id(current_user.id,user.id) != nil %>
 <html title>
   
   <head>
@@ -252,3 +252,6 @@
   </body>
 
 </html>
+<%else%>
+<%= render :file => "#{Rails.root}/public/404.html",  :status => 404 %>
+<%end%>
