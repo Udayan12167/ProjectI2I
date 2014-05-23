@@ -118,7 +118,9 @@ class WishlistsController < ApplicationController
         end
       end
     end
-    redirect_to root_url
+    respond_to do |format|
+      format.js
+    end 
   end
 
   def unclaimed
@@ -143,7 +145,9 @@ class WishlistsController < ApplicationController
         end
       end
     end
-    redirect_to root_url
+    respond_to do |format|
+      format.js
+    end 
   end
 
   def remove
