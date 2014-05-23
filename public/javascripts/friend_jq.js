@@ -1,3 +1,43 @@
+var book_count=parseInt(document.getElementById("book-count").innerText)
+var movie_count=parseInt(document.getElementById("book-count").innerText)
+var tv_count=parseInt(document.getElementById("book-count").innerText)
+var game_count=parseInt(document.getElementById("book-count").innerText)
+var music_count=parseInt(document.getElementById("book-count").innerText)
+var total=book_count+movie_count+tv_count+game_count+music_count;
+
+var book_count=100*(book_count/total)
+var movie_count=100*(movie_count/total)
+var tv_count=100*(tv_count/total)
+var game_count=100*(game_count/total)
+var music_count=100*(music_count/total)
+
+console.log(book_count+" "+movie_count+" "+tv_count+" "+game_count+" "+music_count)
+
+var data = [
+  {
+    value: book_count,
+    color:"#F7464A"
+  },
+  {
+    value : movie_count,
+    color : "#E2EAE9"
+  },
+  {
+    value : tv_count,
+    color : "#D4CCC5"
+  },
+  {
+    value : game_count,
+    color : "#949FB1"
+  },
+  {
+    value : music_count,
+    color : "#4D5360"
+  }
+
+]
+       var ctx = document.getElementById("myChart").getContext("2d");
+      var myNewChart = new Chart(ctx).Doughnut(data);
 
 $('html').click(function(event)
 {

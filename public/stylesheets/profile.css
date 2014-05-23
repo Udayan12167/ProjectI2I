@@ -747,7 +747,7 @@
   
 		#trends-sidebar{
 			position: fixed;
-      width: 19%;
+      width: 24%;
       background-color: #ffffff;
       right: 0px;
       top: 100px;
@@ -773,6 +773,13 @@
       height: 100%;
       overflow:auto;
       padding: 1px;
+    }
+
+    #chart-legend{
+      position: absolute;
+      top: 115px;
+      left: 35%;
+      font-size: smaller;
     }
     
 		

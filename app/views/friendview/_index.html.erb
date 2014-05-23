@@ -9,8 +9,12 @@
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    
     <%= stylesheet_link_tag 'profile.css' %>
+    <%= javascript_include_tag 'Chart.js' %>
     <%= javascript_include_tag 'friend.js' %>
+    
+    <meta name = "viewport" content = "initial-scale = 1, user-scalable = no">
 	  
   </head>
   
@@ -150,44 +154,25 @@
     </div><!-- left-sidebar -->
     <div class="row row-offcanvas row-offcanvas-right" title>
       <div class="col-sm-3 col-md-12" title>
-        <div class="well sidebar-nav pull-left well-sm" id="trends-sidebar" title>
-          <ul class="list-group">
-            <p class="text-center">Trends/Categories</p>
-            <li class="list-group-item">First Item</li>
-            <li class="list-group-item">Second Item</li>
-            <li class="list-group-item">Third Item</li>
-            <li class="list-group-item">First Item</li>
-            <li class="list-group-item">Second Item</li>
-            <li class="list-group-item">Third Item</li>
-          </ul>
-          total count: <%= user.books.count + user.movies.count + user.music.count + user.television.count + user.games.count %> <br>
-          BOOKS: <%= user.books.count %><br>
-                <% user.books.each do |key,value| %>
-                <%= key %> <br>
-                <%end%>
-                MOVIES: <br>
-                <% user.movies.each do |key,value| %>
-                <%= key["name"] %> <br>
-                <%end%>
-                TV SHOWS:<br>
-                <% user.television.each do |key,value| %>
-                <%= key["name"] %> <br>
-                <%end%>
-                GAMES:<br>
-                <% user.games.each do |key,value| %>
-                <%= key["name"] %> <br>
-                <%end%>
-                MUSIC:<br>
-                <% user.music.each do |key,value| %>
-                <%= key["name"] %> <br>
-                <%end%>
+        <div class="well sidebar-nav pull-left well-sm" id="trends-sidebar" style="overflow:hidden"title >
+          
+          <canvas id="myChart" width="300" height="300"></canvas>
+          <div id="chart-legend">
+                <i class="glyphicon glyphicon-stop" style="color:#F7464A"></i> Books: <i style="margin:0" id="book-count" ><%= user.books.count %></i> likes <br>               
+                <i class="glyphicon glyphicon-stop" style="color:#E2EAE9"></i> Movies: <i style="margin:0" id="movies-count" ><%= user.movies.count %></i> likes <br>              
+                <i class="glyphicon glyphicon-stop" style="color:#D4CCC5"></i> TV: <i style="margin:0" id="tv-count" ><%= user.television.count %></i> likes <br>             
+                <i class="glyphicon glyphicon-stop" style="color:#949FB1"></i> Games: <i style="margin:0" id="games-count" ><%= user.games.count %></i> likes <br>             
+                <i class="glyphicon glyphicon-stop" style="color:#4D5360"></i> Music: <i style="margin:0" id="music-count" ><%= user.music.count %></i> likes 
+                </div>
+
         </div>
       </div>
     </div><!-- right-sidebar -->
    <div class="container main">
             <!-- tab btns -->
-            <div class="jumbotron">
-            
+            <div class="jumbotron" style="left: 17%">
+
+             
             <!-- Feed -->
             <div id="wishlist" style="display:block">
               
@@ -239,6 +224,8 @@
     
     <script>  
       $(document).ready(function() {
+
+      
         $(".like_button").hide();
         $(".add_delete_button").hide();
         $('[data-toggle=offcanvas]').click(function() {

@@ -81,5 +81,6 @@ function resize_image(x){
 
  }
  
- 
+window.onLoad=function(){
+     }
  
