@@ -101,7 +101,7 @@
               <%= link_to image_tag('home_button.png'), root_url, id: "home",:class => "menu-icon"%>
             </li>
             <li title = "About Us">
-              <a href="#about"><%= image_tag('highlight_info.png',:class=> "menu-icon") %> </a>
+              <%=link_to image_tag('highlight_info.png'), {:controller => "application", :action => "about"}, :class=> "menu-icon" %>
             </li>
             <li title = "Sign Out">
               <%= link_to image_tag('highlight_sign_out.png'), signout_path, id: "highlight_sign_out",:class => "menu-icon"%>

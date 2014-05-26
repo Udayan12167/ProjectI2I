@@ -1,8 +1,8 @@
 class WishlistsController < ApplicationController
   respond_to :js
-
+ 
   @@poolarr = Hash.new
-
+ 
   def index
     @wishlist = Wishlist.all
   end
@@ -20,25 +20,25 @@ class WishlistsController < ApplicationController
          Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist #{@wishlist.id} via #{@username}",:name => current_user.name, :content_id => 1)
       elsif t.user_id==current_user.id
         Notification.create(:owner_id => current_user.uid ,:user_id => t.friend_id , :content => "added item to wishlist #{@wishlist.id}",:name => current_user.name, :content_id => 1)
-    
+   
       end
-      if params[:flag] != nil 
+      if params[:flag] != nil
         redirect_to root_url
       end
     end
-
-    
+ 
+   
     respond_to do |format|
       format.js
-    end 
-
+    end
+ 
   end
-
+ 
   def destroy
     @wishlist.destroy
   end
-
-
+ 
+ 
   def requestpool
     @loc = Facebooksignin::Application::YOUR_GLOBAL_VAR
     @wishid = params[:wishid]
@@ -59,17 +59,17 @@ class WishlistsController < ApplicationController
   # session[:return_to] ||= request.referer
   # redirect_to session.delete(:return_to)
   end
-
-
+ 
+ 
   def claimview
     @itemm = @friends
     #render 'wishlists/claim'
   end
-
-  
-
-
-
+ 
+ 
+ 
+ 
+ 
   def responsepool
     @loc = Facebooksignin::Application::YOUR_GLOBAL_VAR
     @i = @@poolarr
@@ -83,15 +83,15 @@ class WishlistsController < ApplicationController
       Notification.create(:owner_id => current_user.uid ,:user_id => User.find_by_uid(@userid).id , :content => "accepted your pool request for gift #{@wishid} belonging to #{User.find_by_id(Wishlist.find_by_id(@wishid).user_id).name}",:name => current_user.name, :content_id => 1)
       w = Wishlist.find_by_id(@wishid)
       ar = w.poolers.scan(/\d+/)
-      if ar.index(current_user.id.to_s) == nil 
+      if ar.index(current_user.id.to_s) == nil
        w.poolers << " #{current_user.id}"
        w.save!
      end
        @wpool = PoolGroup.find_by_id($id)
        @wpool.poolers = w.poolers
        @wpool.save!
-  
-      
+ 
+     
     elsif @accept == "reject"
       Notification.create(:owner_id => current_user.uid ,:user_id => @userid , :content => "rejected your pool request for gift #{@wishid} belonging to #{User.find_by_id(Wishlist.find_by_id(@wishid).user_id).name}",:name => current_user.name, :content_id => 1)
     end
@@ -102,7 +102,7 @@ class WishlistsController < ApplicationController
     session[:return_to] ||= request.referer
     redirect_to session.delete(:return_to)
   end
-
+ 
   def exitpool
     @wishid = params[:wishid]
     @w = Wishlist.find_by_id(@wishid)
@@ -112,7 +112,7 @@ class WishlistsController < ApplicationController
     @w.save!
     redirect_to root_url
   end
-
+ 
   def claimed
     @wishid = params[:wishid]
     @userid = params[:userid]
@@ -136,9 +136,9 @@ class WishlistsController < ApplicationController
     end
     respond_to do |format|
       format.js
-    end 
+    end
   end
-
+ 
   def unclaimed
     @wishid = params[:wishid]
     @userid = params[:userid]
@@ -156,17 +156,17 @@ class WishlistsController < ApplicationController
               Notification.delete(temp)
               temp =  Notification.find_by_content("claimed wishlist item #{@wishid} belonging to #{User.find_by_id(@userid).name}")
               end
-
-            
+ 
+           
           end
         end
       end
     end
     respond_to do |format|
       format.js
-    end 
+    end
   end
-
+ 
   def remove
     @object = params[:my_param]
     current_user.wishlist.each do |t|
@@ -190,16 +190,16 @@ class WishlistsController < ApplicationController
   def initiate
     @wishlist =current_user.wishlist.build
   end
-
+ 
   def poolnotif
     @c = params[:created]
     @u = params[:u]
     @notifid = params[:notifid]
     @del = Notification.find_by_user_id_and_created_at(@u,@c)
   end
-
+ 
   def read
-    
+   
     @c = params[:created]
     @u = params[:u]
     @del = Notification.find_by_user_id_and_created_at(@u,@c)
@@ -211,7 +211,7 @@ class WishlistsController < ApplicationController
       format.js
     end
   end
-
+ 
   def readAll
     current_user.notification.all.each do |n|
       n.content_id = 0
@@ -220,11 +220,11 @@ class WishlistsController < ApplicationController
   session[:return_to] ||= request.referer
   redirect_to session.delete(:return_to)
   end
-
+ 
   def vote
     @object = params[:wish_param]
     @user_id = User.find_by_id(params[:my_params])
-    
+   
     Wishlist.all.each do |t|
       if @object.to_i == t.id.to_i
         current_user.like!(t)
@@ -235,13 +235,13 @@ class WishlistsController < ApplicationController
           end
         end
       end
-
+ 
     end
     #redirect_to root_url
-    
+   
      respond_to do |format|
        format.js
-    end 
+    end
   end
   def unvote
       @object = params[:wish_param]
@@ -250,12 +250,12 @@ class WishlistsController < ApplicationController
       if @object.to_i == t.id.to_i
         current_user.unlike!(t)
       end
-      
+     
     end
      #redirect_to root_url
     respond_to do |format|
       format.js
-    end   
+    end  
     # Notification.all.each do |n|
     #   del = Notification.find_by_content_and_by_name("liked your wishlist item #{@object}",current_user.name)
     #   if del != nil
@@ -263,14 +263,14 @@ class WishlistsController < ApplicationController
     # end
     # end
     end
-
+ 
   private
-
+ 
     def wishlist_params
       params.require(:wishlist).permit(:link,:price)
     end
-
-    
-
-  
+ 
+   
+ 
+ 
 end
